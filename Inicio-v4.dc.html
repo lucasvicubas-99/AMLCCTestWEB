@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>AML Centrifugal Casting · Inicio v4</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@300;400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#011F67}a:hover{color:#3D5AA8}
+input,select,textarea{font:inherit}
+input:focus,select:focus,textarea:focus{outline:2px solid #011F67;outline-offset:2px}
+
+@keyframes aml-up{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+@keyframes aml-ripple{0%{transform:scale(.2);opacity:0}12%{opacity:1}100%{transform:scale(1);opacity:0}}
+@keyframes aml-marquee{to{transform:translateX(-50%)}}
+@keyframes aml-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.aml-in{animation:aml-up .9s cubic-bezier(.2,.7,.2,1) both}
+.aml-ripple circle{transform-origin:center;transform-box:fill-box;animation:aml-ripple 8s linear infinite}
+.aml-marquee{display:flex;width:max-content;animation:aml-marquee 48s linear infinite}
+.aml-zoom{transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.aml-zoomwrap:hover .aml-zoom{transform:scale(1.07)}
+.aml-progress{display:none}
+@supports (animation-timeline: view()){
+.aml-rv{animation:aml-up linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+.aml-line{animation:aml-grow linear both;animation-timeline:view();animation-range:entry 40% cover 55%}
+.aml-progress{display:block;animation:aml-grow linear both;animation-timeline:scroll()}
+}
+@media (prefers-reduced-motion: reduce){
+.aml-in,.aml-rv,.aml-line,.aml-marquee,.aml-ripple circle{animation:none!important}
+.aml-zoom{transition:none}
+}
+</style>
+</helmet>
+<div style="background: #FFFFFF; color: #011F67; font-family: Inter, system-ui, sans-serif; font-size: 17px; line-height: 1.6">
+
+<!-- Franja superior -->
+<div style="background: #011F67; color: #FFFFFF; font-size: 13px; letter-spacing: 0.02em">
+<div style="max-width: 1240px; margin: 0 auto; padding: 10px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px">
+<nav aria-label="Idioma" style="display: flex; gap: 14px"><a href="#" aria-current="true" style="color: #FFFFFF; font-weight: 600; text-decoration: none">ES</a><a href="#" style="color: rgba(255,255,255,0.75); text-decoration: none">EN</a><a href="#" style="color: rgba(255,255,255,0.75); text-decoration: none">DE</a><a href="#" style="color: rgba(255,255,255,0.75); text-decoration: none">IT</a><a href="#" style="color: rgba(255,255,255,0.75); text-decoration: none">FR</a></nav>
+<span style="display: flex; flex-wrap: wrap; gap: 6px 24px"><span><a href="tel:+34948461603" style="color: inherit; text-decoration: none">+34 948 46 16 03</a></span><span><a href="mailto:info@amlcentrifugal.com" style="color: inherit; text-decoration: none">info@amlcentrifugal.com</a></span></span>
+</div>
+</div>
+
+<!-- Cabecera -->
+<header style="position: sticky; top: 0; z-index: 10; background: #FFFFFF; border-bottom: 1px solid {{linea}}">
+<div class="aml-progress" aria-hidden="true" style="position: absolute; left: 0; bottom: -3px; width: 100%; height: 3px; background: #011F67; transform-origin: left center"></div>
+<div style="max-width: 1240px; margin: 0 auto; padding: 16px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px">
+<a href="#inicio" aria-label="AML Centrifugal Casting, inicio" style="display: flex"><sc-if value="{{lemaAzul}}" hint-placeholder-val="{{ true }}"><img src="./assets/e43206f719cfb172eeb64a2b94a282ee.svg" alt="AML Centrifugal Casting S.L." style="height: 64px; width: auto; display: block"></sc-if><sc-if value="{{lemaGris}}" hint-placeholder-val="{{ false }}"><img src="./assets/f434c653614a97a131a190503df5e68c.svg" alt="AML Centrifugal Casting S.L." style="height: 64px; width: auto; display: block"></sc-if></a>
+<nav aria-label="Principal" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; font-size: 15px; font-weight: 500">
+<a href="#empresa" style="text-decoration: none">Quiénes somos</a>
+<a href="#servicios" style="text-decoration: none">Servicios</a>
+<a href="#capacidades" style="text-decoration: none">Capacidades</a>
+<a href="#materiales" style="text-decoration: none">Materiales</a>
+<a href="#sectores" style="text-decoration: none">Sectores</a>
+<a href="#ubicacion" style="text-decoration: none">Cómo llegar</a>
+<a href="#contacto" style="text-decoration: none; background: #011F67; color: #FFFFFF; padding: 12px 22px; border-radius: 2px; font-weight: 600">Contactar</a>
+</nav>
+</div>
+</header>
+
+<!-- Hero C: texto sobre el vídeo -->
+<section id="inicio" style="position: relative; overflow: hidden; isolation: isolate; min-height: 780px; display: flex; align-items: center; background: #0B2766; color: #FFFFFF">
+<video src="./assets/337a2da3577804dbe49774fc1b459e89.mp4" poster="./assets/fcfbec8e404fb472dd54be2580983635.jpg" autoplay="" muted="" loop="" playsinline="" preload="auto" ref="{{setVideo}}" aria-hidden="true" style="position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; display: block"></video>
+<div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(1,31,103,0.92) 0%, rgba(1,31,103,0.75) 45%, rgba(1,31,103,0.35) 100%)"></div>
+<svg class="aml-ripple" viewBox="0 0 1000 1000" aria-hidden="true" style="position: absolute; z-index: -1; pointer-events: none; right: -620px; top: -620px; width: 1240px; height: 1240px; opacity: 0.4"><circle cx="500" cy="500" r="496" fill="none" stroke="#FFFFFF" stroke-width="2" vector-effect="non-scaling-stroke" style="animation-delay: -0s"></circle><circle cx="500" cy="500" r="496" fill="none" stroke="#FFFFFF" stroke-width="9" vector-effect="non-scaling-stroke" style="animation-delay: -1.3s"></circle><circle cx="500" cy="500" r="496" fill="none" stroke="#FFFFFF" stroke-width="2" vector-effect="non-scaling-stroke" style="animation-delay: -2.7s"></circle><circle cx="500" cy="500" r="496" fill="none" stroke="#FFFFFF" stroke-width="9" vector-effect="non-scaling-stroke" style="animation-delay: -4s"></circle><circle cx="500" cy="500" r="496" fill="none" stroke="#FFFFFF" stroke-width="2" vector-effect="non-scaling-stroke" style="animation-delay: -5.3s"></circle><circle cx="500" cy="500" r="496" fill="none" stroke="#FFFFFF" stroke-width="9" vector-effect="non-scaling-stroke" style="animation-delay: -6.7s"></circle></svg>
+<div style="width: 100%; max-width: 1240px; margin: 0 auto; padding: 120px 32px; display: flex; flex-direction: column; gap: 30px">
+<p class="aml-in" style="animation-delay: .15s; margin: 0; display: flex; align-items: center; gap: 14px; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase"><span style="display: inline-block; width: 40px; height: 1px; background: #FFFFFF"></span>Mecanizado y control de calidad</p>
+<h1 class="aml-in" style="animation-delay: .3s; margin: 0; font-family: 'Space Grotesk', Inter, sans-serif; font-weight: 500; font-size: clamp(42px, 5.8vw, 82px); max-width: 900px; line-height: 1.02; letter-spacing: -0.025em">Mecanizado y control de calidad de piezas de acero fundido.</h1>
+<p class="aml-in" style="animation-delay: .5s; margin: 0; max-width: 560px; font-size: 19px; color: rgba(255,255,255,0.88)">Fabricación a medida según plano y especificación del cliente, con control dimensional y ensayos incluidos en el proceso.</p>
+<div class="aml-in" style="animation-delay: .7s; display: flex; flex-wrap: wrap; gap: 14px">
+<a href="#contacto" style="text-decoration: none; background: #FFFFFF; color: #011F67; padding: 17px 30px; border-radius: 2px; font-weight: 600">Solicitar información</a>
+<a href="#ubicacion" style="text-decoration: none; border: 1px solid #FFFFFF; color: #FFFFFF; padding: 16px 29px; border-radius: 2px; font-weight: 600">Cómo llegar</a>
+</div>
+</div>
+<button type="button" aria-label="{{pausaLabel}}" onClick="{{togglePausa}}" style="position: absolute; right: 32px; bottom: 32px; width: 44px; height: 44px; border: 1px solid rgba(255,255,255,0.6); border-radius: 2px; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0"><sc-if value="{{pausado}}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5 3l8 5-8 5z"></path></svg></sc-if><sc-if value="{{reproduciendo}}" hint-placeholder-val="{{ true }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5 3v10M11 3v10"></path></svg></sc-if></button>
+</section>
+<!-- Cinta -->
+<div aria-hidden="true" style="overflow: hidden; background: #FFFFFF; padding: 30px 0 26px; border-bottom: 1px solid #D5DCDB">
+<div class="aml-marquee" style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(44px, 6vw, 84px); font-weight: 500; line-height: 1; letter-spacing: -0.02em; white-space: nowrap">
+<div style="display: flex; align-items: center"><span style="color: #011F67; padding: 0 28px">Mandrinado</span><span style="color: #B3C3C0">/</span><span style="color: transparent; -webkit-text-stroke: 1.5px #011F67; padding: 0 28px">Torneado</span><span style="color: #B3C3C0">/</span><span style="color: #011F67; padding: 0 28px">Fresado</span><span style="color: #B3C3C0">/</span><span style="color: transparent; -webkit-text-stroke: 1.5px #011F67; padding: 0 28px">Control dimensional</span><span style="color: #B3C3C0">/</span><span style="color: #011F67; padding: 0 28px">Pruebas de presión</span><span style="color: #B3C3C0">/</span><span style="color: transparent; -webkit-text-stroke: 1.5px #011F67; padding: 0 28px">Líquidos penetrantes</span><span style="color: #B3C3C0">/</span><span style="color: #011F67; padding: 0 28px">Prueba de helio</span><span style="color: #B3C3C0">/</span><span style="color: transparent; -webkit-text-stroke: 1.5px #011F67; padding: 0 28px">CF8M</span><span style="color: #B3C3C0">/</span><span style="color: #011F67; padding: 0 28px">Dúplex</span><span style="color: #B3C3C0">/</span><span style="color: transparent; -webkit-text-stroke: 1.5px #011F67; padding: 0 28px">Superdúplex</span><span style="color: #B3C3C0">/</span></div><div style="display: flex; align-items: center"><span style="color: #011F67; padding: 0 28px">Mandrinado</span><span style="color: #B3C3C0">/</span><span style="color: transparent; -webkit-text-stroke: 1.5px #011F67; padding: 0 28px">Torneado</span><span style="color: #B3C3C0">/</span><span style="color: #011F67; padding: 0 28px">Fresado</span><span style="color: #B3C3C0">/</span><span style="color: transparent; -webkit-text-stroke: 1.5px #011F67; padding: 0 28px">Control dimensional</span><span style="color: #B3C3C0">/</span><span style="color: #011F67; padding: 0 28px">Pruebas de presión</span><span style="color: #B3C3C0">/</span><span style="color: transparent; -webkit-text-stroke: 1.5px #011F67; padding: 0 28px">Líquidos penetrantes</span><span style="color: #B3C3C0">/</span><span style="color: #011F67; padding: 0 28px">Prueba de helio</span><span style="color: #B3C3C0">/</span><span style="color: transparent; -webkit-text-stroke: 1.5px #011F67; padding: 0 28px">CF8M</span><span style="color: #B3C3C0">/</span><span style="color: #011F67; padding: 0 28px">Dúplex</span><span style="color: #B3C3C0">/</span><span style="color: transparent; -webkit-text-stroke: 1.5px #011F67; padding: 0 28px">Superdúplex</span><span style="color: #B3C3C0">/</span></div>
+</div>
+</div>
+
+<!-- Cifras -->
+<section aria-label="AML en cifras" style="border-top: 1px solid {{linea}}; border-bottom: 1px solid {{linea}}">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))">
+<div style="padding: 40px 28px 40px 0; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 72px; font-weight: 300; font-variant-numeric: tabular-nums; line-height: 1; letter-spacing: -0.02em">{{n1}}</span><span style="color: #3A4A75; font-size: 15px">inicio de actividad</span></div>
+<div style="padding: 40px 28px; border-left: 1px solid {{linea}}; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 72px; font-weight: 300; font-variant-numeric: tabular-nums; line-height: 1; letter-spacing: -0.02em">{{n2}}</span><span style="color: #3A4A75; font-size: 15px">de producción diaria, en tres turnos</span></div>
+<div style="padding: 40px 28px; border-left: 1px solid {{linea}}; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 72px; font-weight: 300; font-variant-numeric: tabular-nums; line-height: 1; letter-spacing: -0.02em">{{n3}}</span><span style="color: #3A4A75; font-size: 15px">máquinas de mecanizado</span></div>
+<div style="padding: 40px 28px; border-left: 1px solid {{linea}}; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 72px; font-weight: 300; font-variant-numeric: tabular-nums; line-height: 1; letter-spacing: -0.02em">{{n4}}</span><span style="color: #3A4A75; font-size: 15px">tipos de ensayo en planta propia</span></div>
+</div>
+</section>
+
+<!-- 01 Quiénes somos -->
+<section id="empresa" style="display: flex; flex-wrap: wrap; align-items: stretch; background: #FFFFFF">
+<div style="flex: 1 1 560px; min-width: 0; min-height: 520px; position: relative">
+<img src="./assets/aed6b050b70e6f26ee71c6d0fc843eef.jpg" alt="Nave de producción con piezas mecanizadas" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; display: block">
+<p style="position: absolute; left: 0; bottom: 0; margin: 0; padding: 12px 20px; background: #011F67; color: #FFFFFF; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase">Planta de Lekunberri</p>
+</div>
+<div style="flex: 1 1 520px; min-width: 0; padding: 112px max(32px, calc(50% - 588px)) 112px 72px; display: flex; flex-direction: column; justify-content: center; gap: 24px">
+<p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #011F67">01 — Quiénes somos</p>
+<h2 class="aml-rv" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: clamp(32px, 3.6vw, 48px); line-height: 1.08; letter-spacing: -0.015em">Empresa especializada en mecanizado y control de calidad.</h2>
+<p style="margin: 0; font-size: 19px; color: #1E2D55">AML Centrifugal Casting desarrolla su actividad desde 2012 en Lekunberri (Navarra), dedicada al mecanizado y control de calidad de piezas de acero fundido.</p>
+<p style="margin: 0; color: #3A4A75">Trabajamos bajo pedido, desde unidades sueltas hasta series con entregas programadas, y adaptamos el proceso a los requisitos de cada cliente. Los planos y la documentación técnica de cada proyecto se tratan con estricta confidencialidad. Disponemos de trazabilidad completa de cada pieza a lo largo de todo el proceso. Contamos con presencia en el mercado nacional y una fuerte presencia internacional.</p>
+</div>
+</section>
+
+<!-- 02 Cómo trabajamos -->
+<section id="servicios" style="background: #EEF1F0">
+<div style="max-width: 1240px; margin: 0 auto; padding-left: 32px; padding-right: 32px; padding-top: 104px; padding-bottom: 112px; display: flex; flex-direction: column; gap: 56px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px 64px">
+<div style="display: flex; flex-direction: column; gap: 16px"><p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #011F67">02 — Cómo trabajamos</p><h2 class="aml-rv" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: clamp(32px, 3.6vw, 48px); line-height: 1.08; letter-spacing: -0.015em">Del bruto a la expedición.</h2></div>
+<p style="margin: 0; max-width: 460px; color: #3A4A75">Cinco fases, todas en planta propia y con la pieza identificada en cada una.</p>
+</div>
+<div aria-hidden="true" style="height: 3px; background: #C9D2D0; margin-bottom: -28px"><div class="aml-line" style="height: 100%; background: #011F67; transform-origin: left center"></div></div>
+<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 40px 32px">
+<li class="aml-rv" style="padding-top: 4px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 64px; font-weight: 300; line-height: 0.9; letter-spacing: -0.03em">01</span>
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 500">Fundición</span>
+<span style="font-size: 15px; color: #3A4A75">Recepción e identificación de la pieza en bruto.</span>
+</li>
+<li class="aml-rv" style="padding-top: 4px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 64px; font-weight: 300; line-height: 0.9; letter-spacing: -0.03em">02</span>
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 500">Mecanizado</span>
+<span style="font-size: 15px; color: #3A4A75">Mecanizado CNC según plano, con programación CAM en Siemens NX.</span>
+</li>
+<li class="aml-rv" style="padding-top: 4px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 64px; font-weight: 300; line-height: 0.9; letter-spacing: -0.03em">03</span>
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 500">Control dimensional</span>
+<span style="font-size: 15px; color: #3A4A75">Medición e informe dimensional.</span>
+</li>
+<li class="aml-rv" style="padding-top: 4px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 64px; font-weight: 300; line-height: 0.9; letter-spacing: -0.03em">04</span>
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 500">Ensayos</span>
+<span style="font-size: 15px; color: #3A4A75">Según los requisitos del pedido.</span>
+</li>
+<li class="aml-rv" style="padding-top: 4px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 64px; font-weight: 300; line-height: 0.9; letter-spacing: -0.03em">05</span>
+<span style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 500">Expedición</span>
+<span style="font-size: 15px; color: #3A4A75">Documentación, embalaje y envío.</span>
+</li>
+</ol>
+</div>
+</section>
+
+<!-- 03 Capacidades -->
+<section id="capacidades" style="background: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; padding-left: 32px; padding-right: 32px; padding-top: 112px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px 64px">
+<div style="display: flex; flex-direction: column; gap: 16px"><p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #011F67">03 — Capacidades</p><h2 class="aml-rv" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: clamp(32px, 3.6vw, 48px); line-height: 1.08; letter-spacing: -0.015em">Mecanizado, inspección y ensayos<br>en planta propia.</h2></div>
+<p style="margin: 0; max-width: 460px; color: #3A4A75">Todo el proceso se realiza en nuestras instalaciones, según plano y especificación del cliente.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 40px 24px">
+<figure class="aml-rv" style="margin: 0; display: flex; flex-direction: column; gap: 14px">
+<div class="aml-zoomwrap" style="overflow: hidden"><img class="aml-zoom" src="./assets/5a2fe08538fcfb12761dc5d6daa70126.jpg" alt="Mandrinadora CNC con una pieza de acero fundido amarrada" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 50%"></div>
+<figcaption style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #3A4A75">Mecanizado</span><span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 500">Mandrinado</span></figcaption>
+</figure>
+<figure class="aml-rv" style="margin: 0; display: flex; flex-direction: column; gap: 14px">
+<div class="aml-zoomwrap" style="overflow: hidden"><img class="aml-zoom" src="./assets/519a9155303e9f889587b4541b935acd.jpg" alt="Torno CNC con piezas torneadas en primer plano" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 55%"></div>
+<figcaption style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #3A4A75">Mecanizado</span><span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 500">Torneado</span></figcaption>
+</figure>
+<figure class="aml-rv" style="margin: 0; display: flex; flex-direction: column; gap: 14px">
+<div class="aml-zoomwrap" style="overflow: hidden"><img class="aml-zoom" src="./assets/cc9b590af6a30f587bd9e91ebabd4008.jpg" alt="Centro de mecanizado para fresado" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 50%"></div>
+<figcaption style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #3A4A75">Mecanizado</span><span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 500">Fresado</span></figcaption>
+</figure>
+<figure class="aml-rv" style="margin: 0; display: flex; flex-direction: column; gap: 14px">
+<div class="aml-zoomwrap" style="overflow: hidden"><img class="aml-zoom" src="./assets/219edcc3e35f4bf8904257d69c247faf.jpg" alt="Medición de una pieza en la máquina tridimensional" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 40% 50%"></div>
+<figcaption style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #3A4A75">Control</span><span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 500">Control dimensional</span></figcaption>
+</figure>
+</div>
+</div>
+<div style="background: #011F67; color: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; padding-left: 32px; padding-right: 32px; padding-top: 88px; padding-bottom: 96px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 56px 96px">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 34px">Ensayos</h3>
+<p style="margin: 0; color: rgba(255,255,255,0.8)">Realizados en planta propia, según los requisitos del pedido.</p>
+<ul style="list-style: none; margin: 0; padding: 0; border-top: 1px solid #FFFFFF"><li style="display: flex; align-items: baseline; gap: 20px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.3)"><span style="font-size: 13px; color: #B3C3C0; min-width: 24px">01</span><span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 500">Pruebas de presión</span></li><li style="display: flex; align-items: baseline; gap: 20px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.3)"><span style="font-size: 13px; color: #B3C3C0; min-width: 24px">02</span><span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 500">Líquidos penetrantes</span></li><li style="display: flex; align-items: baseline; gap: 20px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.3)"><span style="font-size: 13px; color: #B3C3C0; min-width: 24px">03</span><span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 500">Prueba de helio</span></li></ul>
+<p style="margin: 0; font-size: 14px; color: rgba(255,255,255,0.7)">Otros ensayos, bajo consulta.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 20px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 34px">Sistema de calidad</h3>
+<p style="margin: 0; color: rgba(255,255,255,0.8)">Control en cada fase, desde el plano hasta la expedición.</p>
+<ul style="list-style: none; margin: 0; padding: 0; border-top: 1px solid #FFFFFF"><li style="display: flex; align-items: baseline; gap: 20px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.3)"><span style="font-size: 13px; color: #B3C3C0; min-width: 24px">01</span><span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 500">Plano globeado previo a fabricación</span></li><li style="display: flex; align-items: baseline; gap: 20px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.3)"><span style="font-size: 13px; color: #B3C3C0; min-width: 24px">02</span><span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 500">Trazabilidad de cada pieza</span></li><li style="display: flex; align-items: baseline; gap: 20px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.3)"><span style="font-size: 13px; color: #B3C3C0; min-width: 24px">03</span><span style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 500">Según especificación del cliente</span></li></ul>
+<p style="margin: 0; font-size: 14px; color: #B3C3C0">Sistema de gestión de la calidad certificado según ISO 9001</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 04 Materiales -->
+<section id="materiales" style="background: #EEF1F0">
+<div style="max-width: 1240px; margin: 0 auto; padding-left: 32px; padding-right: 32px; padding-top: 112px; padding-bottom: 112px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 40px 72px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #011F67">04 — Materiales</p>
+<h2 class="aml-rv" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: clamp(32px, 3.6vw, 48px); line-height: 1.08; letter-spacing: -0.015em">Materiales que mecanizamos</h2>
+<p style="margin: 0; color: #3A4A75">Aceros inoxidables, dúplex y al carbono, en estado fundido. Otras aleaciones, bajo consulta según plano y especificación del material.</p>
+</div>
+<img src="./assets/597616a036eb7bc7b983449e654d5b10.jpg" alt="Cuerpo de acero fundido en el centro de mecanizado" style="display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: 60% 50%">
+</div>
+<div style="overflow-x: auto; background: #FFFFFF; border-top: 3px solid #011F67">
+<table style="width: 100%; min-width: 980px; border-collapse: collapse; text-align: left; font-size: 15px">
+<caption style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Materiales que mecaniza AML Centrifugal Casting</caption>
+<thead>
+<tr style="background: #011F67; color: #FFFFFF; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase">
+<th scope="col" style="padding: 16px 20px; font-weight: 600">Material</th>
+<th scope="col" style="padding: 16px 20px; font-weight: 600">Norma ASTM</th>
+<th scope="col" style="padding: 16px 20px; font-weight: 600">Equivalente EN</th>
+<th scope="col" style="padding: 16px 20px; font-weight: 600">Resistencia a la corrosión</th>
+<th scope="col" style="padding: 16px 20px; font-weight: 600">Usos habituales</th>
+</tr>
+</thead>
+<tbody>
+
+<tr style="border-bottom: 1px solid {{linea}}">
+<th scope="row" style="padding: 22px 20px; font-weight: 400"><div style="display: flex; align-items: center"><span style="display: flex; flex-direction: column"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 500">CF8</span><span style="font-size: 14px; color: #3A4A75">Inoxidable austenítico</span></span></div></th>
+<td style="padding: 22px 20px">A351 CF8</td>
+<td style="padding: 22px 20px">1.4308</td>
+<td style="padding: 22px 20px"><div role="img" aria-label="Nivel 2 de 5" style="display: flex; gap: 4px"><span style="width: 22px; height: 6px; background: #011F67"></span><span style="width: 22px; height: 6px; background: #011F67"></span><span style="width: 22px; height: 6px; background: #D9E0EA"></span><span style="width: 22px; height: 6px; background: #D9E0EA"></span><span style="width: 22px; height: 6px; background: #D9E0EA"></span></div></td>
+<td style="padding: 22px 20px; color: #3A4A75">Válvulas, bombas e industria alimentaria y química</td>
+</tr>
+
+<tr style="border-bottom: 1px solid {{linea}}">
+<th scope="row" style="padding: 22px 20px; font-weight: 400"><div style="display: flex; align-items: center"><span style="display: flex; flex-direction: column"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 500">CF8M</span><span style="font-size: 14px; color: #3A4A75">Inoxidable austenítico con molibdeno</span></span></div></th>
+<td style="padding: 22px 20px">A351 CF8M</td>
+<td style="padding: 22px 20px">1.4408</td>
+<td style="padding: 22px 20px"><div role="img" aria-label="Nivel 3 de 5" style="display: flex; gap: 4px"><span style="width: 22px; height: 6px; background: #011F67"></span><span style="width: 22px; height: 6px; background: #011F67"></span><span style="width: 22px; height: 6px; background: #011F67"></span><span style="width: 22px; height: 6px; background: #D9E0EA"></span><span style="width: 22px; height: 6px; background: #D9E0EA"></span></div></td>
+<td style="padding: 22px 20px; color: #3A4A75">Medios con cloruros, química y gases industriales</td>
+</tr>
+
+<tr style="border-bottom: 1px solid {{linea}}">
+<th scope="row" style="padding: 22px 20px; font-weight: 400"><div style="display: flex; align-items: center"><span style="display: flex; flex-direction: column"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 500">Dúplex</span><span style="font-size: 14px; color: #3A4A75">Inoxidable austeno-ferrítico</span></span></div></th>
+<td style="padding: 22px 20px">A890 4A (CD3MN)</td>
+<td style="padding: 22px 20px">1.4470</td>
+<td style="padding: 22px 20px"><div role="img" aria-label="Nivel 4 de 5" style="display: flex; gap: 4px"><span style="width: 22px; height: 6px; background: #011F67"></span><span style="width: 22px; height: 6px; background: #011F67"></span><span style="width: 22px; height: 6px; background: #011F67"></span><span style="width: 22px; height: 6px; background: #011F67"></span><span style="width: 22px; height: 6px; background: #D9E0EA"></span></div></td>
+<td style="padding: 22px 20px; color: #3A4A75">Petróleo y gas, desalación y bombas de proceso</td>
+</tr>
+
+<tr style="border-bottom: 1px solid {{linea}}">
+<th scope="row" style="padding: 22px 20px; font-weight: 400"><div style="display: flex; align-items: center"><span style="display: flex; flex-direction: column"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 500">Superdúplex</span><span style="font-size: 14px; color: #3A4A75">Inoxidable de alta aleación</span></span></div></th>
+<td style="padding: 22px 20px">A890 5A (CE3MN)</td>
+<td style="padding: 22px 20px">1.4469</td>
+<td style="padding: 22px 20px"><div role="img" aria-label="Nivel 5 de 5" style="display: flex; gap: 4px"><span style="width: 22px; height: 6px; background: #011F67"></span><span style="width: 22px; height: 6px; background: #011F67"></span><span style="width: 22px; height: 6px; background: #011F67"></span><span style="width: 22px; height: 6px; background: #011F67"></span><span style="width: 22px; height: 6px; background: #011F67"></span></div></td>
+<td style="padding: 22px 20px; color: #3A4A75">Agua de mar, offshore y equipos a alta presión</td>
+</tr>
+
+<tr style="border-bottom: 1px solid {{linea}}">
+<th scope="row" style="padding: 22px 20px; font-weight: 400"><div style="display: flex; align-items: center"><span style="display: flex; flex-direction: column"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 500">Acero al carbono</span><span style="font-size: 14px; color: #3A4A75">Acero moldeado para presión</span></span></div></th>
+<td style="padding: 22px 20px">A216 WCB</td>
+<td style="padding: 22px 20px">1.0619</td>
+<td style="padding: 22px 20px"><div role="img" aria-label="Nivel 1 de 5" style="display: flex; gap: 4px"><span style="width: 22px; height: 6px; background: #011F67"></span><span style="width: 22px; height: 6px; background: #D9E0EA"></span><span style="width: 22px; height: 6px; background: #D9E0EA"></span><span style="width: 22px; height: 6px; background: #D9E0EA"></span><span style="width: 22px; height: 6px; background: #D9E0EA"></span></div></td>
+<td style="padding: 22px 20px; color: #3A4A75">Cuerpos de válvula y piezas sometidas a presión</td>
+</tr>
+
+<tr style="border-bottom: 1px solid {{linea}}">
+<th scope="row" style="padding: 22px 20px; font-weight: 400"><div style="display: flex; align-items: center"><span style="display: flex; flex-direction: column"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 500">Aleaciones especiales</span><span style="font-size: 14px; color: #3A4A75">Bajo consulta</span></span></div></th>
+<td style="padding: 22px 20px; color: #3A4A75">Según especificación</td>
+<td style="padding: 22px 20px; color: #3A4A75">—</td>
+<td style="padding: 22px 20px; color: #3A4A75">—</td>
+<td style="padding: 22px 20px"><a href="#contacto" style="font-weight: 600">Consultar</a></td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; font-size: 13px; color: #3A4A75">
+<span>La resistencia a la corrosión es una comparación orientativa entre los materiales de esta tabla.</span>
+<span>[Confirmar con Calidad los grados exactos que trabajamos.]</span>
+</div>
+</div>
+</section>
+
+<!-- 05 Sectores -->
+<section id="sectores" style="position: relative; overflow: hidden; isolation: isolate; color: #FFFFFF; background: #011F67">
+<img src="./assets/67c68d5839f71815f7669b1eef6f72dd.jpg" alt="" aria-hidden="true" style="position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%">
+<div aria-hidden="true" style="position: absolute; z-index: -1; inset: 0; background: rgba(1,31,103,0.86)"></div>
+<svg class="aml-ripple" viewBox="0 0 1000 1000" aria-hidden="true" style="position: absolute; z-index: -1; pointer-events: none; left: -450px; bottom: -450px; width: 900px; height: 900px; opacity: 0.3"><circle cx="500" cy="500" r="496" fill="none" stroke="#FFFFFF" stroke-width="2" vector-effect="non-scaling-stroke" style="animation-delay: -0s"></circle><circle cx="500" cy="500" r="496" fill="none" stroke="#FFFFFF" stroke-width="9" vector-effect="non-scaling-stroke" style="animation-delay: -1.3s"></circle><circle cx="500" cy="500" r="496" fill="none" stroke="#FFFFFF" stroke-width="2" vector-effect="non-scaling-stroke" style="animation-delay: -2.7s"></circle><circle cx="500" cy="500" r="496" fill="none" stroke="#FFFFFF" stroke-width="9" vector-effect="non-scaling-stroke" style="animation-delay: -4s"></circle><circle cx="500" cy="500" r="496" fill="none" stroke="#FFFFFF" stroke-width="2" vector-effect="non-scaling-stroke" style="animation-delay: -5.3s"></circle><circle cx="500" cy="500" r="496" fill="none" stroke="#FFFFFF" stroke-width="9" vector-effect="non-scaling-stroke" style="animation-delay: -6.7s"></circle></svg>
+<div style="max-width: 1240px; margin: 0 auto; padding-left: 32px; padding-right: 32px; padding-top: 104px; padding-bottom: 88px; display: flex; flex-direction: column; gap: 56px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px 64px">
+<div style="display: flex; flex-direction: column; gap: 16px"><p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #B3C3C0">05 — Sectores</p><h2 class="aml-rv" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: clamp(32px, 3.6vw, 48px); line-height: 1.08; letter-spacing: -0.015em">Sectores con los que trabajamos</h2></div>
+<p style="margin: 0; max-width: 460px; color: rgba(255,255,255,0.82)">Mecanizamos piezas para clientes de los siguientes sectores.</p>
+</div>
+<ul style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); column-gap: 32px">
+<li class="aml-rv" style="display: flex; flex-direction: column; gap: 8px; padding: 24px 0 36px; border-top: 1px solid rgba(255,255,255,0.4)"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 500; line-height: 1.15">Petróleo y gas</span><span style="font-size: 15px; color: rgba(255,255,255,0.82)">Válvulas, bombas y componentes para extracción, refino y transporte.</span></li><li class="aml-rv" style="display: flex; flex-direction: column; gap: 8px; padding: 24px 0 36px; border-top: 1px solid rgba(255,255,255,0.4)"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 500; line-height: 1.15">Naval</span><span style="font-size: 15px; color: rgba(255,255,255,0.82)">Componentes para buques e instalaciones marinas.</span></li><li class="aml-rv" style="display: flex; flex-direction: column; gap: 8px; padding: 24px 0 36px; border-top: 1px solid rgba(255,255,255,0.4)"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 500; line-height: 1.15">Nuclear</span><span style="font-size: 15px; color: rgba(255,255,255,0.82)">Componentes para instalaciones nucleares con trazabilidad completa y ensayos.</span></li><li class="aml-rv" style="display: flex; flex-direction: column; gap: 8px; padding: 24px 0 36px; border-top: 1px solid rgba(255,255,255,0.4)"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 500; line-height: 1.15">Ferroviario</span><span style="font-size: 15px; color: rgba(255,255,255,0.82)">Componentes para material rodante e infraestructura ferroviaria.</span></li><li class="aml-rv" style="display: flex; flex-direction: column; gap: 8px; padding: 24px 0 36px; border-top: 1px solid rgba(255,255,255,0.4)"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 500; line-height: 1.15">Sanitario</span><span style="font-size: 15px; color: rgba(255,255,255,0.82)">Piezas para equipos del sector sanitario.</span></li><li class="aml-rv" style="display: flex; flex-direction: column; gap: 8px; padding: 24px 0 36px; border-top: 1px solid rgba(255,255,255,0.4)"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 500; line-height: 1.15">Industrial</span><span style="font-size: 15px; color: rgba(255,255,255,0.82)">Componentes para maquinaria y equipos de proceso.</span></li><li class="aml-rv" style="display: flex; flex-direction: column; gap: 8px; padding: 24px 0 36px; border-top: 1px solid rgba(255,255,255,0.4)"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 500; line-height: 1.15">Estructural</span><span style="font-size: 15px; color: rgba(255,255,255,0.82)">Piezas de acero fundido para estructuras y uniones.</span></li><li class="aml-rv" style="display: flex; flex-direction: column; gap: 8px; padding: 24px 0 36px; border-top: 1px solid rgba(255,255,255,0.4)"><span style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 500; line-height: 1.15; color: #B3C3C0">Otros sectores</span><a href="#contacto" style="font-size: 15px; color: #FFFFFF; font-weight: 600">Consultar</a></li>
+</ul>
+</div>
+</section>
+
+<!-- 06 Ferias -->
+<section id="ferias" style="display: flex; flex-wrap: wrap; align-items: stretch; background: #FFFFFF">
+<div style="flex: 1 1 560px; min-width: 0; padding: 112px 72px 112px max(32px, calc(50% - 588px)); display: flex; flex-direction: column; gap: 24px">
+<p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #011F67">06 — Ferias</p>
+<h2 class="aml-rv" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: clamp(32px, 3.6vw, 48px); line-height: 1.08; letter-spacing: -0.015em">Próximas ferias</h2>
+<p style="margin: 0; color: #3A4A75">Ferias en las que participaremos próximamente. Puede solicitar una reunión a través del formulario de contacto.</p>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 560px; border-collapse: collapse; text-align: left; font-size: 15px; border-top: 3px solid #011F67">
+<caption style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Próximas ferias</caption>
+<thead><tr style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #3A4A75"><th scope="col" style="padding: 14px 16px 14px 0; font-weight: 600">Fechas</th><th scope="col" style="padding: 14px 16px; font-weight: 600">Feria</th><th scope="col" style="padding: 14px 16px; font-weight: 600">Stand</th><th scope="col" style="padding: 14px 0 14px 16px"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Acción</span></th></tr></thead>
+<tbody><tr style="border-bottom: 1px solid #C9D2E0"><td style="padding: 20px 16px 20px 0; font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 500; white-space: nowrap">[DD–DD MES]</td><td style="padding: 20px 16px"><span style="display: block; font-weight: 600">[Nombre de la feria]</span><span style="font-size: 14px; color: #3A4A75">[Ciudad, País] · [Sector]</span></td><td style="padding: 20px 16px; white-space: nowrap; color: #3A4A75">Stand [nº]</td><td style="padding: 20px 0 20px 16px; text-align: right"><a href="#contacto" style="font-weight: 600; white-space: nowrap">Solicitar reunión</a></td></tr><tr style="border-bottom: 1px solid #C9D2E0"><td style="padding: 20px 16px 20px 0; font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 500; white-space: nowrap">[DD–DD MES]</td><td style="padding: 20px 16px"><span style="display: block; font-weight: 600">[Nombre de la feria]</span><span style="font-size: 14px; color: #3A4A75">[Ciudad, País] · [Sector]</span></td><td style="padding: 20px 16px; white-space: nowrap; color: #3A4A75">Stand [nº]</td><td style="padding: 20px 0 20px 16px; text-align: right"><a href="#contacto" style="font-weight: 600; white-space: nowrap">Solicitar reunión</a></td></tr><tr style="border-bottom: 1px solid #C9D2E0"><td style="padding: 20px 16px 20px 0; font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 500; white-space: nowrap">[DD–DD MES]</td><td style="padding: 20px 16px"><span style="display: block; font-weight: 600">[Nombre de la feria]</span><span style="font-size: 14px; color: #3A4A75">[Ciudad, País] · [Sector]</span></td><td style="padding: 20px 16px; white-space: nowrap; color: #3A4A75">Stand [nº]</td><td style="padding: 20px 0 20px 16px; text-align: right"><a href="#contacto" style="font-weight: 600; white-space: nowrap">Solicitar reunión</a></td></tr></tbody>
+</table>
+</div>
+</div>
+<div style="flex: 1 1 420px; min-width: 0; min-height: 520px; position: relative">
+<img src="./assets/589f5e06e4bc527f5f0ee7f5277ffd3f.jpg" alt="Stand de AML Centrifugal Casting en una feria internacional" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; display: block">
+</div>
+</section>
+
+<!-- Ubicación -->
+<section id="ubicacion" style="background: #EEF1F0">
+<div style="max-width: 1240px; margin: 0 auto; padding: 120px 32px; display: flex; flex-direction: column; gap: 48px">
+<p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #011F67">07 — Cómo llegar</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 64px; align-items: stretch">
+<div style="display: flex; flex-direction: column; gap: 28px">
+<h2 class="aml-rv" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: clamp(32px, 3.6vw, 48px); line-height: 1.1; letter-spacing: -0.015em">Proveedores y transportistas</h2>
+<address style="font-style: normal; font-size: 22px; line-height: 1.45; font-family: 'Space Grotesk', sans-serif; font-weight: 400">AML Centrifugal Casting, S.L.<br>Industrialdea, A-7<br>31870 Lekunberri (Navarra)</address>
+<dl style="margin: 0; border-top: 1px solid #011F67">
+<div style="display: flex; flex-wrap: wrap; gap: 4px 24px; padding: 16px 0; border-bottom: 1px solid {{linea}}"><dt style="font-weight: 600; min-width: 180px">Carga y descarga</dt><dd style="margin: 0; color: #3A4A75">De 8:00 a 17:00</dd></div>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 24px; padding: 16px 0; border-bottom: 1px solid {{linea}}"><dt style="font-weight: 600; min-width: 180px">Acceso camiones</dt><dd style="margin: 0; color: #3A4A75">Por la entrada principal</dd></div>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 24px; padding: 16px 0; border-bottom: 1px solid {{linea}}"><dt style="font-weight: 600; min-width: 180px">Al llegar</dt><dd style="margin: 0; color: #3A4A75">Llamar al timbre de la entrada principal</dd></div>
+</dl>
+<div><a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0xd50575530199329:0x7d414e54f5596970?sa=X&amp;ved=1t:8290&amp;ictx=111" style="display: inline-block; text-decoration: none; background: #011F67; color: #FFFFFF; padding: 17px 30px; border-radius: 2px; font-weight: 600">Abrir en Google Maps</a></div>
+</div>
+<div style="position: relative; min-height: 400px; display: flex">
+<div style="flex: 1; background: #DCE3E2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: #3A4A75; text-align: center; padding: 24px">
+<span style="font-weight: 600">[MAPA] Mapa con la entrada de camiones marcada</span>
+<span style="font-size: 14px">En la web publicada irá un mapa real</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Contacto -->
+<section id="contacto">
+<div style="max-width: 1240px; margin: 0 auto; padding: 120px 32px; display: flex; flex-direction: column; gap: 48px">
+<p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #011F67">08 — Contacto</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 64px">
+<div style="display: flex; flex-direction: column; gap: 24px">
+<h2 class="aml-rv" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: clamp(32px, 3.6vw, 48px); line-height: 1.1; letter-spacing: -0.015em">Solicitud de información</h2>
+<p style="margin: 0; color: #3A4A75">Para solicitudes de oferta, consultas técnicas, proveedores y transporte.</p>
+<div style="display: flex; flex-direction: column; border-top: 1px solid #011F67; font-size: 18px">
+<span style="padding: 14px 0; border-bottom: 1px solid {{linea}}"><a href="tel:+34948461603" style="color: inherit; text-decoration: none">+34 948 46 16 03</a></span>
+<span style="padding: 14px 0; border-bottom: 1px solid {{linea}}"><a href="mailto:info@amlcentrifugal.com" style="color: inherit; text-decoration: none">info@amlcentrifugal.com</a></span>
+</div>
+</div>
+<form style="display: flex; flex-direction: column; gap: 26px; border: 1px solid #011F67; padding: 40px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 26px 32px">
+<label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em">Nombre<input type="text" name="nombre" autocomplete="name" style="border: 0; border-bottom: 1px solid #011F67; padding: 10px 0; font-size: 17px; color: #011F67; background: transparent"></label>
+<label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em">Empresa<input type="text" name="empresa" autocomplete="organization" style="border: 0; border-bottom: 1px solid #011F67; padding: 10px 0; font-size: 17px; color: #011F67; background: transparent"></label>
+<label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em">Email<input type="email" name="email" autocomplete="email" style="border: 0; border-bottom: 1px solid #011F67; padding: 10px 0; font-size: 17px; color: #011F67; background: transparent"></label>
+<label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em">Teléfono<input type="tel" name="telefono" autocomplete="tel" style="border: 0; border-bottom: 1px solid #011F67; padding: 10px 0; font-size: 17px; color: #011F67; background: transparent"></label>
+</div>
+<label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em">Motivo
+<select name="motivo" style="border: 0; border-bottom: 1px solid #011F67; padding: 10px 0; font-size: 17px; color: #011F67; background: transparent">
+<option>Solicitud de presupuesto</option>
+<option>Información técnica</option>
+<option>Soy proveedor</option>
+<option>Transporte o recogida de piezas</option>
+<option>Trabajar en AML</option>
+<option>Otro</option>
+</select></label>
+<label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em">Mensaje<textarea name="mensaje" rows="4" style="border: 0; border-bottom: 1px solid #011F67; padding: 10px 0; font-size: 17px; color: #011F67; background: transparent; resize: vertical"></textarea></label>
+<label style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #2C3B66"><input type="checkbox" name="privacidad" style="width: 20px; height: 20px; margin: 2px 0 0; accent-color: #011F67">He leído y acepto la política de privacidad.</label>
+<button type="button" style="align-self: flex-start; border: 0; background: #011F67; color: #FFFFFF; padding: 17px 34px; border-radius: 2px; font-size: 16px; font-weight: 600; cursor: pointer">Enviar solicitud</button>
+</form>
+</div>
+</div>
+</section>
+
+<!-- Pie -->
+<footer style="position: relative; overflow: hidden; isolation: isolate; background: #011F67; color: #FFFFFF">
+<img src="./assets/aa1844d273d07d0df9434083e970546a.svg" alt="" aria-hidden="true" style="position: absolute; z-index: -1; right: 0; top: 0; width: 420px; height: auto; opacity: 0.18; pointer-events: none">
+<div style="max-width: 1240px; margin: 0 auto; padding: 72px 32px 40px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px">
+<img src="./assets/755a34cc71fbc0ee3e7afb0d612031c5.svg" alt="AML Centrifugal Casting S.L." style="width: 240px; height: auto; display: block">
+<div style="display: flex; flex-wrap: wrap; gap: 64px; font-size: 15px">
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #B3C3C0">Web</span><a href="#empresa" style="text-decoration: none; color: #FFFFFF">Quiénes somos</a><a href="#servicios" style="text-decoration: none; color: #FFFFFF">Servicios</a><a href="#capacidades" style="text-decoration: none; color: #FFFFFF">Capacidades</a><a href="#materiales" style="text-decoration: none; color: #FFFFFF">Materiales</a><a href="#sectores" style="text-decoration: none; color: #FFFFFF">Sectores</a><a href="#ferias" style="text-decoration: none; color: #FFFFFF">Ferias</a></div>
+<div style="display: flex; flex-direction: column; gap: 8px; color: rgba(255,255,255,0.85)"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #B3C3C0">Dónde estamos</span><span>Industrialdea, A-7</span><span>31870 Lekunberri (Navarra)</span><span><a href="tel:+34948461603" style="color: inherit; text-decoration: none">+34 948 46 16 03</a> · <a href="mailto:info@amlcentrifugal.com" style="color: inherit; text-decoration: none">info@amlcentrifugal.com</a></span></div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 14px; color: rgba(255,255,255,0.75); border-top: 1px solid rgba(255,255,255,0.35); padding-top: 24px">
+<span>© 2026 AML Centrifugal Casting, S.L.</span>
+<span style="display: flex; flex-wrap: wrap; gap: 24px"><a href="#" style="color: rgba(255,255,255,0.75)">Aviso legal</a><a href="#" style="color: rgba(255,255,255,0.75)">Privacidad</a><a href="#" style="color: rgba(255,255,255,0.75)">Cookies</a></span>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"linea":{"editor":"color","default":"#011F67","options":["#011F67","#8A9AB8","#B3C3C0"]},"lemaLogo":{"editor":"enum","options":["Azul","Gris"],"default":"Azul"},"$preview":{"width":1440,"height":7600}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { pausado: false, k: 0 };
+this.video = null;
+}
+componentDidMount() {
+const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (reduce || !window.requestAnimationFrame) { this.setState({ k: 1 }); return; }
+let t0 = null; let last = 0;
+const step = (t) => {
+if (t0 === null) t0 = t + 500;
+const p = Math.max(0, Math.min(1, (t - t0) / 1800));
+if (t - last > 45 || p === 1) { last = t; this.setState({ k: p }); }
+if (p < 1) this.raf = window.requestAnimationFrame(step);
+};
+this.raf = window.requestAnimationFrame(step);
+}
+componentWillUnmount() {
+if (this.raf) window.cancelAnimationFrame(this.raf);
+}
+renderVals() {
+const lema = this.props.lemaLogo ?? 'Azul';
+const pausado = this.state.pausado;
+const e = 1 - Math.pow(1 - this.state.k, 3);
+return {
+linea: this.props.linea ?? '#011F67',
+lemaAzul: lema !== 'Gris',
+lemaGris: lema === 'Gris',
+n1: String(Math.round(1990 + 22 * e)),
+n2: Math.round(24 * e) + ' h',
+n3: String(Math.round(11 * e)),
+n4: String(Math.round(3 * e)),
+pausado: pausado,
+reproduciendo: !pausado,
+pausaLabel: pausado ? 'Reproducir vídeo' : 'Pausar vídeo',
+setVideo: (el) => {
+if (el && el !== this.video) {
+this.video = el;
+el.muted = true; el.loop = true; el.playsInline = true;
+const p = el.play(); if (p && p.catch) p.catch(() => {});
+}
+},
+togglePausa: () => {
+const v = this.video;
+if (!v) return;
+if (v.paused) { const p = v.play(); if (p && p.catch) p.catch(() => {}); this.setState({ pausado: false }); }
+else { v.pause(); this.setState({ pausado: true }); }
+}
+};
+}
+}
+</script>
+</body>
+</html>
