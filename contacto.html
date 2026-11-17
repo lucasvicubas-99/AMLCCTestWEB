@@ -117,18 +117,19 @@ input:focus,select:focus,textarea:focus{outline:2px solid #011F67;outline-offset
 <!-- Formulario -->
 <section id="formulario" style="position: relative; overflow: hidden; isolation: isolate; background: #EEF1F0">
 <img loading="lazy" src="./assets/ondas-lineal-cuarto.svg" alt="" aria-hidden="true" style="position: absolute; z-index: -1; left: 0; bottom: 0; width: 380px; height: auto; opacity: 0.22; pointer-events: none">
-<div style="max-width: 1240px; margin: 0 auto; padding-left: 32px; padding-right: 32px; padding-top: 72px; padding-bottom: 80px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 48px 64px; align-items: start">
-<div style="display: flex; flex-direction: column; gap: 20px">
+<div style="max-width: 1240px; margin: 0 auto; padding-left: 32px; padding-right: 32px; padding-top: 72px; padding-bottom: 88px; display: flex; flex-direction: column; align-items: center; gap: 40px">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center">
 <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #011F67">02 — Solicitud de información</p>
 <h2 class="aml-rv" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.08; letter-spacing: -0.015em">Escríbanos</h2>
-<div style="display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 19px; font-weight: 500"><a href="tel:+34948461603" style="text-decoration: none">+34 948 46 16 03</a><a href="mailto:info@amlcentrifugal.com" style="text-decoration: none">info@amlcentrifugal.com</a></div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 32px; font-size: 19px; font-weight: 500"><a href="tel:+34948461603" style="text-decoration: none">+34 948 46 16 03</a><a href="mailto:info@amlcentrifugal.com" style="text-decoration: none">info@amlcentrifugal.com</a></div>
 </div>
-<form style="display: flex; flex-direction: column; gap: 18px; border: 1px solid #011F67; background: #FFFFFF; padding: 28px 32px">
+<form style="width: 100%; max-width: 920px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px; border: 1px solid #011F67; background: #FFFFFF; padding: clamp(28px, 4vw, 44px) clamp(22px, 5vw, 56px)">
 <p style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 500">Solicitud de información</p>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px 32px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px 40px">
 <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em">Nombre<input type="text" name="nombre" autocomplete="name" required="" style="border: 0; border-bottom: 1px solid #011F67; padding: 10px 0; font-size: 17px; color: #011F67; background: transparent"></label>
 <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em">Empresa<input type="text" name="empresa" autocomplete="organization" style="border: 0; border-bottom: 1px solid #011F67; padding: 10px 0; font-size: 17px; color: #011F67; background: transparent"></label>
 </div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px 40px; align-items: end">
 <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em">Email<input type="email" name="email" autocomplete="email" required="" style="border: 0; border-bottom: 1px solid #011F67; padding: 10px 0; font-size: 17px; color: #011F67; background: transparent"></label>
 <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em">Motivo
 <select name="motivo" style="border: 0; border-bottom: 1px solid #011F67; padding: 10px 0; font-size: 17px; color: #011F67; background: transparent">
@@ -140,6 +141,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid #011F67;outline-offset
 <option>Reunión en feria</option>
 <option>Otro</option>
 </select></label>
+</div>
 <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em">Mensaje<textarea name="mensaje" rows="3" style="border: 0; border-bottom: 1px solid #011F67; padding: 10px 0; font-size: 17px; color: #011F67; background: transparent; resize: vertical"></textarea></label>
 <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #2C3B66"><input type="checkbox" name="privacidad" required="" style="width: 20px; height: 20px; margin: 2px 0 0; accent-color: #011F67">He leído y acepto la política de privacidad.</label>
 <button type="button" style="align-self: flex-start; min-height: 48px; border: 0; background: #011F67; color: #FFFFFF; padding: 14px 34px; border-radius: 2px; font-size: 16px; font-weight: 600; cursor: pointer">Enviar solicitud</button>
