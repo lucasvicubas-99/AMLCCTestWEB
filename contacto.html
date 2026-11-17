@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Contacto · AML Centrifugal Casting</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./vendor/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&amp;family=Space+Grotesk:wght@300;400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#011F67}a:hover{color:#3D5AA8}
+input,select,textarea{font:inherit}
+input:focus,select:focus,textarea:focus{outline:2px solid #011F67;outline-offset:2px}
+
+@keyframes aml-up{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+@keyframes aml-ripple{0%{transform:scale(.2);opacity:0}12%{opacity:1}100%{transform:scale(1);opacity:0}}
+@keyframes aml-marquee{to{transform:translateX(-50%)}}
+@keyframes aml-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.aml-float{animation:aml-float 6s ease-in-out infinite}
+@keyframes aml-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.aml-in{animation:aml-up .9s cubic-bezier(.2,.7,.2,1) both}
+.aml-ripple circle{transform-origin:center;transform-box:fill-box;animation:aml-ripple 8s linear infinite}
+.aml-marquee{display:flex;width:max-content;animation:aml-marquee 48s linear infinite}
+.aml-zoom{transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.aml-zoomwrap:hover .aml-zoom{transform:scale(1.07)}
+.aml-progress{display:none}
+@supports (animation-timeline: view()){
+.aml-rv{animation:aml-up linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+.aml-line{animation:aml-grow linear both;animation-timeline:view();animation-range:entry 40% cover 55%}
+.aml-progress{display:block;animation:aml-grow linear both;animation-timeline:scroll()}
+}
+@media (prefers-reduced-motion: reduce){
+.aml-in,.aml-rv,.aml-line,.aml-marquee,.aml-float,.aml-ripple circle{animation:none!important}
+.aml-zoom{transition:none}
+}
+
+.aml-nav{display:flex;flex-wrap:wrap}
+.aml-burger{display:none}
+@media (max-width: 960px){
+.aml-burger{display:flex}
+.aml-nav{display:none;width:100%;flex-direction:column;align-items:flex-start!important;gap:4px!important;padding:8px 0 4px;border-top:1px solid #C9D2E0}
+.aml-nav a{padding:12px 0;font-size:17px}
+.aml-nav.aml-open{display:flex}
+.aml-idiomas{border-left:0!important;padding:10px 0 0!important}
+.aml-logo svg{height:60px!important}
+}
+@media (max-width: 640px){
+.aml-ferias thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.aml-ferias tr{display:flex;flex-wrap:wrap;gap:4px 16px;padding:14px 0}
+.aml-ferias td{display:block;padding:0!important;text-align:left!important}
+.aml-ferias td:nth-child(2){flex-basis:100%}
+}
+@media (max-width: 720px){
+.aml-tabla thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.aml-tabla tr{display:flex;flex-wrap:wrap;gap:2px 14px;padding:12px 0}
+.aml-tabla th,.aml-tabla td{display:block;padding:0!important}
+.aml-tabla tbody th[scope=row]{flex-basis:100%}
+}
+</style>
+</helmet>
+<div style="background: #FFFFFF; color: #011F67; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.6">
+<!-- Franja superior -->
+<div style="background: #011F67; color: #FFFFFF; font-size: 13px; letter-spacing: 0.02em">
+<div style="max-width: 1240px; margin: 0 auto; padding: 9px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px">
+<span>Carga y descarga: lunes a viernes, 8:00–17:00 · <a href="contacto.html" style="color: #FFFFFF">Cómo llegar</a></span>
+<span style="display: flex; flex-wrap: wrap; gap: 6px 24px"><a href="tel:+34948461603" style="color: inherit; text-decoration: none">+34 948 46 16 03</a><a href="mailto:info@amlcentrifugal.com" style="color: inherit; text-decoration: none">info@amlcentrifugal.com</a></span>
+</div>
+</div>
+
+<!-- Cabecera -->
+<header style="position: sticky; top: 0; z-index: 10; background: #FFFFFF; border-bottom: 1px solid {{linea}}">
+<div style="max-width: 1240px; margin: 0 auto; padding: 14px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px">
+<a href="index.html" class="aml-logo" aria-label="AML Centrifugal Casting, inicio" style="display: flex"><sc-if value="{{lemaAzul}}" hint-placeholder-val="{{ true }}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 474.2 243" role="img" aria-label="AML Centrifugal Casting" style="height: 84px; width: auto; display: block"><path d="M0.00 100.00L0.00 57.17A42.83 42.83 0 0 1 0.00 142.83ZM0.00 34.81A65.19 65.19 0 0 1 0.00 165.19L0.00 158.97A58.97 58.97 0 0 0 0.00 41.03ZM0.00 18.75A81.25 81.25 0 0 1 0.00 181.25L0.00 170.61A70.61 70.61 0 0 0 0.00 29.39ZM0.00 0.00A100.0 100.0 0 0 1 0.00 200.00L0.00 192.15A92.15 92.15 0 0 0 0.00 7.85Z" fill="#011F67" fill-rule="evenodd"></path><path d="M41.32 0H436.20A38 38 0 0 1 474.20 38V162A38 38 0 0 1 436.20 200H41.32A108.20 108.20 0 0 0 41.32 0Z" fill="#011F67"></path><text x="154.2" y="152.0" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="149.0" font-weight="600" fill="#FFFFFF" textLength="262.0" lengthAdjust="spacing">AML</text><text x="1.0" y="241.0" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="27.2" font-weight="500" fill="#011F67" textLength="472.2" lengthAdjust="spacing">CENTRIFUGAL CASTING</text></svg></sc-if><sc-if value="{{lemaGris}}" hint-placeholder-val="{{ false }}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 474.2 243" role="img" aria-label="AML Centrifugal Casting" style="height: 84px; width: auto; display: block"><path d="M0.00 100.00L0.00 57.17A42.83 42.83 0 0 1 0.00 142.83ZM0.00 34.81A65.19 65.19 0 0 1 0.00 165.19L0.00 158.97A58.97 58.97 0 0 0 0.00 41.03ZM0.00 18.75A81.25 81.25 0 0 1 0.00 181.25L0.00 170.61A70.61 70.61 0 0 0 0.00 29.39ZM0.00 0.00A100.0 100.0 0 0 1 0.00 200.00L0.00 192.15A92.15 92.15 0 0 0 0.00 7.85Z" fill="#011F67" fill-rule="evenodd"></path><path d="M41.32 0H436.20A38 38 0 0 1 474.20 38V162A38 38 0 0 1 436.20 200H41.32A108.20 108.20 0 0 0 41.32 0Z" fill="#011F67"></path><text x="154.2" y="152.0" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="149.0" font-weight="600" fill="#FFFFFF" textLength="262.0" lengthAdjust="spacing">AML</text><text x="1.0" y="241.0" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="27.2" font-weight="500" fill="#8A9C98" textLength="472.2" lengthAdjust="spacing">CENTRIFUGAL CASTING</text></svg></sc-if></a>
+<button type="button" class="aml-burger" aria-label="Menú" aria-controls="menu-principal" aria-expanded="{{menuAbierto}}" onClick="{{toggleMenu}}" style="width: 48px; height: 48px; border: 1px solid #011F67; border-radius: 2px; background: #FFFFFF; color: #011F67; align-items: center; justify-content: center; cursor: pointer; padding: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+<nav id="menu-principal" aria-label="Principal" class="{{navClase}}" onClick="{{cerrarMenu}}" style="align-items: center; gap: 8px 30px; font-size: 15px; font-weight: 500">
+<a href="index.html" style="text-decoration: none">Inicio</a>
+<a href="capacidades.html" style="text-decoration: none">Capacidades</a>
+<a href="calidad.html" style="text-decoration: none">Calidad</a>
+<a href="sectores.html" style="text-decoration: none">Sectores</a>
+<a href="materiales.html" style="text-decoration: none">Materiales</a>
+<a href="contacto.html" aria-current="page" style="text-decoration: none; background: #011F67; color: #FFFFFF; padding: 12px 22px; border-radius: 2px; font-weight: 600">Contacto</a>
+<span aria-label="Idioma" role="group" class="aml-idiomas" style="display: flex; gap: 10px; font-size: 13px; font-weight: 600; padding-left: 18px; border-left: 1px solid #C9D2E0"><a href="#" aria-current="true" style="text-decoration: none">ES</a><a href="#" style="text-decoration: none; color: #5A6A92">EN</a><a href="#" style="text-decoration: none; color: #5A6A92">DE</a><a href="#" style="text-decoration: none; color: #5A6A92">IT</a><a href="#" style="text-decoration: none; color: #5A6A92">FR</a></span>
+</nav>
+</div>
+</header>
+<!-- Cabecera de página -->
+<section style="position: relative; overflow: hidden; isolation: isolate; background: #011F67; color: #FFFFFF">
+<img src="./assets/stand.webp" alt="" aria-hidden="true" style="position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%">
+<div aria-hidden="true" style="position: absolute; z-index: -1; inset: 0; background: rgba(1,31,103,0.86)"></div>
+<div style="max-width: 1240px; margin: 0 auto; padding-left: 32px; padding-right: 32px; padding-top: 72px; padding-bottom: 72px; display: flex; flex-direction: column; gap: 18px">
+<nav aria-label="Ruta" style="font-size: 13px; letter-spacing: 0.04em; color: #B3C3C0"><a href="index.html" style="color: #B3C3C0">Inicio</a> <span aria-hidden="true">/</span> <span style="color: #FFFFFF">Contacto</span></nav>
+<h1 class="aml-in" style="margin: 0; max-width: 860px; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: clamp(38px, 4.6vw, 64px); line-height: 1.04; letter-spacing: -0.02em">Contacto</h1>
+<p class="aml-in" style="animation-delay: .15s; margin: 0; max-width: 640px; font-size: 19px; color: rgba(255,255,255,0.85)">Solicitudes de oferta, consultas técnicas, proveedores y transporte. También puede conocernos en las ferias en las que participamos.</p>
+</div>
+</section>
+<!-- Ferias -->
+<section style="display: flex; flex-wrap: wrap; align-items: stretch; background: #FFFFFF">
+<div style="flex: 1 1 560px; min-width: 0; padding: 72px 64px 72px max(32px, calc(50% - 588px)); display: flex; flex-direction: column; justify-content: center; gap: 18px">
+<p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #011F67">01 — Ferias</p>
+<h2 class="aml-rv" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.08; letter-spacing: -0.015em">Venga a conocernos en persona</h2>
+<p style="margin: 0; color: #3A4A75">Estas son las próximas ferias en las que participaremos. Si va a asistir, solicite una reunión con el formulario y le reservaremos un momento en nuestro stand.</p>
+<div style="position: relative">
+<table class="aml-ferias" style="width: 100%; border-collapse: collapse; text-align: left; font-size: 15px; border-top: 3px solid #011F67">
+<caption style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Próximas ferias</caption>
+<thead><tr style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #3A4A75"><th scope="col" style="padding: 14px 16px 14px 0; font-weight: 600">Fechas</th><th scope="col" style="padding: 14px 16px; font-weight: 600">Feria</th><th scope="col" style="padding: 14px 16px; font-weight: 600">Stand</th><th scope="col" style="padding: 14px 0 14px 16px"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Acción</span></th></tr></thead>
+<tbody><tr style="border-bottom: 1px solid #C9D2E0"><td style="padding: 20px 16px 20px 0; font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 500; white-space: nowrap">[DD–DD MES]</td><td style="padding: 20px 16px"><span style="display: block; font-weight: 600">[Nombre de la feria]</span><span style="font-size: 14px; color: #3A4A75">[Ciudad, País] · [Sector]</span></td><td style="padding: 20px 16px; white-space: nowrap; color: #3A4A75">Stand [nº]</td><td style="padding: 20px 0 20px 16px; text-align: right"><a href="#formulario" style="font-weight: 600; white-space: nowrap">Solicitar reunión</a></td></tr><tr style="border-bottom: 1px solid #C9D2E0"><td style="padding: 20px 16px 20px 0; font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 500; white-space: nowrap">[DD–DD MES]</td><td style="padding: 20px 16px"><span style="display: block; font-weight: 600">[Nombre de la feria]</span><span style="font-size: 14px; color: #3A4A75">[Ciudad, País] · [Sector]</span></td><td style="padding: 20px 16px; white-space: nowrap; color: #3A4A75">Stand [nº]</td><td style="padding: 20px 0 20px 16px; text-align: right"><a href="#formulario" style="font-weight: 600; white-space: nowrap">Solicitar reunión</a></td></tr><tr style="border-bottom: 1px solid #C9D2E0"><td style="padding: 20px 16px 20px 0; font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 500; white-space: nowrap">[DD–DD MES]</td><td style="padding: 20px 16px"><span style="display: block; font-weight: 600">[Nombre de la feria]</span><span style="font-size: 14px; color: #3A4A75">[Ciudad, País] · [Sector]</span></td><td style="padding: 20px 16px; white-space: nowrap; color: #3A4A75">Stand [nº]</td><td style="padding: 20px 0 20px 16px; text-align: right"><a href="#formulario" style="font-weight: 600; white-space: nowrap">Solicitar reunión</a></td></tr></tbody>
+</table>
+</div>
+</div>
+<div style="flex: 0 1 460px; min-width: 0; min-height: 360px; position: relative"><img loading="lazy" src="./assets/stand.webp" alt="Stand de AML Centrifugal Casting en una feria internacional" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; display: block"></div>
+</section>
+
+<!-- Formulario -->
+<section id="formulario" style="position: relative; overflow: hidden; isolation: isolate; background: #EEF1F0">
+<img loading="lazy" src="./assets/ondas-lineal-cuarto.svg" alt="" aria-hidden="true" style="position: absolute; z-index: -1; left: 0; bottom: 0; width: 380px; height: auto; opacity: 0.22; pointer-events: none">
+<div style="max-width: 1240px; margin: 0 auto; padding-left: 32px; padding-right: 32px; padding-top: 72px; padding-bottom: 80px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 48px 64px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #011F67">02 — Solicitud de información</p>
+<h2 class="aml-rv" style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.08; letter-spacing: -0.015em">Escríbanos</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 19px; font-weight: 500"><a href="tel:+34948461603" style="text-decoration: none">+34 948 46 16 03</a><a href="mailto:info@amlcentrifugal.com" style="text-decoration: none">info@amlcentrifugal.com</a></div>
+<div id="transporte" style="background: #011F67; color: #FFFFFF; padding: 28px 28px 24px; display: flex; flex-direction: column; gap: 14px; margin-top: 8px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 24px">Proveedores y transportistas</h3>
+<address style="font-style: normal; font-size: 18px; line-height: 1.45">AML Centrifugal Casting, S.L.<br>Industrialdea, A-7 · 31870 Lekunberri (Navarra)</address>
+<dl style="margin: 0; border-top: 1px solid #FFFFFF; font-size: 15px"><div style="display: flex; flex-wrap: wrap; gap: 2px 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.3)"><dt style="font-weight: 600; min-width: 150px; color: #B3C3C0">Carga y descarga</dt><dd style="margin: 0">Lunes a viernes, 8:00–17:00</dd></div><div style="display: flex; flex-wrap: wrap; gap: 2px 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.3)"><dt style="font-weight: 600; min-width: 150px; color: #B3C3C0">Acceso camiones</dt><dd style="margin: 0">Entrada principal</dd></div><div style="display: flex; flex-wrap: wrap; gap: 2px 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.3)"><dt style="font-weight: 600; min-width: 150px; color: #B3C3C0">Al llegar</dt><dd style="margin: 0">Llamar al timbre de la entrada principal</dd></div></dl>
+<div><a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0xd50575530199329:0x7d414e54f5596970?sa=X&amp;ved=1t:8290&amp;ictx=111" style="display: inline-block; text-decoration: none; background: #FFFFFF; color: #011F67; padding: 14px 24px; border-radius: 2px; font-weight: 600">Abrir en Google Maps</a></div>
+</div>
+</div>
+<form style="display: flex; flex-direction: column; gap: 18px; border: 1px solid #011F67; background: #FFFFFF; padding: 28px 32px">
+<p style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 500">Solicitud de información</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px 32px">
+<label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em">Nombre<input type="text" name="nombre" autocomplete="name" required="" style="border: 0; border-bottom: 1px solid #011F67; padding: 10px 0; font-size: 17px; color: #011F67; background: transparent"></label>
+<label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em">Empresa<input type="text" name="empresa" autocomplete="organization" style="border: 0; border-bottom: 1px solid #011F67; padding: 10px 0; font-size: 17px; color: #011F67; background: transparent"></label>
+</div>
+<label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em">Email<input type="email" name="email" autocomplete="email" required="" style="border: 0; border-bottom: 1px solid #011F67; padding: 10px 0; font-size: 17px; color: #011F67; background: transparent"></label>
+<label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em">Motivo
+<select name="motivo" style="border: 0; border-bottom: 1px solid #011F67; padding: 10px 0; font-size: 17px; color: #011F67; background: transparent">
+<option>Solicitud de oferta</option>
+<option>Consulta técnica</option>
+<option>Soy proveedor</option>
+<option>Transporte o recogida de piezas</option>
+<option>Trabajar en AML</option>
+<option>Reunión en feria</option>
+<option>Otro</option>
+</select></label>
+<label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em">Mensaje<textarea name="mensaje" rows="3" style="border: 0; border-bottom: 1px solid #011F67; padding: 10px 0; font-size: 17px; color: #011F67; background: transparent; resize: vertical"></textarea></label>
+<label style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #2C3B66"><input type="checkbox" name="privacidad" required="" style="width: 20px; height: 20px; margin: 2px 0 0; accent-color: #011F67">He leído y acepto la política de privacidad.</label>
+<button type="button" style="align-self: flex-start; min-height: 48px; border: 0; background: #011F67; color: #FFFFFF; padding: 14px 34px; border-radius: 2px; font-size: 16px; font-weight: 600; cursor: pointer">Enviar solicitud</button>
+</form>
+</div>
+</section>
+
+<!-- Pie -->
+<footer style="position: relative; overflow: hidden; isolation: isolate; background: #011F67; color: #FFFFFF; font-size: 15px; line-height: 1.55">
+<img loading="lazy" src="./assets/ondas-cuarto.svg" alt="" aria-hidden="true" style="position: absolute; z-index: -1; right: 0; top: 0; width: 320px; height: auto; opacity: 0.14; pointer-events: none">
+<div style="max-width: 1240px; margin: 0 auto; padding: 48px 32px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 32px 40px; align-items: start">
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; grid-column: span 2; min-width: 0; align-self: stretch; text-align: center">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 474.2 243" role="img" aria-label="AML Centrifugal Casting" style="height: 112px; width: auto; display: block"><path d="M0.00 100.00L0.00 57.17A42.83 42.83 0 0 1 0.00 142.83ZM0.00 34.81A65.19 65.19 0 0 1 0.00 165.19L0.00 158.97A58.97 58.97 0 0 0 0.00 41.03ZM0.00 18.75A81.25 81.25 0 0 1 0.00 181.25L0.00 170.61A70.61 70.61 0 0 0 0.00 29.39ZM0.00 0.00A100.0 100.0 0 0 1 0.00 200.00L0.00 192.15A92.15 92.15 0 0 0 0.00 7.85Z" fill="#FFFFFF" fill-rule="evenodd"></path><path d="M41.32 0H436.20A38 38 0 0 1 474.20 38V162A38 38 0 0 1 436.20 200H41.32A108.20 108.20 0 0 0 41.32 0Z" fill="#FFFFFF"></path><text x="154.2" y="152.0" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="149.0" font-weight="600" fill="#011F67" textLength="262.0" lengthAdjust="spacing">AML</text><text x="1.0" y="241.0" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="27.2" font-weight="500" fill="#FFFFFF" textLength="472.2" lengthAdjust="spacing">CENTRIFUGAL CASTING</text></svg>
+<p style="margin: 0; font-size: 13px; color: #B3C3C0">Sistema de gestión certificado ISO 9001</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px"><p style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #B3C3C0; margin: 0 0 6px">Empresa</p><a href="index.html" style="text-decoration: none; color: #FFFFFF">Quiénes somos</a><a href="index.html" style="text-decoration: none; color: #FFFFFF">Cómo trabajamos</a><a href="sectores.html" style="text-decoration: none; color: #FFFFFF">Sectores</a><a href="materiales.html" style="text-decoration: none; color: #FFFFFF">Materiales</a><a href="contacto.html" style="text-decoration: none; color: #FFFFFF">Ferias</a></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><p style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #B3C3C0; margin: 0 0 6px">Capacidades</p><a href="capacidades.html#fresado" style="text-decoration: none; color: #FFFFFF">Fresado</a><a href="capacidades.html#torneado" style="text-decoration: none; color: #FFFFFF">Torneado</a><a href="capacidades.html#mandrinado" style="text-decoration: none; color: #FFFFFF">Mandrinado</a><a href="capacidades.html#soldadura" style="text-decoration: none; color: #FFFFFF">Soldadura</a><a href="capacidades.html" style="text-decoration: none; color: #FFFFFF">Control dimensional</a><a href="calidad.html" style="text-decoration: none; color: #FFFFFF">Calidad</a></div>
+<div style="display: flex; flex-direction: column; gap: 6px; color: rgba(255,255,255,0.85)"><p style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #B3C3C0; margin: 0 0 6px">Contacto</p><a href="tel:+34948461603" style="text-decoration: none; color: #FFFFFF">+34 948 46 16 03</a><a href="mailto:info@amlcentrifugal.com" style="text-decoration: none; color: #FFFFFF">info@amlcentrifugal.com</a><span>Industrialdea, A-7</span><span>31870 Lekunberri (Navarra)</span><a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0xd50575530199329:0x7d414e54f5596970?sa=X&amp;ved=1t:8290&amp;ictx=111" style="color: #FFFFFF; font-weight: 600">Cómo llegar</a></div>
+<div style="display: flex; flex-direction: column; gap: 6px; color: rgba(255,255,255,0.85)"><p style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #B3C3C0; margin: 0 0 6px">Transportistas</p><span>Carga y descarga</span><span style="color: #FFFFFF; font-weight: 600">8:00 – 17:00</span><span>Entrada principal, llamar al timbre</span></div>
+</div>
+<div style="max-width: 1240px; margin: 40px auto 0; padding: 18px 32px 22px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 24px; font-size: 13px; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.3)">
+<span>© 2026 AML Centrifugal Casting, S.L. · CIF B71115935</span>
+<span style="display: flex; flex-wrap: wrap; gap: 8px 20px"><a href="#" style="color: rgba(255,255,255,0.7)">Aviso legal</a><a href="#" style="color: rgba(255,255,255,0.7)">Privacidad</a><a href="#" style="color: rgba(255,255,255,0.7)">Cookies</a></span>
+<span style="display: flex; gap: 12px; font-weight: 600"><a href="#" aria-current="true" style="color: #FFFFFF; text-decoration: none">ES</a><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none">EN</a><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none">DE</a><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none">IT</a><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none">FR</a></span>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lemaLogo":{"editor":"enum","options":["Azul","Gris"],"default":"Azul"},"$preview":{"width":1440,"height":2100}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { menu: false };
+}
+renderVals() {
+const lema = this.props.lemaLogo ?? 'Azul';
+return {
+linea: '#011F67',
+lemaAzul: lema !== 'Gris',
+lemaGris: lema === 'Gris',
+menuAbierto: this.state.menu ? 'true' : 'false',
+navClase: this.state.menu ? 'aml-nav aml-open' : 'aml-nav',
+toggleMenu: () => this.setState({ menu: !this.state.menu }),
+cerrarMenu: (ev) => { if (ev && ev.target && ev.target.tagName === 'A') this.setState({ menu: false }); }
+};
+}
+}
+</script>
+</body>
+</html>
