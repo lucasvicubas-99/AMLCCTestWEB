@@ -317,7 +317,7 @@ button, input, select, textarea { font: inherit; }
 .banner { position: relative; isolation: isolate; min-height: clamp(380px, 52svh, 520px); display: flex; align-items: flex-end; background: var(--color-ink); color: var(--color-paper); overflow: clip; }
 .banner__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
 .banner::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, var(--color-veil) 0%, color-mix(in oklch, var(--color-ink) 72%, transparent) 100%); }
-.banner--derecha .banner__bg { left: auto; right: 0; width: 72%; -webkit-mask-image: linear-gradient(to right, transparent 0, #000 30%); mask-image: linear-gradient(to right, transparent 0, #000 30%); }
+.banner--derecha .banner__bg { left: auto; right: 0; width: 72%; -webkit-mask-image: linear-gradient(to right, transparent 0, var(--color-ink) 30%); mask-image: linear-gradient(to right, transparent 0, var(--color-ink) 30%); }
 .banner--derecha::after { background: linear-gradient(to bottom, color-mix(in oklch, var(--color-ink) 85%, transparent) 0%, transparent 22%), linear-gradient(to right, var(--color-ink) 0%, color-mix(in oklch, var(--color-ink) 88%, transparent) 38%, color-mix(in oklch, var(--color-ink) 62%, transparent) 70%, color-mix(in oklch, var(--color-ink) 55%, transparent) 100%); }
 .banner__inner { width: 100%; padding-block: var(--space-3xl) var(--space-2xl); display: grid; gap: var(--space-md); animation: settle 0.6s var(--ease-out) both; }
 .banner h1 { color: var(--color-paper); max-width: 18ch; }
@@ -454,15 +454,15 @@ button, input, select, textarea { font: inherit; }
 <div class="container banner__inner">
 <nav aria-label="Ruta" class="crumbs"><a href="v8.html">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Calidad</span></nav>
 <h1 id="titulo">Calidad</h1>
-<p class="lead">Ensayos no destructivos, metrología y sistema de calidad certificado. Cada pieza sale medida y ensayada.</p>
+<p class="lead">Ninguna pieza sale de nuestra planta sin medir ni ensayar. Lo hacemos con un sistema de calidad certificado.</p>
 </div>
 </section>
 <section class="sec" aria-labelledby="ensayos-titulo">
 <div class="container grid">
-<div class="head c-1-5"><h2 id="ensayos-titulo">Ensayos que realizamos en nuestras instalaciones</h2><p>Ensayos autorizados en planta propia, realizados según los requisitos de cada pedido.</p></div>
+<div class="head c-1-5"><h2 id="ensayos-titulo">Ensayos que hacemos en nuestra planta</h2><p>Estamos autorizados para hacerlos aquí y los adaptamos a los requisitos de cada pedido.</p></div>
 <div class="body c-6-12"><div class="tests">
-<div class="test"><h3>Pruebas de presión</h3><p class="muted">Ensayo de estanqueidad bajo presión hidrostática o neumática, según la especificación del cliente.</p></div>
-<div class="test"><h3>Líquidos penetrantes</h3><p class="muted">Detección de discontinuidades abiertas a la superficie: grietas, poros y faltas de fusión.</p><p class="small">Certificación: EN ISO 9712, nivel II</p></div>
+<div class="test"><h3>Pruebas de presión</h3><p class="muted">Comprobamos la estanqueidad con presión hidrostática o neumática, según su especificación.</p></div>
+<div class="test"><h3>Líquidos penetrantes</h3><p class="muted">Detectamos discontinuidades abiertas a la superficie: grietas, poros y faltas de fusión.</p><p class="small">Certificación: EN ISO 9712, nivel II</p></div>
 </div></div>
 </div>
 </section>
@@ -470,32 +470,32 @@ button, input, select, textarea { font: inherit; }
 <div class="container grid">
 <div class="c-1-6"><img loading="lazy" class="photo" src="./assets/control-dimensional.webp" alt="Máquina de medición por coordenadas Trimek Spark con una pieza en la mesa" width="800" height="600"></div>
 <div class="body c-7-12">
-<div class="head"><h2 id="metro-titulo">Control dimensional certificado</h2><p>Medición en máquina tridimensional sobre plano globeado, con informe de cotas de cada pieza. Si el cliente dispone de una especificación propia, el control se realiza conforme a ella.</p></div>
+<div class="head"><h2 id="metro-titulo">Control dimensional certificado</h2><p>Medimos cada pieza en máquina tridimensional sobre plano globeado y le entregamos su informe de cotas. Si usted tiene una especificación propia, la seguimos.</p></div>
 <dl class="spec"><div><dt>Equipo</dt><dd>Trimek Spark 16.10.12, máquina de medición por coordenadas tipo puente<br><span class="small muted">Volumen de medida 1.600 × 1.000 × 1.200 mm</span></dd></div><div><dt>Entorno</dt><dd>Sala climatizada, temperatura controlada, mesa de granito</dd></div></dl>
 </div>
 </div>
 </section>
 <section class="sec" aria-labelledby="iso-titulo">
 <div class="container grid">
-<div class="head c-1-5"><h2 id="iso-titulo">Sistema de gestión certificado según ISO 9001</h2><p>Toda referencia nueva se globea antes de fabricarse. Cada pieza mantiene su trazabilidad durante todo el proceso y se expide con la documentación de control requerida en el pedido.</p><div><a href="#" download="" class="btn btn--line"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Certificado ISO 9001 (PDF)</a></div></div>
+<div class="head c-1-5"><h2 id="iso-titulo">Sistema de gestión certificado según ISO 9001</h2><p>Globeamos cada referencia nueva antes de fabricarla. Seguimos cada pieza durante todo el proceso y la expedimos con la documentación de control que pida su pedido.</p><div><a href="#" download="" class="btn btn--line"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Certificado ISO 9001 (PDF)</a></div></div>
 <div class="body c-6-12"><ul class="rows">
 <li><h3>Plano globeado</h3><p>Previo a fabricación.</p></li>
 <li><h3>Trazabilidad</h3><p>De cada pieza.</p></li>
-<li><h3>Control</h3><p>Según plano y especificación del cliente.</p></li>
+<li><h3>Control</h3><p>Según su plano y su especificación.</p></li>
 <li><h3>Informe dimensional y de ensayos</h3><p>Con la expedición.</p></li>
 </ul></div>
 </div>
 </section>
 <section class="sec sec--tint" aria-label="¿Su pieza requiere un ensayo concreto?">
 <div class="container cta">
-<div class="head"><h2>¿Su pieza requiere un ensayo concreto?</h2><p>Indíquenos la norma o especificación y le confirmaremos si podemos realizarlo en planta.</p></div>
+<div class="head"><h2>¿Su pieza requiere un ensayo concreto?</h2><p>Díganos la norma o la especificación y le confirmaremos si podemos hacerlo en nuestra planta.</p></div>
 <div class="actions"><a href="v8-contacto.html" class="btn btn--ink">Solicitar información</a></div>
 </div>
 </section>
 </main>
 <footer class="foot on-ink">
 <div class="container grid">
-<p class="foot__statement" style="font-family: var(--font-display); line-height: 1.1; letter-spacing: var(--tracking-display)">Piezas de acero fundido a la carta, mecanizadas, medidas y ensayadas en planta propia.</p>
+<p class="foot__statement" style="font-family: var(--font-display); line-height: 1.1; letter-spacing: var(--tracking-display)">Mecanizamos, medimos y ensayamos piezas de acero fundido a la carta, en nuestra propia planta.</p>
 <div class="foot__cols">
 <div class="foot__logo foot__col"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 474.2 243" role="img" aria-label="AML Centrifugal Casting" class="logo__svg"><path d="M0.00 100.00L0.00 57.17A42.83 42.83 0 0 1 0.00 142.83ZM0.00 34.81A65.19 65.19 0 0 1 0.00 165.19L0.00 158.97A58.97 58.97 0 0 0 0.00 41.03ZM0.00 18.75A81.25 81.25 0 0 1 0.00 181.25L0.00 170.61A70.61 70.61 0 0 0 0.00 29.39ZM0.00 0.00A100.0 100.0 0 0 1 0.00 200.00L0.00 192.15A92.15 92.15 0 0 0 0.00 7.85Z" style="fill: var(--color-paper)" fill-rule="evenodd"></path><path d="M41.32 0H436.20A38 38 0 0 1 474.20 38V162A38 38 0 0 1 436.20 200H41.32A108.20 108.20 0 0 0 41.32 0Z" style="fill: var(--color-paper)"></path><text class="logo__txt" x="154.2" y="152.0" font-size="149.0" font-weight="600" style="fill: var(--color-ink)" textLength="262.0" lengthAdjust="spacing">AML</text><text class="logo__txt" x="1.0" y="241.0" font-size="27.2" font-weight="500" style="fill: var(--color-paper)" textLength="472.2" lengthAdjust="spacing">CENTRIFUGAL CASTING</text></svg><p class="small">Sistema de gestión certificado ISO 9001</p></div>
 <div class="foot__col"><p>Empresa</p><a href="v8.html#empresa">Quiénes somos</a><a href="v8.html#servicios">Cómo trabajamos</a><a href="v8.html#sectores">Sectores</a><a href="v8.html#materiales">Materiales</a><a href="v8.html#ferias">Ferias</a></div>

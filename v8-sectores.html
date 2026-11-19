@@ -316,7 +316,7 @@ button, input, select, textarea { font: inherit; }
 .banner { position: relative; isolation: isolate; min-height: clamp(380px, 52svh, 520px); display: flex; align-items: flex-end; background: var(--color-ink); color: var(--color-paper); overflow: clip; }
 .banner__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
 .banner::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, var(--color-veil) 0%, color-mix(in oklch, var(--color-ink) 72%, transparent) 100%); }
-.banner--derecha .banner__bg { left: auto; right: 0; width: 72%; -webkit-mask-image: linear-gradient(to right, transparent 0, #000 30%); mask-image: linear-gradient(to right, transparent 0, #000 30%); }
+.banner--derecha .banner__bg { left: auto; right: 0; width: 72%; -webkit-mask-image: linear-gradient(to right, transparent 0, var(--color-ink) 30%); mask-image: linear-gradient(to right, transparent 0, var(--color-ink) 30%); }
 .banner--derecha::after { background: linear-gradient(to bottom, color-mix(in oklch, var(--color-ink) 85%, transparent) 0%, transparent 22%), linear-gradient(to right, var(--color-ink) 0%, color-mix(in oklch, var(--color-ink) 88%, transparent) 38%, color-mix(in oklch, var(--color-ink) 62%, transparent) 70%, color-mix(in oklch, var(--color-ink) 55%, transparent) 100%); }
 .banner__inner { width: 100%; padding-block: var(--space-3xl) var(--space-2xl); display: grid; gap: var(--space-md); animation: settle 0.6s var(--ease-out) both; }
 .banner h1 { color: var(--color-paper); max-width: 18ch; }
@@ -453,33 +453,33 @@ button, input, select, textarea { font: inherit; }
 <div class="container banner__inner">
 <nav aria-label="Ruta" class="crumbs"><a href="v8.html">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Sectores</span></nav>
 <h1 id="titulo">Sectores con los que trabajamos</h1>
-<p class="lead">Mecanizamos piezas de acero fundido para clientes de sectores con exigencias altas de material, estanqueidad y trazabilidad.</p>
+<p class="lead">Todos son exigentes con el material, la estanqueidad y la trazabilidad, y así es como trabajamos nosotros.</p>
 </div>
 </section>
 <section class="sec" aria-label="Sectores">
 <div class="container" style="display: grid; gap: var(--space-2xl)">
 <nav aria-label="Sectores en esta página"><ul class="anchors"><li><a href="#s1">Petróleo y gas</a></li><li><a href="#s2">Naval</a></li><li><a href="#s3">Nuclear</a></li><li><a href="#s4">Ferroviario</a></li><li><a href="#s5">Sanitario</a></li><li><a href="#s6">Industrial</a></li><li><a href="#s7">Estructural</a></li></ul></nav>
 <ul class="sectors">
-<li id="s1"><h2>Petróleo y gas</h2><div class="desc"><p>Mecanizado de esferas y cuerpos de válvula, carcasas de bomba y componentes para extracción, refino y transporte, principalmente en aceros inoxidables, dúplex y superdúplex.</p></div><img loading="lazy" src="./assets/sector-petroleo.webp" alt="Plataforma petrolífera en alta mar" width="800" height="600"></li>
-<li id="s2"><h2>Naval</h2><div class="desc"><p>Componentes para buques e instalaciones marinas, donde el agua de mar exige materiales con alta resistencia a la corrosión.</p></div><img loading="lazy" src="./assets/sector-naval.webp" alt="Buque petrolero en navegación" width="800" height="600"></li>
-<li id="s3"><h2>Nuclear</h2><div class="desc"><p>Componentes para instalaciones nucleares, con trazabilidad completa, control dimensional y ensayos documentados. Soldadura con procedimientos según el código nuclear RCC-M y soldadores certificados según UNE-EN ISO 9606-1.</p></div><img loading="lazy" src="./assets/sector-nuclear.webp" alt="Torres de refrigeración de una central nuclear" width="800" height="600"></li>
-<li id="s4"><h2>Ferroviario</h2><div class="desc"><p>Componentes para material rodante e infraestructura ferroviaria, en series con entregas programadas.</p></div><img loading="lazy" src="./assets/sector-ferroviario.webp" alt="Tren de alta velocidad en el andén de una estación" width="800" height="600"></li>
-<li id="s5"><h2>Sanitario</h2><div class="desc"><p>Piezas para equipos del sector sanitario, con acabados y tolerancias según especificación.</p></div><img loading="lazy" src="./assets/sector-sanitario.webp" alt="Sala de bombas con tuberías de acero inoxidable" width="800" height="600"></li>
-<li id="s6"><h2>Industrial</h2><div class="desc"><p>Componentes para maquinaria y equipos de proceso: bombas, válvulas y carcasas.</p></div><img loading="lazy" src="./assets/esferas.webp" alt="Esferas de acero fundido mecanizadas" width="800" height="600" style="object-fit: contain; background: var(--color-paper-3)"></li>
-<li id="s7"><h2>Estructural</h2><div class="desc"><p>Piezas de acero fundido para estructuras y uniones que trabajan bajo carga.</p></div><img loading="lazy" src="./assets/sector-estructural.webp" alt="Puente en arco de hormigón con tirantes" width="800" height="600"></li>
+<li id="s1"><h2>Petróleo y gas</h2><div class="desc"><p>Mecanizamos esferas y cuerpos de válvula, carcasas de bomba y componentes para extracción, refino y transporte, sobre todo en aceros inoxidables, dúplex y superdúplex.</p></div><img loading="lazy" src="./assets/sector-petroleo.webp" alt="Plataforma petrolífera en alta mar" width="800" height="600"></li>
+<li id="s2"><h2>Naval</h2><div class="desc"><p>Hacemos componentes para buques e instalaciones marinas, donde el agua de mar exige materiales muy resistentes a la corrosión.</p></div><img loading="lazy" src="./assets/sector-naval.webp" alt="Buque petrolero en navegación" width="800" height="600"></li>
+<li id="s3"><h2>Nuclear</h2><div class="desc"><p>Mecanizamos componentes para instalaciones nucleares con trazabilidad completa, control dimensional y ensayos documentados. Soldamos con procedimientos según el código nuclear RCC-M y con soldadores certificados según UNE-EN ISO 9606-1.</p></div><img loading="lazy" src="./assets/sector-nuclear.webp" alt="Torres de refrigeración de una central nuclear" width="800" height="600"></li>
+<li id="s4"><h2>Ferroviario</h2><div class="desc"><p>Servimos componentes para material rodante e infraestructura ferroviaria, en series con entregas programadas.</p></div><img loading="lazy" src="./assets/sector-ferroviario.webp" alt="Tren de alta velocidad en el andén de una estación" width="800" height="600"></li>
+<li id="s5"><h2>Sanitario</h2><div class="desc"><p>Mecanizamos piezas para equipos del sector sanitario, con los acabados y las tolerancias que pida su especificación.</p></div><img loading="lazy" src="./assets/sector-sanitario.webp" alt="Sala de bombas con tuberías de acero inoxidable" width="800" height="600"></li>
+<li id="s6"><h2>Industrial</h2><div class="desc"><p>Hacemos componentes para maquinaria y equipos de proceso: bombas, válvulas y carcasas.</p></div><img loading="lazy" src="./assets/esferas.webp" alt="Esferas de acero fundido mecanizadas" width="800" height="600" style="object-fit: contain; background: var(--color-paper-3)"></li>
+<li id="s7"><h2>Estructural</h2><div class="desc"><p>Mecanizamos piezas de acero fundido para estructuras y uniones que trabajan bajo carga.</p></div><img loading="lazy" src="./assets/sector-estructural.webp" alt="Puente en arco de hormigón con tirantes" width="800" height="600"></li>
 </ul>
 </div>
 </section>
 <section class="sec sec--tint" aria-label="¿Su sector no aparece?">
 <div class="container cta">
-<div class="head"><h2>¿Su sector no aparece?</h2><p>Trabajamos según plano y especificación. Cuéntenos su aplicación.</p></div>
+<div class="head"><h2>¿Su sector no aparece?</h2><p>Trabajamos según su plano y su especificación. Cuéntenos su aplicación y la estudiamos.</p></div>
 <div class="actions"><a href="v8-contacto.html" class="btn btn--ink">Solicitar información</a></div>
 </div>
 </section>
 </main>
 <footer class="foot on-ink">
 <div class="container grid">
-<p class="foot__statement" style="font-family: var(--font-display); line-height: 1.1; letter-spacing: var(--tracking-display)">Piezas de acero fundido a la carta, mecanizadas, medidas y ensayadas en planta propia.</p>
+<p class="foot__statement" style="font-family: var(--font-display); line-height: 1.1; letter-spacing: var(--tracking-display)">Mecanizamos, medimos y ensayamos piezas de acero fundido a la carta, en nuestra propia planta.</p>
 <div class="foot__cols">
 <div class="foot__logo foot__col"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 474.2 243" role="img" aria-label="AML Centrifugal Casting" class="logo__svg"><path d="M0.00 100.00L0.00 57.17A42.83 42.83 0 0 1 0.00 142.83ZM0.00 34.81A65.19 65.19 0 0 1 0.00 165.19L0.00 158.97A58.97 58.97 0 0 0 0.00 41.03ZM0.00 18.75A81.25 81.25 0 0 1 0.00 181.25L0.00 170.61A70.61 70.61 0 0 0 0.00 29.39ZM0.00 0.00A100.0 100.0 0 0 1 0.00 200.00L0.00 192.15A92.15 92.15 0 0 0 0.00 7.85Z" style="fill: var(--color-paper)" fill-rule="evenodd"></path><path d="M41.32 0H436.20A38 38 0 0 1 474.20 38V162A38 38 0 0 1 436.20 200H41.32A108.20 108.20 0 0 0 41.32 0Z" style="fill: var(--color-paper)"></path><text class="logo__txt" x="154.2" y="152.0" font-size="149.0" font-weight="600" style="fill: var(--color-ink)" textLength="262.0" lengthAdjust="spacing">AML</text><text class="logo__txt" x="1.0" y="241.0" font-size="27.2" font-weight="500" style="fill: var(--color-paper)" textLength="472.2" lengthAdjust="spacing">CENTRIFUGAL CASTING</text></svg><p class="small">Sistema de gestión certificado ISO 9001</p></div>
 <div class="foot__col"><p>Empresa</p><a href="v8.html#empresa">Quiénes somos</a><a href="v8.html#servicios">Cómo trabajamos</a><a href="v8.html#sectores">Sectores</a><a href="v8.html#materiales">Materiales</a><a href="v8.html#ferias">Ferias</a></div>
