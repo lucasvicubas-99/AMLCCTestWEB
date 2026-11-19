@@ -218,7 +218,10 @@ button, input, select, textarea { font: inherit; }
 
 /* Ferias */
 .fairs { padding-block: var(--section-gap) var(--section-gap-s); }
-.fairs__photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 45%; border-radius: var(--radius-card); }
+.fairs__grid { align-items: start; }
+.fairs__side { grid-row: 1; grid-column: 1 / 6; }
+.fairs__body { grid-row: 1; grid-column: 7 / -1; display: grid; gap: var(--space-xl); align-content: start; min-width: 0; }
+.fairs__photo { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 45%; border-radius: var(--radius-card); }
 .table { width: 100%; border-collapse: collapse; text-align: left; font-size: var(--text-md); }
 .table th { padding: var(--space-sm) var(--space-md) var(--space-sm) 0; font-size: var(--text-sm); font-weight: 400; color: var(--color-muted); border-bottom: 1px solid var(--color-ink); }
 .table td { padding: var(--space-lg) var(--space-md) var(--space-lg) 0; border-bottom: 1px solid var(--color-rule); vertical-align: top; }
@@ -270,6 +273,8 @@ button, input, select, textarea { font: inherit; }
   .idiomas { border-left: 0; padding-left: 0; }
   .logo__svg { height: 44px; }
   .machines { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fairs__side, .fairs__body { grid-row: auto; grid-column: 1 / -1; }
+  .fairs__photo { aspect-ratio: 4 / 3; }
   .about__text { grid-template-columns: minmax(0, 1fr); }
   .mat__top { grid-template-columns: minmax(0, 1fr); }
   .scale__row { grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); }

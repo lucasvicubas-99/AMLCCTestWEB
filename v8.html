@@ -222,7 +222,10 @@ button, input, select, textarea { font: inherit; }
 
 /* Ferias */
 .fairs { padding-block: var(--section-gap) var(--section-gap-s); }
-.fairs__photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 45%; border-radius: var(--radius-card); }
+.fairs__grid { align-items: start; }
+.fairs__side { grid-row: 1; grid-column: 1 / 6; }
+.fairs__body { grid-row: 1; grid-column: 7 / -1; display: grid; gap: var(--space-xl); align-content: start; min-width: 0; }
+.fairs__photo { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 45%; border-radius: var(--radius-card); }
 .table { width: 100%; border-collapse: collapse; text-align: left; font-size: var(--text-md); }
 .table th { padding: var(--space-sm) var(--space-md) var(--space-sm) 0; font-size: var(--text-sm); font-weight: 400; color: var(--color-muted); border-bottom: 1px solid var(--color-ink); }
 .table td { padding: var(--space-lg) var(--space-md) var(--space-lg) 0; border-bottom: 1px solid var(--color-rule); vertical-align: top; }
@@ -274,6 +277,8 @@ button, input, select, textarea { font: inherit; }
   .idiomas { border-left: 0; padding-left: 0; }
   .logo__svg { height: 44px; }
   .machines { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fairs__side, .fairs__body { grid-row: auto; grid-column: 1 / -1; }
+  .fairs__photo { aspect-ratio: 4 / 3; }
   .about__text { grid-template-columns: minmax(0, 1fr); }
   .mat__top { grid-template-columns: minmax(0, 1fr); }
   .scale__row { grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); }
@@ -467,20 +472,20 @@ button, input, select, textarea { font: inherit; }
 </div>
 </section>
 <section id="ferias" class="fairs" aria-labelledby="ferias-titulo">
-<div class="container grid">
-<div class="c-1-4" style="display: grid; gap: var(--space-lg)">
+<div class="container grid fairs__grid">
+<div class="fairs__body">
+<div style="display: grid; gap: var(--space-md)">
 <h2 id="ferias-titulo">Próximas ferias</h2>
 <p class="muted">Ferias en las que participaremos próximamente. Puede solicitar una reunión a través del formulario de contacto.</p>
-<div><a href="v8-contacto.html" class="btn btn--line">Ferias y reuniones</a></div>
-<img loading="lazy" class="fairs__photo" src="./assets/stand.webp" alt="Stand de AML Centrifugal Casting en una feria internacional" width="800" height="600">
 </div>
-<div class="c-5-12" style="min-width: 0">
 <table class="table">
 <caption class="visually-hidden">Próximas ferias</caption>
 <thead><tr><th scope="col">Fechas</th><th scope="col">Feria</th><th scope="col">Stand</th><th scope="col"><span class="visually-hidden">Acción</span></th></tr></thead>
 <tbody><tr><td class="table__fecha num">[DD al DD MES]</td><td><span class="table__feria">[Nombre de la feria]</span><span class="muted small">[Ciudad, País], [sector]</span></td><td class="muted">Stand [nº]</td><td><a href="#contacto" class="link" style="white-space: nowrap">Solicitar reunión</a></td></tr><tr><td class="table__fecha num">[DD al DD MES]</td><td><span class="table__feria">[Nombre de la feria]</span><span class="muted small">[Ciudad, País], [sector]</span></td><td class="muted">Stand [nº]</td><td><a href="#contacto" class="link" style="white-space: nowrap">Solicitar reunión</a></td></tr><tr><td class="table__fecha num">[DD al DD MES]</td><td><span class="table__feria">[Nombre de la feria]</span><span class="muted small">[Ciudad, País], [sector]</span></td><td class="muted">Stand [nº]</td><td><a href="#contacto" class="link" style="white-space: nowrap">Solicitar reunión</a></td></tr></tbody>
 </table>
+<div><a href="v8-contacto.html" class="btn btn--line">Ferias y reuniones</a></div>
 </div>
+<div class="fairs__side"><img loading="lazy" class="fairs__photo" src="./assets/stand.webp" alt="Stand de AML Centrifugal Casting en una feria internacional" width="800" height="800"></div>
 </div>
 </section>
 <section id="contacto" class="contact" aria-labelledby="contacto-titulo">
