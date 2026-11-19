@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="description" content="AML Centrifugal Casting: capacidades. Mecanizado de alta precisión, ensayos y control de calidad de piezas de acero fundido.">
 <title>Capacidades · AML Centrifugal Casting · v8</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="./favicon.ico" sizes="any">
 <link rel="icon" href="./assets/iconos/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="./assets/iconos/apple-touch-icon.png">
@@ -289,6 +290,19 @@ button, input, select, textarea { font: inherit; }
   .table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
   .table tr { display: grid; gap: var(--space-2xs); padding-block: var(--space-md); border-bottom: 1px solid var(--color-rule); }
   .table td { padding: 0; border: 0; text-align: left !important; }
+  :root { --gutter: 20px; }
+  .grid { row-gap: var(--space-lg); }
+  .hero { min-height: calc(100svh - var(--nav-h)); }
+  .hero__inner { padding-block: var(--space-2xl) var(--space-xl); }
+  .hero__actions .btn { flex: 1 1 100%; justify-content: center; }
+  .pausa { top: var(--space-md); bottom: auto !important; }
+  .stage, .stage--first { padding-block: var(--space-xl) var(--space-2xl); }
+  .test h3 { font-size: var(--text-2xl); }
+  .machines { gap: var(--space-lg) var(--space-md); }
+  .machine figcaption { flex-direction: column; align-items: flex-start; gap: var(--space-3xs); }
+  .foot__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-lg) var(--space-md); }
+  .foot__cols > :first-child, .foot__logo { grid-column: 1 / -1; }
+  .btn { min-height: 48px; }
 }
 @media (prefers-reduced-motion: reduce) { *:not(.keep-motion), *:not(.keep-motion)::before, *:not(.keep-motion)::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
 
@@ -361,9 +375,17 @@ button, input, select, textarea { font: inherit; }
 .transport .spec dd { color: var(--color-paper); }
 .map { position: relative; min-height: 440px; background: var(--color-paper-2); }
 .map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.fairs2 { align-items: start; }
+.fairs2__photo { grid-row: 1; grid-column: 1 / 6; }
+.fairs2__photo img { aspect-ratio: 1 / 1; }
+.fairs2__body { grid-row: 1; grid-column: 7 / -1; display: grid; gap: var(--space-xl); align-content: start; min-width: 0; }
 .field input[type="file"] { padding: var(--space-sm); }
 @media (max-width: 60rem) {
   .op > div[style] { grid-row: auto !important; }
+  .op .c-8-12 { order: -1; }
+  .fairs2__photo, .fairs2__body { grid-row: auto; grid-column: 1 / -1; }
+  .fairs2__photo img { aspect-ratio: 4 / 3; }
+  .map { min-height: 320px; }
   .c-1-7, .c-8-12 { grid-column: 1 / -1; }
   .figs { grid-template-columns: minmax(0, 1fr); }
   .fig { padding: var(--space-md) 0; border-left: 0; border-bottom: 1px solid var(--color-rule); }
@@ -374,6 +396,28 @@ button, input, select, textarea { font: inherit; }
   .where { grid-template-columns: minmax(0, 1fr); }
   .spec div, .checklist li { grid-template-columns: minmax(0, 1fr); }
   .ondas { display: none; }
+}
+@media (max-width: 40rem) {
+  .table-wrap { overflow: visible; }
+  .table--data { min-width: 0; }
+  .table--data tr { gap: var(--space-xs); padding-block: var(--space-lg); }
+  .table--data th[scope="row"] { padding: 0 0 var(--space-2xs); border: 0; font-size: var(--text-lg); }
+  .table--data td { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 0 var(--space-md); padding: 0; border: 0; }
+  .table--data td::before { content: attr(data-label); color: var(--color-muted); font-size: var(--text-sm); padding-top: var(--space-3xs); }
+  .table--data td .sub { grid-column: 2; }
+  .table--data tr.grupo { padding-block: var(--space-xl) 0; border-bottom: 0; }
+  .table--data tr.grupo th { padding: 0 0 var(--space-xs); }
+  .figs { border-top-width: 1px; }
+  .fig__val { font-size: var(--text-lg); }
+  .banner { min-height: 340px; }
+  .banner__inner { padding-block: var(--space-2xl) var(--space-xl); }
+  .sec { padding-block: var(--space-3xl); }
+  .sectors > li { gap: var(--space-md); padding-block: var(--space-lg); }
+  .sectors h2 { font-size: var(--text-2xl); }
+  .transport { padding: var(--space-lg); }
+  .transport address { font-size: var(--text-md); }
+  .anchors { gap: var(--space-2xs); }
+  .anchors a { padding: 0 var(--space-sm); }
 }
 </style>
 </helmet>
@@ -407,14 +451,14 @@ button, input, select, textarea { font: inherit; }
 <div class="container grid op">
 <div class="c-1-5" style="grid-row: 1"><div class="head"><h2>Fresado</h2><p class="meta">4 máquinas</p><p>Caras, ranuras, taladros y geometrías complejas en centros de mecanizado, incluido mecanizado en 5 ejes.</p></div></div>
 <div class="c-6-12" style="grid-row: 1"><img loading="lazy" class="photo" src="./assets/fresado.webp" alt="Centro de mecanizado para fresado" width="800" height="600" style="object-position: center 50%"></div>
-<div class="body op__body"><div class="figs"><div class="fig"><span class="fig__val">Ø 2.000 × 1.500 mm</span><span class="fig__lbl">Dimensión máx.</span><span class="fig__src">Trevisan II</span></div><div class="fig"><span class="fig__val">4.500 kg</span><span class="fig__lbl">Peso máx. de pieza</span><span class="fig__src">Con carga reforzada</span></div><div class="fig"><span class="fig__val">± 0,005 mm</span><span class="fig__lbl">Tolerancia</span><span class="fig__src">Desde, en 5 ejes</span></div></div><div class="table-wrap" role="region" aria-label="Máquinas de fresado" tabindex="0"><table class="table table--data"><caption class="visually-hidden">Máquinas de fresado</caption><thead><tr><th scope="col">Máquina</th><th scope="col">Tipo</th><th scope="col">Dimensiones máx. de pieza</th><th scope="col">Peso máx.</th><th scope="col">Tolerancia habitual</th></tr></thead><tbody><tr><th scope="row">Trevisan II DS-600 RAM</th><td>Centro de mecanizado</td><td>Ø 2.000 × 1.500 mm<span class="sub">Ø 900 mm en torneado</span></td><td>2.600 kg<span class="sub">4.500 kg opcional</span></td><td class="num">± 0,010 mm</td></tr><tr><th scope="row">Trevisan I DS-600</th><td>Centro de mecanizado</td><td>Ø 2.000 × 1.100 mm<span class="sub">Ø 900 mm en torneado</span></td><td>2.600 kg</td><td class="num">± 0,010 mm</td></tr><tr><th scope="row">Johnford SV-48H</th><td>Centro de mecanizado vertical</td><td>1.300 × 700 × 630 mm<span class="sub">Mesa y recorrido Z</span></td><td>1.500 kg</td><td class="num">± 0,015 mm</td></tr><tr><th scope="row">Deckel Maho DMC 80 U duoBLOCK</th><td>Centro de mecanizado 5 ejes</td><td>Ø 900 × 1.450 mm<span class="sub">Mesa Ø 800 × 630 mm</span></td><td>1.200 a 1.400 kg</td><td class="num">± 0,005 mm</td></tr></tbody></table></div><p class="note">[Revisar los valores con rango o «según versión»: en la web conviene un único valor por máquina.]</p></div>
+<div class="body op__body"><div class="figs"><div class="fig"><span class="fig__val">Ø 2.000 × 1.500 mm</span><span class="fig__lbl">Dimensión máx.</span><span class="fig__src">Trevisan II</span></div><div class="fig"><span class="fig__val">4.500 kg</span><span class="fig__lbl">Peso máx. de pieza</span><span class="fig__src">Con carga reforzada</span></div><div class="fig"><span class="fig__val">± 0,005 mm</span><span class="fig__lbl">Tolerancia</span><span class="fig__src">Desde, en 5 ejes</span></div></div><div class="table-wrap" role="region" aria-label="Máquinas de fresado" tabindex="0"><table class="table table--data"><caption class="visually-hidden">Máquinas de fresado</caption><thead><tr><th scope="col">Máquina</th><th scope="col">Tipo</th><th scope="col">Dimensiones máx. de pieza</th><th scope="col">Peso máx.</th><th scope="col">Tolerancia habitual</th></tr></thead><tbody><tr><th scope="row">Trevisan II DS-600 RAM</th><td data-label="Tipo">Centro de mecanizado</td><td data-label="Dimensiones máx.">Ø 2.000 × 1.500 mm<span class="sub">Ø 900 mm en torneado</span></td><td data-label="Peso máx.">2.600 kg<span class="sub">4.500 kg opcional</span></td><td class="num" data-label="Tolerancia">± 0,010 mm</td></tr><tr><th scope="row">Trevisan I DS-600</th><td data-label="Tipo">Centro de mecanizado</td><td data-label="Dimensiones máx.">Ø 2.000 × 1.100 mm<span class="sub">Ø 900 mm en torneado</span></td><td data-label="Peso máx.">2.600 kg</td><td class="num" data-label="Tolerancia">± 0,010 mm</td></tr><tr><th scope="row">Johnford SV-48H</th><td data-label="Tipo">Centro de mecanizado vertical</td><td data-label="Dimensiones máx.">1.300 × 700 × 630 mm<span class="sub">Mesa y recorrido Z</span></td><td data-label="Peso máx.">1.500 kg</td><td class="num" data-label="Tolerancia">± 0,015 mm</td></tr><tr><th scope="row">Deckel Maho DMC 80 U duoBLOCK</th><td data-label="Tipo">Centro de mecanizado 5 ejes</td><td data-label="Dimensiones máx.">Ø 900 × 1.450 mm<span class="sub">Mesa Ø 800 × 630 mm</span></td><td data-label="Peso máx.">1.200 a 1.400 kg</td><td class="num" data-label="Tolerancia">± 0,005 mm</td></tr></tbody></table></div><p class="note">[Revisar los valores con rango o «según versión»: en la web conviene un único valor por máquina.]</p></div>
 </div>
 </section>
 <section id="torneado" class="sec">
 <div class="container grid op">
 <div class="c-1-7" style="grid-row: 1"><img loading="lazy" class="photo" src="./assets/torneado.webp" alt="Torneado en el taller de AML" width="800" height="600" style="object-position: center 55%"></div>
 <div class="c-8-12" style="grid-row: 1"><div class="head"><h2>Torneado</h2><p class="meta">4 máquinas</p><p>Piezas de revolución: torneado exterior e interior, refrentado, roscado y torneado esférico de gran volteo.</p></div></div>
-<div class="body op__body"><div class="figs"><div class="fig"><span class="fig__val">Ø 1.600 mm</span><span class="fig__lbl">Volteo máx.</span><span class="fig__src">Heller TS 1600</span></div><div class="fig"><span class="fig__val">1.966 mm</span><span class="fig__lbl">Longitud máx.</span><span class="fig__src">Takisawa LS-1000 M</span></div><div class="fig"><span class="fig__val">3.000 kg</span><span class="fig__lbl">Peso máx. de pieza</span><span class="fig__src">Doosan Puma 700 [confirmar]</span></div></div><div class="table-wrap" role="region" aria-label="Máquinas de torneado" tabindex="0"><table class="table table--data"><caption class="visually-hidden">Máquinas de torneado</caption><thead><tr><th scope="col">Máquina</th><th scope="col">Tipo</th><th scope="col">Dimensiones máx. de pieza</th><th scope="col">Peso máx.</th><th scope="col">Tolerancia habitual</th></tr></thead><tbody><tr><th scope="row">Heller TS 1600 × 1500</th><td>Torno esférico de gran volteo</td><td>Ø 1.600 × 1.500 mm<span class="sub">Ø 900 mm esférico exterior</span></td><td>2.500 kg</td><td class="num">± 0,015 mm</td></tr><tr><th scope="row">Doosan Puma 700</th><td>Torno CNC horizontal pesado</td><td>Ø 900 × 1.600 mm<span class="sub">Hasta 3.200 mm en versión L</span></td><td>2.500 a 3.000 kg</td><td class="num">± 0,008 mm</td></tr><tr><th scope="row">Takisawa LS-1000 M</th><td>Torno CNC con herramienta motorizada</td><td>Ø 850 × 1.966 mm<span class="sub">Hasta 2.966 mm en L30</span></td><td>2.000 a 2.500 kg</td><td class="num">± 0,008 mm</td></tr><tr><th scope="row">Sprint D600 (Spinner TC 600)</th><td>Torno CNC horizontal</td><td>Ø 310 a 400 × 650 mm<span class="sub">Volteo Ø 600 mm</span></td><td>400 a 600 kg</td><td class="num">± 0,005 mm</td></tr></tbody></table></div><p class="note">[Revisar los valores con rango o «según versión»: en la web conviene un único valor por máquina.]</p></div>
+<div class="body op__body"><div class="figs"><div class="fig"><span class="fig__val">Ø 1.600 mm</span><span class="fig__lbl">Volteo máx.</span><span class="fig__src">Heller TS 1600</span></div><div class="fig"><span class="fig__val">1.966 mm</span><span class="fig__lbl">Longitud máx.</span><span class="fig__src">Takisawa LS-1000 M</span></div><div class="fig"><span class="fig__val">3.000 kg</span><span class="fig__lbl">Peso máx. de pieza</span><span class="fig__src">Doosan Puma 700 [confirmar]</span></div></div><div class="table-wrap" role="region" aria-label="Máquinas de torneado" tabindex="0"><table class="table table--data"><caption class="visually-hidden">Máquinas de torneado</caption><thead><tr><th scope="col">Máquina</th><th scope="col">Tipo</th><th scope="col">Dimensiones máx. de pieza</th><th scope="col">Peso máx.</th><th scope="col">Tolerancia habitual</th></tr></thead><tbody><tr><th scope="row">Heller TS 1600 × 1500</th><td data-label="Tipo">Torno esférico de gran volteo</td><td data-label="Dimensiones máx.">Ø 1.600 × 1.500 mm<span class="sub">Ø 900 mm esférico exterior</span></td><td data-label="Peso máx.">2.500 kg</td><td class="num" data-label="Tolerancia">± 0,015 mm</td></tr><tr><th scope="row">Doosan Puma 700</th><td data-label="Tipo">Torno CNC horizontal pesado</td><td data-label="Dimensiones máx.">Ø 900 × 1.600 mm<span class="sub">Hasta 3.200 mm en versión L</span></td><td data-label="Peso máx.">2.500 a 3.000 kg</td><td class="num" data-label="Tolerancia">± 0,008 mm</td></tr><tr><th scope="row">Takisawa LS-1000 M</th><td data-label="Tipo">Torno CNC con herramienta motorizada</td><td data-label="Dimensiones máx.">Ø 850 × 1.966 mm<span class="sub">Hasta 2.966 mm en L30</span></td><td data-label="Peso máx.">2.000 a 2.500 kg</td><td class="num" data-label="Tolerancia">± 0,008 mm</td></tr><tr><th scope="row">Sprint D600 (Spinner TC 600)</th><td data-label="Tipo">Torno CNC horizontal</td><td data-label="Dimensiones máx.">Ø 310 a 400 × 650 mm<span class="sub">Volteo Ø 600 mm</span></td><td data-label="Peso máx.">400 a 600 kg</td><td class="num" data-label="Tolerancia">± 0,005 mm</td></tr></tbody></table></div><p class="note">[Revisar los valores con rango o «según versión»: en la web conviene un único valor por máquina.]</p></div>
 </div>
 </section>
 <section id="mandrinado" class="sec">

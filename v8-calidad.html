@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="description" content="AML Centrifugal Casting: calidad. Mecanizado de alta precisión, ensayos y control de calidad de piezas de acero fundido.">
 <title>Calidad · AML Centrifugal Casting · v8</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="./favicon.ico" sizes="any">
 <link rel="icon" href="./assets/iconos/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="./assets/iconos/apple-touch-icon.png">
@@ -290,6 +291,19 @@ button, input, select, textarea { font: inherit; }
   .table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
   .table tr { display: grid; gap: var(--space-2xs); padding-block: var(--space-md); border-bottom: 1px solid var(--color-rule); }
   .table td { padding: 0; border: 0; text-align: left !important; }
+  :root { --gutter: 20px; }
+  .grid { row-gap: var(--space-lg); }
+  .hero { min-height: calc(100svh - var(--nav-h)); }
+  .hero__inner { padding-block: var(--space-2xl) var(--space-xl); }
+  .hero__actions .btn { flex: 1 1 100%; justify-content: center; }
+  .pausa { top: var(--space-md); bottom: auto !important; }
+  .stage, .stage--first { padding-block: var(--space-xl) var(--space-2xl); }
+  .test h3 { font-size: var(--text-2xl); }
+  .machines { gap: var(--space-lg) var(--space-md); }
+  .machine figcaption { flex-direction: column; align-items: flex-start; gap: var(--space-3xs); }
+  .foot__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-lg) var(--space-md); }
+  .foot__cols > :first-child, .foot__logo { grid-column: 1 / -1; }
+  .btn { min-height: 48px; }
 }
 @media (prefers-reduced-motion: reduce) { *:not(.keep-motion), *:not(.keep-motion)::before, *:not(.keep-motion)::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
 
@@ -362,9 +376,17 @@ button, input, select, textarea { font: inherit; }
 .transport .spec dd { color: var(--color-paper); }
 .map { position: relative; min-height: 440px; background: var(--color-paper-2); }
 .map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.fairs2 { align-items: start; }
+.fairs2__photo { grid-row: 1; grid-column: 1 / 6; }
+.fairs2__photo img { aspect-ratio: 1 / 1; }
+.fairs2__body { grid-row: 1; grid-column: 7 / -1; display: grid; gap: var(--space-xl); align-content: start; min-width: 0; }
 .field input[type="file"] { padding: var(--space-sm); }
 @media (max-width: 60rem) {
   .op > div[style] { grid-row: auto !important; }
+  .op .c-8-12 { order: -1; }
+  .fairs2__photo, .fairs2__body { grid-row: auto; grid-column: 1 / -1; }
+  .fairs2__photo img { aspect-ratio: 4 / 3; }
+  .map { min-height: 320px; }
   .c-1-7, .c-8-12 { grid-column: 1 / -1; }
   .figs { grid-template-columns: minmax(0, 1fr); }
   .fig { padding: var(--space-md) 0; border-left: 0; border-bottom: 1px solid var(--color-rule); }
@@ -375,6 +397,28 @@ button, input, select, textarea { font: inherit; }
   .where { grid-template-columns: minmax(0, 1fr); }
   .spec div, .checklist li { grid-template-columns: minmax(0, 1fr); }
   .ondas { display: none; }
+}
+@media (max-width: 40rem) {
+  .table-wrap { overflow: visible; }
+  .table--data { min-width: 0; }
+  .table--data tr { gap: var(--space-xs); padding-block: var(--space-lg); }
+  .table--data th[scope="row"] { padding: 0 0 var(--space-2xs); border: 0; font-size: var(--text-lg); }
+  .table--data td { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 0 var(--space-md); padding: 0; border: 0; }
+  .table--data td::before { content: attr(data-label); color: var(--color-muted); font-size: var(--text-sm); padding-top: var(--space-3xs); }
+  .table--data td .sub { grid-column: 2; }
+  .table--data tr.grupo { padding-block: var(--space-xl) 0; border-bottom: 0; }
+  .table--data tr.grupo th { padding: 0 0 var(--space-xs); }
+  .figs { border-top-width: 1px; }
+  .fig__val { font-size: var(--text-lg); }
+  .banner { min-height: 340px; }
+  .banner__inner { padding-block: var(--space-2xl) var(--space-xl); }
+  .sec { padding-block: var(--space-3xl); }
+  .sectors > li { gap: var(--space-md); padding-block: var(--space-lg); }
+  .sectors h2 { font-size: var(--text-2xl); }
+  .transport { padding: var(--space-lg); }
+  .transport address { font-size: var(--text-md); }
+  .anchors { gap: var(--space-2xs); }
+  .anchors a { padding: 0 var(--space-sm); }
 }
 </style>
 </helmet>

@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="description" content="AML Centrifugal Casting: mecanizado de alta precisión, ensayos y control de calidad de piezas de acero fundido según plano. Mandrinado, torneado, fresado, control dimensional y ensayos en planta propia. ISO 9001.">
 <title>AML Centrifugal Casting · Inicio v8</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="./favicon.ico" sizes="any">
 <link rel="icon" href="./assets/iconos/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="./assets/iconos/apple-touch-icon.png">
@@ -294,6 +295,19 @@ button, input, select, textarea { font: inherit; }
   .table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
   .table tr { display: grid; gap: var(--space-2xs); padding-block: var(--space-md); border-bottom: 1px solid var(--color-rule); }
   .table td { padding: 0; border: 0; text-align: left !important; }
+  :root { --gutter: 20px; }
+  .grid { row-gap: var(--space-lg); }
+  .hero { min-height: calc(100svh - var(--nav-h)); }
+  .hero__inner { padding-block: var(--space-2xl) var(--space-xl); }
+  .hero__actions .btn { flex: 1 1 100%; justify-content: center; }
+  .pausa { top: var(--space-md); bottom: auto !important; }
+  .stage, .stage--first { padding-block: var(--space-xl) var(--space-2xl); }
+  .test h3 { font-size: var(--text-2xl); }
+  .machines { gap: var(--space-lg) var(--space-md); }
+  .machine figcaption { flex-direction: column; align-items: flex-start; gap: var(--space-3xs); }
+  .foot__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-lg) var(--space-md); }
+  .foot__cols > :first-child, .foot__logo { grid-column: 1 / -1; }
+  .btn { min-height: 48px; }
 }
 @media (prefers-reduced-motion: reduce) { *:not(.keep-motion), *:not(.keep-motion)::before, *:not(.keep-motion)::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
 </style>
