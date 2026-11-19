@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="AML Centrifugal Casting: mecanizado de alta precisión, ensayos y control de calidad de piezas de acero fundido según plano. Mandrinado, torneado, fresado, control dimensional y ensayos en planta propia. ISO 9001.">
+<title>AML Centrifugal Casting · Inicio v8</title>
+<link rel="icon" href="./favicon.ico" sizes="any">
+<link rel="icon" href="./assets/iconos/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./assets/iconos/apple-touch-icon.png">
+<link rel="manifest" href="./site.webmanifest">
+<meta name="theme-color" content="#011F67">
+<script src="./assets/transicion.js"></script>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./vendor/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&amp;family=Space+Grotesk:wght@500&amp;display=swap">
+<style>
+/* Hallmark · shape: Narrative Workflow · genre: modern-minimal · theme: brand · redesign: full · draw: cd1568
+ * paper: oklch(100% 0 0) · accent: oklch(27.8% 0.131 263) · display: Space Grotesk · body: IBM Plex Sans · hero: Poster · nav: slab · footer: statement · signature: the machining video full-bleed under the head
+ * axes: light/grotesk-sans/cool · posture: committed (the AML navy carries the nav, the hero, the Expedición band and the footer) · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 · weakest: P, a supplier page argues little; the argument is the route one casting takes through the plant, told as five numbered stages */
+/* Hallmark · swap · hero Index to Poster · the client shot a machining video for the hero; it is the strongest real thing the page has */
+/* Hallmark · dropped #capacidades · the footer links Control dimensional and Ensayos now point at their own stages, #calidad and #ensayos */
+/* Hallmark · reworded "Mecanizado de alta precisión, ensayos y control de calidad." to "Mecanizado de alta precisión." · 58 names it: the head runs seven words or fewer, ensayos and calidad move to the lede */
+/* Hallmark · reworded "Piezas de acero fundido a la carta, según plano y especificación del cliente. Mecanizado, inspección dimensional y ensayos en planta propia, con trazabilidad de cada pieza." to "Ensayos y control de calidad de piezas de acero fundido, según plano." · 58 names it: one sentence of twelve words; a la carta goes to the footer statement, trazabilidad to Quiénes somos and stage 3 */
+/* Hallmark · reworded "Quiénes somos" to "Desde 2012 mecanizamos, medimos y ensayamos piezas de acero fundido en Lekunberri." · 54 and craft § 6: a category label becomes a statement made from the section's own facts */
+/* Hallmark · dismissed 59 · ten sections because the shape is five numbered stages, each a phase of the casting's route through the plant */
+/* Hallmark · dismissed render · the sandbox cannot reach fonts.googleapis.com; the published page loads Space Grotesk and IBM Plex Sans */
+:root {
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
+  --text-xs: 0.8125rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.25rem; --text-xl: 1.5625rem; --text-2xl: 1.953rem; --text-3xl: 2.441rem;
+  --text-display-s: clamp(2.25rem, 4vw + 0.5rem, 3.75rem); --text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem);
+  --text-section: clamp(2rem, 2.5vw + 1rem, 3.5rem); --text-title: clamp(1.25rem, 0.75vw + 0.875rem, 1.625rem); --text-lead: clamp(1.125rem, 0.35vw + 1rem, 1.375rem);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-in: cubic-bezier(0.7, 0, 0.84, 0); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
+  --color-error: oklch(52% 0.19 27); --color-success: oklch(50% 0.12 150);
+  --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
+  --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
+  --color-paper: #FFFFFF; --color-paper-2: #EDF1F6; --color-paper-3: #EEF1F0;
+  --color-ink: #011F67; --color-ink-2: #3A4A75; --color-muted: #5A6A92;
+  --color-rule: #DCE2EA; --color-sage: #B3C3C0;
+  --color-accent: #011F67; --color-accent-ink: #FFFFFF; --color-focus: #011F67; --color-focus-on-ink: #FFFFFF;
+  --color-veil: color-mix(in oklch, var(--color-ink) 90%, transparent);
+  --color-on-ink-2: color-mix(in oklch, var(--color-paper) 86%, var(--color-ink));
+  --color-on-ink-rule: color-mix(in oklch, var(--color-paper) 26%, var(--color-ink));
+  --font-display: "Space Grotesk", system-ui, sans-serif; --font-body: "IBM Plex Sans", system-ui, sans-serif; --font-outlier: var(--font-body);
+  --display-weight: 500;
+  --radius-card: 4px; --radius-pill: 999px; --rule-hair: 1px; --shadow-card: none;
+  --tracking-display: -0.02em;
+  --nav-h: 76px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scrollbar-color: var(--color-muted) var(--color-paper); scroll-padding-top: calc(var(--nav-h) + var(--space-lg)); }
+body { margin: 0; background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); font-size: var(--text-md); line-height: 1.55; -webkit-font-smoothing: antialiased; caret-color: var(--color-accent); }
+::selection { background: color-mix(in oklab, var(--color-accent) 22%, transparent); color: var(--color-ink); }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.on-ink :focus-visible, .on-ink:focus-visible { outline-color: var(--color-focus-on-ink); }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.16em; }
+h1, h2, h3 { margin: 0; font-family: var(--font-display); font-weight: var(--display-weight); font-synthesis: none; letter-spacing: var(--tracking-display); line-height: 1.05; overflow-wrap: break-word; min-width: 0; text-wrap: balance; }
+h1 { max-width: 14ch; font-size: var(--text-display); } h2 { max-width: 30ch; font-size: var(--text-section); } h3 { max-width: 40ch; font-size: var(--text-title); line-height: 1.2; }
+.lead { font-size: var(--text-lead); line-height: 1.45; max-width: 52ch; }
+p { margin: 0; text-wrap: pretty; }
+p:not([class]) { max-width: 65ch; }
+img, video { max-width: 100%; height: auto; display: block; }
+svg { display: block; }
+[hidden] { display: none !important; }
+button, input, select, textarea { font: inherit; }
+.container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+.num { font-variant-numeric: tabular-nums; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-2xl); align-items: start; }
+.c-1-4 { grid-column: 1 / 5; } .c-1-5 { grid-column: 1 / 6; } .c-1-6 { grid-column: 1 / 7; } .c-1-10 { grid-column: 1 / 11; } .c-1-12 { grid-column: 1 / -1; }
+.c-5-12 { grid-column: 5 / -1; } .c-6-12 { grid-column: 6 / -1; } .c-7-12 { grid-column: 7 / -1; }
+.muted { color: var(--color-ink-2); }
+.small { font-size: var(--text-sm); }
+
+/* Paso al contenido */
+.skip { position: absolute; left: var(--space-md); top: calc(-1 * var(--space-3xl)); z-index: var(--z-modal); background: var(--color-paper); color: var(--color-ink); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-card); }
+.skip:focus-visible { top: var(--space-md); }
+
+/* Controles: ocho estados */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-xs); min-height: 48px; padding: 0 var(--space-lg); border: 1px solid transparent; border-radius: var(--radius-card); font-size: var(--text-md); font-weight: 500; line-height: 1.2; text-decoration: none; white-space: nowrap; cursor: pointer; transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out); }
+.btn--ink { background: var(--color-ink); color: var(--color-accent-ink); }
+.btn--ink:hover { background: var(--color-ink-2); }
+.btn--paper { background: var(--color-paper); color: var(--color-ink); }
+.btn--paper:hover { background: var(--color-paper-2); }
+.btn--line { border-color: var(--color-muted); color: var(--color-ink); background: transparent; }
+.btn--line:hover { border-color: var(--color-ink); background: var(--color-paper-2); }
+.btn--line-on-ink { border-color: var(--color-on-ink-2); color: var(--color-paper); background: transparent; }
+.btn--line-on-ink:hover { border-color: var(--color-paper); background: color-mix(in oklch, var(--color-paper) 10%, transparent); }
+.btn:active { transform: translateY(1px); }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; }
+.btn[aria-busy="true"] { cursor: progress; }
+.btn svg { flex-shrink: 0; }
+.link { font-weight: 500; text-decoration: underline; }
+.link:hover { color: var(--color-ink-2); }
+
+/* Cabecera: barra maciza */
+.slab { position: sticky; top: 0; z-index: var(--z-sticky-nav); background: var(--color-ink); color: var(--color-paper); }
+.slab__bar { min-height: var(--nav-h); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-sm) var(--space-xl); padding-block: var(--space-sm); }
+.logo { display: flex; color: var(--color-paper); }
+.logo__svg { height: 52px; width: auto; }
+.logo__txt { font-family: var(--font-body); }
+.slab__nav { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs) var(--space-lg); font-size: 15px; }
+.slab__nav a { color: var(--color-paper); text-decoration: none; padding-block: var(--space-xs); }
+.slab__nav a:hover { text-decoration: underline; }
+.slab__nav .btn { padding-block: 0; min-height: 44px; }
+.idiomas { display: flex; align-items: center; gap: var(--space-xs); padding-left: var(--space-lg); border-left: 1px solid var(--color-on-ink-rule); color: var(--color-sage); }
+.idiomas a { color: var(--color-sage) !important; }
+.idiomas a[aria-current] { color: var(--color-paper) !important; }
+.burger { display: none; width: 48px; height: 48px; align-items: center; justify-content: center; border: 1px solid var(--color-on-ink-2); border-radius: var(--radius-card); background: transparent; color: var(--color-paper); cursor: pointer; }
+.burger:hover { border-color: var(--color-paper); }
+.burger:active { transform: translateY(1px); }
+
+/* Portada: el vídeo a sangre */
+.hero { position: relative; isolation: isolate; min-height: max(640px, calc(100svh - var(--nav-h))); display: flex; align-items: flex-end; background: var(--color-ink); color: var(--color-paper); overflow: clip; }
+.hero__video { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.hero__veil { position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, var(--color-veil) 0%, color-mix(in oklch, var(--color-ink) 55%, transparent) 55%, color-mix(in oklch, var(--color-ink) 25%, transparent) 100%); }
+.hero__inner { width: 100%; padding-block: var(--space-3xl) var(--space-2xl); display: grid; gap: var(--space-lg); animation: settle 0.6s var(--ease-out) both; }
+.hero h1 { color: var(--color-paper); }
+.hero .lead { color: var(--color-on-ink-2); max-width: 40ch; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-xs); }
+.pausa { position: absolute; right: var(--gutter); bottom: var(--space-2xl); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--color-on-ink-2); border-radius: var(--radius-card); background: transparent; color: var(--color-paper); cursor: pointer; }
+.pausa:hover { border-color: var(--color-paper); }
+.pausa:active { transform: translateY(1px); }
+@keyframes settle { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* Quiénes somos */
+.about { padding-block: var(--section-gap) var(--section-gap-s); }
+.statement { grid-column: 1 / 11; font-size: var(--text-display-s); max-width: 24ch; }
+.about__text { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-lg) var(--gap-columns); font-size: 1.0625rem; line-height: 1.65; }
+.about__fig { grid-column: 1 / -1; margin: 0; display: grid; gap: var(--space-sm); }
+.about__fig img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; object-position: 30% 55%; border-radius: var(--radius-card); }
+.about__fig figcaption { font-size: var(--text-sm); color: var(--color-muted); }
+
+/* Cómo trabajamos: cinco fases */
+.process { border-top: 1px solid var(--color-rule); padding-block: var(--section-gap-s) 0; }
+.process__intro { padding-bottom: var(--space-2xl); }
+.stage--first { border-top: 1px solid var(--color-rule); padding-block: var(--space-2xl) var(--section-gap-s); }
+.process__lead { align-self: end; }
+.stage { padding-block: var(--space-2xl) var(--section-gap-s); }
+.stage + .stage { border-top: 1px solid var(--color-rule); }
+.stage__head { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-md); align-content: start; min-width: 0; }
+.stage__head h2 { font-size: var(--text-section); }
+.stage__head p { color: var(--color-ink-2); font-size: var(--text-lead); line-height: 1.45; }
+.body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); min-width: 0; }
+
+/* 1. Fundición: materiales */
+.mat__top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-xl); align-items: center; }
+.mat__top h3 { font-size: var(--text-2xl); }
+.mat__esferas { width: 160px; height: auto; }
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
+.scale { display: grid; gap: var(--space-md); }
+.scale__legend { display: flex; justify-content: space-between; gap: var(--space-md); font-size: var(--text-sm); color: var(--color-ink-2); }
+.scale__row { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; }
+.scale__row::before { content: ""; position: absolute; left: 10%; right: 10%; top: 60px; height: 1px; background: var(--color-ink); }
+.scale__row li { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; padding-inline: var(--space-2xs); }
+.scale__code { height: 40px; display: flex; align-items: flex-end; font-family: var(--font-display); font-size: clamp(1.25rem, 2.2vw, 2rem); line-height: 1; }
+.scale__dot { width: 13px; height: 13px; margin-block: var(--space-md); border: 1.5px solid var(--color-ink); border-radius: 50%; background: var(--color-paper); }
+.scale__dot--lleno { background: var(--color-ink); }
+.scale__name { font-weight: 500; font-size: clamp(0.75rem, 1.1vw, 0.9375rem); line-height: 1.3; }
+.scale__norma { margin-top: var(--space-2xs); font-size: var(--text-md); color: var(--color-ink-2); line-height: 1.35; }
+.scale__nota { font-size: var(--text-sm); color: var(--color-ink-2); }
+.finder { background: var(--color-paper-2); border-radius: var(--radius-card); padding: var(--space-xl); display: grid; gap: var(--space-md); }
+.finder__row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-md) var(--space-lg); }
+.finder__label { flex: 1 1 320px; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-xs); font-size: var(--text-sm); color: var(--color-ink-2); }
+.finder__field { display: flex; align-items: center; gap: var(--space-sm); border-bottom: 1px solid var(--color-ink); }
+.finder__field input { flex: 1; width: 100%; min-width: 0; min-height: 48px; border: 0; background: transparent; color: var(--color-ink); font-family: var(--font-display); font-size: var(--text-lg); outline: 2px solid transparent; outline-offset: 2px; }
+.finder__field input:focus-visible { outline-color: var(--color-focus); }
+.finder__field input::placeholder { color: var(--color-muted); opacity: 1; }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+.chip { min-height: 44px; padding: 0 var(--space-md); border: 1px solid var(--color-muted); border-radius: var(--radius-card); background: var(--color-paper); color: var(--color-ink); font-size: var(--text-sm); cursor: pointer; transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out); }
+.chip:hover { border-color: var(--color-ink); }
+.chip:active { transform: translateY(1px); }
+.chip[aria-pressed="true"] { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-paper); }
+.chip:disabled { opacity: 0.5; cursor: not-allowed; }
+.results { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-rule); }
+.results li { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--space-2xs) var(--space-lg); align-items: baseline; padding-block: var(--space-sm); border-bottom: 1px solid var(--color-rule); }
+.results__code { font-family: var(--font-display); font-size: var(--text-xl); }
+
+/* 2. Mecanizado: las máquinas */
+.machines { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap-columns); }
+.machine { display: block; color: inherit; text-decoration: none; min-width: 0; }
+.machine figure { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); }
+.machine__frame { overflow: hidden; border-radius: var(--radius-card); }
+.machine__frame img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.machine figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: var(--space-2xs) var(--space-sm); padding-top: var(--space-sm); border-top: 1px solid var(--color-rule); }
+.machine__name { font-family: var(--font-display); font-size: var(--text-title); }
+.machine__cat { font-size: var(--text-sm); color: var(--color-muted); }
+.machine:hover .machine__name { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.16em; }
+
+/* 3. Control dimensional: filas */
+.rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-rule); }
+.rows li { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-2xs) var(--gap-columns); align-items: baseline; padding-block: var(--space-lg); border-bottom: 1px solid var(--color-rule); }
+.rows h3 { font-weight: 400; }
+.rows p { color: var(--color-ink-2); }
+.iso { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg); align-items: baseline; }
+
+/* 4. Ensayos: dos ensayos en grande */
+.tests { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap-columns); }
+.test { border-top: 2px solid var(--color-ink); padding-top: var(--space-lg); display: grid; gap: var(--space-sm); }
+.test h3 { font-size: var(--text-3xl); max-width: 12ch; }
+
+/* 5. Expedición: banda azul con los sectores */
+.band-ink { position: relative; isolation: isolate; background: var(--color-ink); color: var(--color-paper); padding-block: var(--section-gap-s); }
+.band-ink__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; }
+.band-ink::after { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--color-veil); }
+.band-ink .stage__head p { color: var(--color-on-ink-2); }
+.band-ink h3 { font-size: var(--text-2xl); }
+.index { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-on-ink-rule); }
+.index li { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--space-2xs) var(--gap-columns); align-items: baseline; padding-block: var(--space-md); border-bottom: 1px solid var(--color-on-ink-rule); }
+.index__name { font-family: var(--font-display); font-size: var(--text-xl); }
+.index__desc { color: var(--color-on-ink-2); }
+.index a { color: var(--color-paper); }
+
+/* Ferias */
+.fairs { padding-block: var(--section-gap) var(--section-gap-s); }
+.fairs__photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 45%; border-radius: var(--radius-card); }
+.table { width: 100%; border-collapse: collapse; text-align: left; font-size: var(--text-md); }
+.table th { padding: var(--space-sm) var(--space-md) var(--space-sm) 0; font-size: var(--text-sm); font-weight: 400; color: var(--color-muted); border-bottom: 1px solid var(--color-ink); }
+.table td { padding: var(--space-lg) var(--space-md) var(--space-lg) 0; border-bottom: 1px solid var(--color-rule); vertical-align: top; }
+.table td:last-child, .table th:last-child { padding-right: 0; text-align: right; }
+.table__fecha { font-family: var(--font-display); font-size: var(--text-lg); white-space: nowrap; }
+.table__feria { display: block; font-weight: 500; }
+
+/* Contacto: formulario */
+.contact { background: var(--color-paper-2); padding-block: var(--section-gap-s); }
+.contact__facts { display: grid; gap: var(--space-xs); font-size: var(--text-lg); }
+.contact__facts a { text-decoration: none; }
+.contact__facts a:hover { text-decoration: underline; }
+.form { display: grid; gap: var(--space-lg); }
+.form__pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-lg) var(--gap-columns); }
+.field { display: grid; gap: var(--space-xs); font-size: var(--text-sm); color: var(--color-ink-2); min-width: 0; }
+.field input, .field select, .field textarea { width: 100%; min-height: 48px; padding: var(--space-sm) var(--space-md); border: 1px solid var(--color-muted); border-radius: var(--radius-card); background: var(--color-paper); color: var(--color-ink); font-size: var(--text-md); outline: 2px solid transparent; outline-offset: 2px; transition: border-color var(--dur-micro) var(--ease-out); }
+.field textarea { min-height: 128px; resize: vertical; }
+.field input:hover, .field select:hover, .field textarea:hover { border-color: var(--color-ink); }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline-color: var(--color-focus); }
+.field input:disabled, .field select:disabled, .field textarea:disabled { opacity: 0.5; cursor: not-allowed; }
+.check { display: flex; align-items: flex-start; gap: var(--space-sm); font-size: var(--text-sm); color: var(--color-ink-2); }
+.check input { width: 20px; height: 20px; margin: var(--space-3xs) 0 0; flex: none; accent-color: var(--color-ink); }
+.form__help { min-height: 1lh; font-size: var(--text-sm); color: var(--color-ink-2); }
+
+/* Pie: una frase de cierre */
+.foot { background: var(--color-ink); color: var(--color-paper); padding-block: var(--section-gap-s) var(--space-xl); }
+.foot__statement { grid-column: 1 / 11; font-size: var(--text-display-s); max-width: 22ch; }
+.foot__logo .logo__svg { height: 72px; }
+.foot__cols { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 4fr) repeat(3, minmax(0, 2fr)) minmax(0, 2fr); gap: var(--space-xl) var(--gap-columns); align-items: start; }
+.foot__col { display: grid; gap: var(--space-xs); font-size: 15px; color: var(--color-on-ink-2); }
+.foot__col p { color: var(--color-sage); }
+.foot__col a { color: var(--color-paper); text-decoration: none; white-space: nowrap; }
+.foot__col a:hover { text-decoration: underline; }
+.foot__legal { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-sm) var(--space-lg); padding-top: var(--space-lg); border-top: 1px solid var(--color-on-ink-rule); font-size: var(--text-sm); color: var(--color-on-ink-2); }
+.foot__legal a { color: var(--color-on-ink-2); }
+.foot__legal a[aria-current] { color: var(--color-paper); }
+.foot__legal span { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg); }
+
+/* Móvil */
+@media (max-width: 75rem) { .foot__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); } .foot__logo { grid-column: 1 / -1; } }
+@media (max-width: 60rem) {
+  :root { --gutter: 24px; --section-gap-s: 80px; --section-gap: 96px; --section-gap-l: 120px; --nav-h: 68px; }
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .grid > * { grid-column: 1 / -1; }
+  .burger { display: flex; }
+  .slab__nav { display: none; width: 100%; flex-direction: column; align-items: flex-start; gap: var(--space-2xs); padding-block: var(--space-sm); border-top: 1px solid var(--color-on-ink-rule); }
+  .slab__nav.is-open { display: flex; }
+  .slab__nav a { padding-block: var(--space-sm); font-size: 17px; }
+  .idiomas { border-left: 0; padding-left: 0; }
+  .logo__svg { height: 44px; }
+  .machines { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .about__text { grid-template-columns: minmax(0, 1fr); }
+  .mat__top { grid-template-columns: minmax(0, 1fr); }
+  .scale__row { grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); }
+  .scale__row::before { display: none; }
+  .scale__row li { display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: baseline; text-align: left; gap: 0 var(--space-md); padding: var(--space-sm) 0; border-top: 1px solid var(--color-rule); }
+  .scale__code { height: auto; grid-row: span 2; }
+  .scale__dot { display: none; }
+  .scale__legend { display: none; }
+  .pausa { bottom: var(--space-lg); }
+}
+@media (max-width: 40rem) {
+  :root { --gutter: 16px; --section-gap-s: 56px; --section-gap: 72px; --section-gap-l: 96px; --gap-columns: 16px; }
+  .rows li, .index li { grid-template-columns: minmax(0, 1fr); }
+  .tests, .form__pair { grid-template-columns: minmax(0, 1fr); }
+  .mat__esferas { width: 120px; }
+  .finder { padding: var(--space-lg) var(--space-md); }
+  .finder__label { flex-basis: 100%; }
+  .foot__cols { grid-template-columns: minmax(0, 1fr); }
+  .table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .table tr { display: grid; gap: var(--space-2xs); padding-block: var(--space-md); border-bottom: 1px solid var(--color-rule); }
+  .table td { padding: 0; border: 0; text-align: left !important; }
+}
+@media (prefers-reduced-motion: reduce) { *:not(.keep-motion), *:not(.keep-motion)::before, *:not(.keep-motion)::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+</style>
+</helmet>
+<div class="pagina">
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="slab on-ink">
+<div class="container slab__bar">
+<a href="#inicio" class="logo" aria-label="AML Centrifugal Casting, inicio"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 474.2 243" role="img" aria-label="AML Centrifugal Casting" class="logo__svg"><path d="M0.00 100.00L0.00 57.17A42.83 42.83 0 0 1 0.00 142.83ZM0.00 34.81A65.19 65.19 0 0 1 0.00 165.19L0.00 158.97A58.97 58.97 0 0 0 0.00 41.03ZM0.00 18.75A81.25 81.25 0 0 1 0.00 181.25L0.00 170.61A70.61 70.61 0 0 0 0.00 29.39ZM0.00 0.00A100.0 100.0 0 0 1 0.00 200.00L0.00 192.15A92.15 92.15 0 0 0 0.00 7.85Z" style="fill: var(--color-paper)" fill-rule="evenodd"></path><path d="M41.32 0H436.20A38 38 0 0 1 474.20 38V162A38 38 0 0 1 436.20 200H41.32A108.20 108.20 0 0 0 41.32 0Z" style="fill: var(--color-paper)"></path><text class="logo__txt" x="154.2" y="152.0" font-size="149.0" font-weight="600" style="fill: var(--color-ink)" textLength="262.0" lengthAdjust="spacing">AML</text><text class="logo__txt" x="1.0" y="241.0" font-size="27.2" font-weight="500" style="fill: var(--color-paper)" textLength="472.2" lengthAdjust="spacing">CENTRIFUGAL CASTING</text></svg></a>
+<button type="button" class="burger" aria-label="Menú" aria-controls="menu-principal" aria-expanded="{{menuAbierto}}" onClick="{{toggleMenu}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+<nav id="menu-principal" aria-label="Principal" class="{{navClase}}" onClick="{{cerrarMenu}}">
+<a href="#empresa">Quiénes somos</a>
+<a href="capacidades.html">Capacidades</a>
+<a href="calidad.html">Calidad</a>
+<a href="sectores.html">Sectores</a>
+<a href="materiales.html">Materiales</a>
+<a href="contacto.html" class="btn btn--line-on-ink">Contacto</a>
+<span aria-label="Idioma" role="group" class="idiomas"><a href="#" aria-current="true" lang="es">es</a><a href="#" lang="en">en</a><a href="#" lang="de">de</a><a href="#" lang="it">it</a><a href="#" lang="fr">fr</a></span>
+</nav>
+</div>
+</header>
+<main id="contenido">
+<section id="inicio" class="hero on-ink">
+<video class="hero__video" src="./assets/portada.mp4" poster="./assets/portada-poster.webp" autoplay="" muted="" loop="" playsinline="" preload="auto" ref="{{setVideo}}" aria-hidden="true"></video>
+<div class="hero__veil" aria-hidden="true"></div>
+<div class="container hero__inner">
+<h1>Mecanizado de alta precisión.</h1>
+<p class="lead">Ensayos y control de calidad de piezas de acero fundido, según plano.</p>
+<div class="hero__actions">
+<a href="#contacto" class="btn btn--paper">Solicitar información</a>
+<a href="contacto.html#transporte" class="btn btn--line-on-ink">Cómo llegar</a>
+</div>
+</div>
+<button type="button" class="pausa" aria-label="{{pausaLabel}}" onClick="{{togglePausa}}"><sc-if value="{{pausado}}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5 3l8 5-8 5z"></path></svg></sc-if><sc-if value="{{reproduciendo}}" hint-placeholder-val="{{ true }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5 3v10M11 3v10"></path></svg></sc-if></button>
+</section>
+<section id="empresa" class="about">
+<div class="container grid">
+<h2 class="statement">Desde 2012 mecanizamos, medimos y ensayamos piezas de acero fundido en Lekunberri.</h2>
+<div class="about__text">
+<p>AML Centrifugal Casting desarrolla su actividad desde 2012 en Lekunberri (Navarra), dedicada al mecanizado de precisión de piezas de acero fundido con tolerancias ajustadas, junto con su inspección dimensional y sus ensayos.</p>
+<p class="muted">Trabajamos bajo pedido, desde unidades sueltas hasta series con entregas programadas, y adaptamos el proceso a los requisitos de cada cliente. Los planos y la documentación técnica de cada proyecto se tratan con estricta confidencialidad. Disponemos de trazabilidad completa de cada pieza a lo largo de todo el proceso. Contamos con presencia en el mercado nacional y una fuerte presencia internacional.</p>
+</div>
+<figure class="about__fig">
+<img loading="lazy" src="./assets/nave.webp" alt="Nave de producción con piezas mecanizadas" width="1600" height="686">
+<figcaption>Planta de Lekunberri, con piezas a la espera de mecanizado.</figcaption>
+</figure>
+</div>
+</section>
+<section id="servicios" class="process" aria-labelledby="proceso-titulo">
+<div class="container grid process__intro">
+<h2 id="proceso-titulo" class="c-1-6">Del bruto a la expedición</h2>
+<p class="lead c-7-12 process__lead muted">Planta operativa 24 horas, en tres turnos. Cinco fases, todas en planta propia y con la pieza identificada en cada una.</p>
+</div>
+<div id="materiales" class="container grid stage stage--first" aria-labelledby="fase-1">
+<div class="stage__head c-1-4"><h2 id="fase-1">1. Fundición</h2><p>Recepción e identificación de la pieza en bruto.</p></div>
+<div class="body c-5-12">
+<div class="mat__top">
+<div style="display: grid; gap: var(--space-md)">
+<h3>Materiales que mecanizamos</h3>
+<p class="muted">Aceros inoxidables, dúplex y al carbono, en estado fundido. Otras aleaciones, bajo consulta según plano y especificación del material.</p>
+<div class="actions"><a href="#" download="" class="btn btn--line"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Descargar tabla (PDF)</a><a href="materiales.html" class="btn btn--line">Ver tabla completa</a></div>
+</div>
+<img loading="lazy" class="mat__esferas" src="./assets/esferas.webp" alt="Esferas de válvula de acero inoxidable mecanizadas y pulidas" width="340" height="300">
+</div>
+<figure class="scale" role="group" aria-label="Escala de resistencia a la corrosión, de menor a mayor: acero al carbono WCB, inoxidable CF8, inoxidable CF8M, dúplex 4A y superdúplex 5A." style="margin: 0">
+<div class="scale__legend" aria-hidden="true"><span>Resistencia a la corrosión</span><span>De menor a mayor</span></div>
+<ol class="scale__row"><li><span class="scale__code">WCB</span><span class="scale__dot" aria-hidden="true"></span><span class="scale__name">Acero al carbono</span><span class="scale__norma">A216 WCB<br>EN 1.0619</span></li><li><span class="scale__code">CF8</span><span class="scale__dot" aria-hidden="true"></span><span class="scale__name">Inoxidable</span><span class="scale__norma">A351 CF8<br>EN 1.4308</span></li><li><span class="scale__code">CF8M</span><span class="scale__dot" aria-hidden="true"></span><span class="scale__name">Inoxidable con Mo</span><span class="scale__norma">A351 CF8M<br>EN 1.4408</span></li><li><span class="scale__code">4A</span><span class="scale__dot scale__dot--lleno" aria-hidden="true"></span><span class="scale__name">Dúplex</span><span class="scale__norma">A890 4A<br>EN 1.4470</span></li><li><span class="scale__code">5A</span><span class="scale__dot scale__dot--lleno" aria-hidden="true"></span><span class="scale__name">Superdúplex</span><span class="scale__norma">A890 5A<br>EN 1.4469</span></li></ol>
+<figcaption class="scale__nota">Normas ASTM y equivalentes EN orientativos. [Confirmar con Calidad.]</figcaption>
+</figure>
+<div class="finder">
+<div class="finder__row">
+<label class="finder__label">Buscar material
+<span class="finder__field"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg><input type="search" value="{{q}}" onChange="{{onBuscar}}" placeholder="CF8, CF8M, dúplex, A890…" autocomplete="off" class="aml-buscar"></span></label>
+<div role="group" aria-label="Filtrar por familia" class="chips">
+<sc-for list="{{familias}}" as="item" hint-placeholder-count="4"><button type="button" class="chip" onClick="{{item.pick}}" aria-pressed="{{item.on}}">{{item.label}}</button></sc-for>
+</div>
+</div>
+<sc-if value="{{hayQ}}" hint-placeholder-val="{{ false }}">
+<p aria-live="polite" class="small muted">{{resumen}}</p>
+<sc-if value="{{hayRes}}" hint-placeholder-val="{{ true }}">
+<ul class="results">
+<sc-for list="{{resultados}}" as="m" hint-placeholder-count="3">
+<li><span class="results__code">{{m.codigo}}</span><span style="font-weight: 500">{{m.nombre}}</span><span class="muted">{{m.norma}}</span><span class="muted">{{m.en}}</span></li>
+</sc-for>
+</ul>
+</sc-if>
+<sc-if value="{{sinRes}}" hint-placeholder-val="{{ false }}">
+<p>No aparece en el listado. Trabajamos otras aleaciones según especificación: <a href="#contacto" class="link">consúltenos</a>.</p>
+</sc-if>
+</sc-if>
+</div>
+</div>
+</div>
+</section>
+<section id="capacidades" class="stage" aria-labelledby="fase-2">
+<div class="container grid">
+<div class="stage__head c-1-4"><h2 id="fase-2">2. Mecanizado</h2><p>Mecanizado CNC según plano, con programación CAM en Siemens NX.</p></div>
+<div class="body c-5-12">
+<p class="lead">Mecanizado, inspección y ensayos en planta propia. Todo el proceso se realiza en nuestras instalaciones, según plano y especificación del cliente.</p>
+<div><a href="capacidades.html" class="btn btn--line">Ver máquinas y capacidades</a></div>
+</div>
+<div class="machines">
+<a class="machine" href="capacidades.html#fresado"><figure><div class="machine__frame"><img loading="lazy" src="./assets/fresado.webp" alt="Centro de mecanizado para fresado" width="800" height="1000" style="object-position: center 50%"></div><figcaption><span class="machine__name">Fresado</span><span class="machine__cat">Mecanizado</span></figcaption></figure></a>
+<a class="machine" href="capacidades.html#torneado"><figure><div class="machine__frame"><img loading="lazy" src="./assets/torneado.webp" alt="Torno CNC con piezas torneadas en primer plano" width="800" height="1000" style="object-position: center 55%"></div><figcaption><span class="machine__name">Torneado</span><span class="machine__cat">Mecanizado</span></figcaption></figure></a>
+<a class="machine" href="capacidades.html#mandrinado"><figure><div class="machine__frame"><img loading="lazy" src="./assets/mandrinado.webp" alt="Mandrinadora CNC con una pieza de acero fundido amarrada" width="800" height="1000" style="object-position: center 50%"></div><figcaption><span class="machine__name">Mandrinado</span><span class="machine__cat">Mecanizado</span></figcaption></figure></a>
+<a class="machine" href="capacidades.html#soldadura"><figure><div class="machine__frame"><img loading="lazy" src="./assets/soldadura.webp" alt="Soldadura de una pieza de acero en el taller" width="800" height="1000" style="object-position: 30% 45%"></div><figcaption><span class="machine__name">Soldadura</span><span class="machine__cat">Certificada</span></figcaption></figure></a>
+</div>
+</div>
+</section>
+<section id="calidad" class="stage" aria-labelledby="fase-3">
+<div class="container grid">
+<div class="stage__head c-1-4"><h2 id="fase-3">3. Control dimensional</h2><p>Medición e informe dimensional.</p></div>
+<div class="body c-5-12">
+<p class="lead">Sistema de calidad. Control en cada fase, desde el plano hasta la expedición.</p>
+<ul class="rows">
+<li><h3>Control dimensional</h3><p>En máquina tridimensional.</p></li>
+<li><h3>Plano globeado</h3><p>Previo a fabricación.</p></li>
+<li><h3>Trazabilidad</h3><p>De cada pieza.</p></li>
+<li><h3>Especificación</h3><p>Según especificación del cliente.</p></li>
+</ul>
+<p class="iso small muted">Sistema de gestión de la calidad certificado según ISO 9001</p>
+</div>
+</div>
+</section>
+<section id="ensayos" class="stage" aria-labelledby="fase-4">
+<div class="container grid">
+<div class="stage__head c-1-4"><h2 id="fase-4">4. Ensayos</h2><p>Según los requisitos del pedido.</p></div>
+<div class="body c-5-12">
+<div class="tests">
+<div class="test"><h3>Pruebas de presión</h3></div>
+<div class="test"><h3>Líquidos penetrantes</h3></div>
+</div>
+<p>Realizados en planta propia, según los requisitos del pedido. Otros ensayos, bajo consulta.</p>
+<div><a href="calidad.html" class="btn btn--line">Ver ensayos y certificaciones</a></div>
+</div>
+</div>
+</section>
+<section id="sectores" class="band-ink on-ink" aria-labelledby="fase-5">
+<img loading="lazy" class="band-ink__bg" src="./assets/esfera-trevisan.webp" alt="" aria-hidden="true">
+<div class="container grid">
+<div class="stage__head c-1-4"><h2 id="fase-5">5. Expedición</h2><p>Documentación, embalaje y envío.</p></div>
+<div class="body c-5-12">
+<h3>Sectores con los que trabajamos</h3>
+<p class="lead" style="color: var(--color-on-ink-2)">Mecanizamos piezas para clientes de los siguientes sectores.</p>
+<ul class="index">
+<li><span class="index__name">Petróleo y gas</span><span class="index__desc">Válvulas, bombas y componentes para extracción, refino y transporte.</span></li>
+<li><span class="index__name">Naval</span><span class="index__desc">Componentes para buques e instalaciones marinas.</span></li>
+<li><span class="index__name">Nuclear</span><span class="index__desc">Componentes para instalaciones nucleares con trazabilidad completa y ensayos.</span></li>
+<li><span class="index__name">Ferroviario</span><span class="index__desc">Componentes para material rodante e infraestructura ferroviaria.</span></li>
+<li><span class="index__name">Sanitario</span><span class="index__desc">Piezas para equipos del sector sanitario.</span></li>
+<li><span class="index__name">Industrial</span><span class="index__desc">Componentes para maquinaria y equipos de proceso.</span></li>
+<li><span class="index__name">Estructural</span><span class="index__desc">Piezas de acero fundido para estructuras y uniones.</span></li>
+<li><span class="index__name">Otros sectores</span><span class="index__desc"><a href="#contacto" class="link">Consultar</a></span></li>
+</ul>
+<div><a href="sectores.html" class="btn btn--line-on-ink">Ver todos los sectores</a></div>
+</div>
+</div>
+</section>
+<section id="ferias" class="fairs" aria-labelledby="ferias-titulo">
+<div class="container grid">
+<div class="c-1-4" style="display: grid; gap: var(--space-lg)">
+<h2 id="ferias-titulo">Próximas ferias</h2>
+<p class="muted">Ferias en las que participaremos próximamente. Puede solicitar una reunión a través del formulario de contacto.</p>
+<div><a href="contacto.html" class="btn btn--line">Ferias y reuniones</a></div>
+<img loading="lazy" class="fairs__photo" src="./assets/stand.webp" alt="Stand de AML Centrifugal Casting en una feria internacional" width="800" height="600">
+</div>
+<div class="c-5-12" style="min-width: 0">
+<table class="table">
+<caption class="visually-hidden">Próximas ferias</caption>
+<thead><tr><th scope="col">Fechas</th><th scope="col">Feria</th><th scope="col">Stand</th><th scope="col"><span class="visually-hidden">Acción</span></th></tr></thead>
+<tbody><tr><td class="table__fecha num">[DD al DD MES]</td><td><span class="table__feria">[Nombre de la feria]</span><span class="muted small">[Ciudad, País], [sector]</span></td><td class="muted">Stand [nº]</td><td><a href="#contacto" class="link" style="white-space: nowrap">Solicitar reunión</a></td></tr><tr><td class="table__fecha num">[DD al DD MES]</td><td><span class="table__feria">[Nombre de la feria]</span><span class="muted small">[Ciudad, País], [sector]</span></td><td class="muted">Stand [nº]</td><td><a href="#contacto" class="link" style="white-space: nowrap">Solicitar reunión</a></td></tr><tr><td class="table__fecha num">[DD al DD MES]</td><td><span class="table__feria">[Nombre de la feria]</span><span class="muted small">[Ciudad, País], [sector]</span></td><td class="muted">Stand [nº]</td><td><a href="#contacto" class="link" style="white-space: nowrap">Solicitar reunión</a></td></tr></tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="contacto" class="contact" aria-labelledby="contacto-titulo">
+<div class="container grid">
+<div class="c-1-5" style="display: grid; gap: var(--space-lg)">
+<h2 id="contacto-titulo">Solicitud de información</h2>
+<p class="lead muted">Solicitudes de oferta, consultas técnicas y proveedores.</p>
+<div class="contact__facts"><a href="tel:+34948461603">+34 948 46 16 03</a><a href="mailto:info@amlcentrifugal.com">info@amlcentrifugal.com</a></div>
+<div><a href="contacto.html#transporte" class="btn btn--line">Acceso para transportistas</a></div>
+</div>
+<form class="form c-7-12" data-endpoint="" novalidate="" onSubmit="{{enviar}}">
+<div class="form__pair">
+<label class="field">Nombre<input type="text" name="nombre" autocomplete="name" required=""></label>
+<label class="field">Empresa<input type="text" name="empresa" autocomplete="organization"></label>
+<label class="field">Email<input type="email" name="email" autocomplete="email" required=""></label>
+<label class="field">Motivo
+<select name="motivo">
+<option>Solicitud de oferta</option>
+<option>Consulta técnica</option>
+<option>Soy proveedor</option>
+<option>Transporte o recogida de piezas</option>
+<option>Trabajar en AML</option>
+<option>Otro</option>
+</select></label>
+</div>
+<label class="field">Mensaje<textarea name="mensaje" rows="4"></textarea></label>
+<label class="check"><input type="checkbox" name="privacidad" required="">He leído y acepto la política de privacidad.</label>
+<div><button type="submit" class="btn btn--ink">Enviar solicitud</button></div>
+<p class="form__help" aria-live="polite">{{avisoForm}}</p>
+</form>
+</div>
+</section>
+</main>
+<footer class="foot on-ink">
+<div class="container grid">
+<p class="foot__statement" style="font-family: var(--font-display); line-height: 1.1; letter-spacing: var(--tracking-display)">Piezas de acero fundido a la carta, mecanizadas, medidas y ensayadas en planta propia.</p>
+<div class="foot__cols">
+<div class="foot__logo foot__col"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 474.2 243" role="img" aria-label="AML Centrifugal Casting" class="logo__svg"><path d="M0.00 100.00L0.00 57.17A42.83 42.83 0 0 1 0.00 142.83ZM0.00 34.81A65.19 65.19 0 0 1 0.00 165.19L0.00 158.97A58.97 58.97 0 0 0 0.00 41.03ZM0.00 18.75A81.25 81.25 0 0 1 0.00 181.25L0.00 170.61A70.61 70.61 0 0 0 0.00 29.39ZM0.00 0.00A100.0 100.0 0 0 1 0.00 200.00L0.00 192.15A92.15 92.15 0 0 0 0.00 7.85Z" style="fill: var(--color-paper)" fill-rule="evenodd"></path><path d="M41.32 0H436.20A38 38 0 0 1 474.20 38V162A38 38 0 0 1 436.20 200H41.32A108.20 108.20 0 0 0 41.32 0Z" style="fill: var(--color-paper)"></path><text class="logo__txt" x="154.2" y="152.0" font-size="149.0" font-weight="600" style="fill: var(--color-ink)" textLength="262.0" lengthAdjust="spacing">AML</text><text class="logo__txt" x="1.0" y="241.0" font-size="27.2" font-weight="500" style="fill: var(--color-paper)" textLength="472.2" lengthAdjust="spacing">CENTRIFUGAL CASTING</text></svg><p class="small">Sistema de gestión certificado ISO 9001</p></div>
+<div class="foot__col"><p>Empresa</p><a href="#empresa">Quiénes somos</a><a href="#servicios">Cómo trabajamos</a><a href="#sectores">Sectores</a><a href="#materiales">Materiales</a><a href="#ferias">Ferias</a></div>
+<div class="foot__col"><p>Capacidades</p><a href="capacidades.html#fresado">Fresado</a><a href="capacidades.html#torneado">Torneado</a><a href="capacidades.html#mandrinado">Mandrinado</a><a href="capacidades.html#soldadura">Soldadura</a><a href="#calidad">Control dimensional</a><a href="#ensayos">Ensayos</a></div>
+<div class="foot__col"><p>Contacto</p><a href="tel:+34948461603">+34 948 46 16 03</a><a href="mailto:info@amlcentrifugal.com">info@amlcentrifugal.com</a><span>Industrialdea, A-7</span><span>31870 Lekunberri (Navarra)</span><a href="contacto.html#transporte" style="text-decoration: underline">Cómo llegar</a></div>
+</div>
+<div class="foot__legal">
+<span><span>© 2026 AML Centrifugal Casting, S.L.</span><span>CIF B71115935</span></span>
+<span><a href="#">Aviso legal</a><a href="#">Privacidad</a><a href="#">Cookies</a></span>
+<span aria-label="Idioma" role="group"><a href="#" aria-current="true" lang="es">es</a><a href="#" lang="en">en</a><a href="#" lang="de">de</a><a href="#" lang="it">it</a><a href="#" lang="fr">fr</a></span>
+</div>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":8800}}'>
+const MATS = [
+{ codigo: 'WCB', nombre: 'Acero al carbono', norma: 'ASTM A216', en: '1.0619', fam: 'Carbono' },
+{ codigo: 'WCC', nombre: 'Acero al carbono', norma: 'ASTM A216', en: '—', fam: 'Carbono' },
+{ codigo: 'LCB', nombre: 'Acero al carbono, baja temperatura', norma: 'ASTM A352', en: '—', fam: 'Carbono' },
+{ codigo: 'LCC', nombre: 'Acero al carbono, baja temperatura', norma: 'ASTM A352', en: '—', fam: 'Carbono' },
+{ codigo: 'CF8', nombre: 'Inoxidable austenítico', norma: 'ASTM A351', en: '1.4308', fam: 'Inoxidable' },
+{ codigo: 'CF3', nombre: 'Inoxidable austenítico, bajo carbono', norma: 'ASTM A351', en: '—', fam: 'Inoxidable' },
+{ codigo: 'CF8M', nombre: 'Inoxidable austenítico con Mo', norma: 'ASTM A351', en: '1.4408', fam: 'Inoxidable' },
+{ codigo: 'CF3M', nombre: 'Inoxidable austenítico con Mo, bajo carbono', norma: 'ASTM A351', en: '—', fam: 'Inoxidable' },
+{ codigo: '4A (CD3MN)', nombre: 'Inoxidable dúplex', norma: 'ASTM A890 / A995', en: '1.4470', fam: 'Dúplex' },
+{ codigo: '1B (CD4MCuN)', nombre: 'Inoxidable dúplex', norma: 'ASTM A890 / A995', en: '—', fam: 'Dúplex' },
+{ codigo: '5A (CE3MN)', nombre: 'Inoxidable superdúplex', norma: 'ASTM A890 / A995', en: '1.4469', fam: 'Superdúplex' },
+{ codigo: '6A (CD3MWCuN)', nombre: 'Inoxidable superdúplex', norma: 'ASTM A890 / A995', en: '—', fam: 'Superdúplex' }
+];
+const norm = (t) => String(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { pausado: false, k: 1, q: '', menu: false, aviso: '' };
+this.video = null;
+}
+renderVals() {
+const pausado = this.state.pausado;
+const e = 1 - Math.pow(1 - this.state.k, 3);
+const q = this.state.q;
+const nq = norm(q).trim();
+const res = nq ? MATS.filter((m) => norm(m.codigo + ' ' + m.nombre + ' ' + m.norma + ' ' + m.en + ' ' + m.fam).indexOf(nq) !== -1) : [];
+const familias = ['Carbono', 'Inoxidable', 'Dúplex', 'Superdúplex'].map((f) => {
+const on = norm(q) === norm(f);
+return { label: f, on: on ? 'true' : 'false', pick: () => this.setState({ q: on ? '' : f }) };
+});
+
+return {
+q: q,
+menuAbierto: this.state.menu ? 'true' : 'false',
+navClase: this.state.menu ? 'slab__nav is-open' : 'slab__nav',
+toggleMenu: () => this.setState({ menu: !this.state.menu }),
+cerrarMenu: (ev) => { if (ev && ev.target && ev.target.tagName === 'A') this.setState({ menu: false }); },
+onBuscar: (ev) => this.setState({ q: ev.target.value }),
+familias: familias,
+resultados: res,
+hayQ: nq.length > 0,
+hayRes: res.length > 0,
+sinRes: nq.length > 0 && res.length === 0,
+resumen: res.length === 1 ? '1 material' : res.length + ' materiales',
+avisoForm: this.state.aviso,
+enviar: (ev) => {
+ev.preventDefault();
+const f = ev.currentTarget || ev.target;
+const malo = f.querySelector(':invalid');
+f.querySelectorAll('[aria-invalid]').forEach((x) => x.removeAttribute('aria-invalid'));
+if (malo) { malo.setAttribute('aria-invalid', 'true'); malo.focus(); this.setState({ aviso: 'Falta un dato obligatorio: nombre, un email válido y la casilla de privacidad.' }); return; }
+this.setState({ aviso: 'No se ha enviado nada: este formulario todavía no está conectado.' });
+},
+pausado: pausado,
+reproduciendo: !pausado,
+pausaLabel: pausado ? 'Reproducir vídeo' : 'Pausar vídeo',
+setVideo: (el) => {
+if (el && el !== this.video) {
+this.video = el;
+el.muted = true; el.loop = true; el.playsInline = true;
+if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.pause(); if (!this.state.pausado) this.setState({ pausado: true }); return; }
+const p = el.play(); if (p && p.catch) p.catch(() => {});
+}
+},
+togglePausa: () => {
+const v = this.video;
+if (!v) return;
+if (v.paused) { const p = v.play(); if (p && p.catch) p.catch(() => {}); this.setState({ pausado: false }); }
+else { v.pause(); this.setState({ pausado: true }); }
+}
+};
+}
+}
+</script>
+</body>
+</html>
