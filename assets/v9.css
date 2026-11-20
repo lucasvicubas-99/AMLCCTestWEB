@@ -321,6 +321,12 @@ a.cell { color: inherit; }
 .mini { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 8px; }
 .mini figure { display: grid; gap: 6px; min-width: 0; }
 .mini img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.mini__btn { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.mini__btn img { transition: opacity 0.2s; }
+.mini__btn:hover img { opacity: 0.8; }
+.mini__btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.split__media img.cambia { animation: aparece 0.35s ease; }
+@keyframes aparece { from { opacity: 0.2; } to { opacity: 1; } }
 .mini figcaption { font-size: 12px; color: var(--muted); }
 
 /* datos destacados por operación */

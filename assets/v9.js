@@ -95,6 +95,22 @@
     }); });
   });
 
+  // Galería de sectores: la miniatura pulsada pasa a la foto grande
+  document.querySelectorAll('.mini__btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var sec = btn.closest('section'), grande = sec && sec.querySelector('.split__media img');
+      if (!grande) return;
+      var cap = sec.querySelector('.split__media figcaption'), fig = btn.closest('figure');
+      var peq = btn.querySelector('img'), pcap = fig.querySelector('figcaption');
+      var s1 = grande.getAttribute('src'), a1 = grande.getAttribute('alt'), c1 = cap ? cap.textContent : '';
+      grande.setAttribute('src', peq.getAttribute('src')); grande.setAttribute('alt', peq.getAttribute('alt'));
+      if (cap) cap.innerHTML = '<span lang="en">' + pcap.textContent + '</span>';
+      peq.setAttribute('src', s1); peq.setAttribute('alt', a1);
+      pcap.textContent = c1; btn.setAttribute('aria-label', 'Ver en grande: ' + c1);
+      grande.classList.remove('cambia'); void grande.offsetWidth; grande.classList.add('cambia');
+    });
+  });
+
   // Formularios (pendientes de conectar)
   document.querySelectorAll('form.js-form').forEach(function (f) {
     var aviso = f.querySelector('.form__aviso');
