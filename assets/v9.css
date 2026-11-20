@@ -338,9 +338,9 @@ a.cell { color: inherit; }
 .buscador { margin-top: 72px; padding: 36px 40px; background: var(--bg-alt); border: 1px solid var(--line); display: grid; gap: 24px; }
 .sec--alt .buscador { background: var(--bg); }
 .buscador__fila { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 24px 40px; }
-.buscador__campo { flex: 1 1 320px; min-width: 0; display: grid; gap: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+.buscador__campo { flex: 1 1 320px; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
 .buscador__input { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--title); color: var(--title); }
-.buscador__input input { flex: 1; min-width: 0; min-height: 48px; border: 0; border-radius: 0; background: transparent; color: var(--title); font: 400 20px/1.3 var(--font); letter-spacing: -0.01em; text-transform: none; }
+.buscador__input input { flex: 1; width: 100%; min-width: 0; min-height: 48px; border: 0; border-radius: 0; background: transparent; color: var(--title); font: 400 20px/1.3 var(--font); letter-spacing: -0.01em; text-transform: none; }
 .buscador__input input:focus-visible { outline: none; }
 .buscador__input:focus-within { border-bottom-color: var(--accent); box-shadow: 0 1px 0 var(--accent); }
 .buscador__input input::placeholder { color: var(--muted); opacity: 1; }
