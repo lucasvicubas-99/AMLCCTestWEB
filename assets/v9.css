@@ -354,7 +354,7 @@ a.cell { color: inherit; }
 
 
 /* materiales: cabecera con foto y escala de corrosión */
-.mat-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 300px); gap: 48px; align-items: start; }
+.mat-top { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; align-items: start; }
 .mat-top__img { width: 100%; height: auto; max-width: 300px; justify-self: end; }
 .escala { margin: 72px 0 0; }
 .escala__cab { display: flex; justify-content: space-between; gap: 16px; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
