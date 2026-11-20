@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AML Centrifugal Casting · Mecanizado y control de calidad de piezas de acero fundido</title>
+<meta name="description" content="Mecanizado CNC, control dimensional y ensayos de piezas de acero fundido bajo plano, en planta propia en Lekunberri. Fresado 5 ejes, torneado de gran volteo, mandrinado hasta 12.000 kg y soldadura certificada.">
+<link rel="icon" href="./favicon.ico?v=3" sizes="any">
+<link rel="icon" href="./assets/iconos/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./assets/iconos/apple-touch-icon.png?v=3">
+<meta name="theme-color" content="#011F67">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap">
+<style>
+/* =========================================================
+   Variables: cambiar --accent para cambiar el color de toda la web
+   ========================================================= */
+:root {
+  --accent: #011F67;          /* azul AML: botones, indicador de menú, subrayados, detalles */
+  --accent-soft: #EBEFF6;     /* banda de llamada a la acción */
+  --title: #111111;           /* títulos casi negros */
+  --text: #707070;            /* texto corrido gris */
+  --muted: #8A8A8A;           /* submenús, etiquetas de tabla */
+  --line: #E5E5E5;            /* líneas y bordes de 1 px */
+  --field: #BDBDBD;           /* borde de campos de formulario */
+  --bg: #FFFFFF;
+  --bg-alt: #F7F8F9;          /* secciones alternas */
+  --footer: #0A0A0A;          /* pie */
+  --white: #FFFFFF;
+  --font: "Inter", "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-logo: "Space Grotesk", var(--font);
+  --side: 220px;
+  --gap: 120px;               /* aire entre secciones */
+  --pad: clamp(24px, 5vw, 80px);
+  --max: 1200px;
+}
+
+/* ---------- base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+img, video { display: block; max-width: 100%; }
+h1, h2, h3, h4, p, figure, ul, ol, dl, dd { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip { position: absolute; left: 12px; top: -60px; z-index: 100; padding: 12px 20px; background: var(--accent); color: var(--white); text-decoration: none; font-size: 13px; }
+.skip:focus { top: 12px; }
+
+/* ---------- menú lateral ---------- */
+.side { position: fixed; inset: 0 auto 0 0; z-index: 40; width: var(--side); display: flex; flex-direction: column; background: var(--bg); border-right: 1px solid var(--line); }
+.side__logo { display: block; padding: 40px 32px 0; }
+.side__logo svg { width: 132px; height: auto; display: block; }
+.side__nav { flex: 1; display: flex; align-items: center; }
+.side__nav > ul { width: 100%; }
+.side__item { position: relative; }
+.side__item > a { display: block; padding: 11px 24px 11px 32px; font-size: 13px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--title); text-decoration: none; transition: color 0.2s; }
+.side__item > a::before { content: ""; position: absolute; left: 0; top: 8px; height: 28px; width: 3px; background: var(--accent); transform: scaleY(0); transform-origin: center; transition: transform 0.25s; }
+.side__item > a:hover { color: var(--accent); }
+.side__item.is-active > a::before { transform: scaleY(1); }
+.side__sub { display: none; padding: 2px 0 10px; }
+.side__item.is-active .side__sub { display: block; }
+.side__sub a { display: block; padding: 3px 24px 3px 32px; font-size: 15px; letter-spacing: 0; color: var(--muted); text-decoration: none; text-transform: lowercase; }
+.side__sub a:hover { color: var(--title); }
+.side__langs { display: flex; gap: 14px; padding: 0 32px 36px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; }
+.side__langs a { color: var(--muted); text-decoration: none; }
+.side__langs a[aria-current] { color: var(--title); font-weight: 500; }
+.side__langs a:hover { color: var(--accent); }
+
+/* barra superior y panel solo en móvil */
+.topbar { display: none; }
+.panel { display: none; }
+
+/* ---------- contenido ---------- */
+main { margin-left: var(--side); }
+.sec { position: relative; padding-block: var(--gap); overflow: clip; }
+.sec--alt { background: var(--bg-alt); }
+.wrap { width: 100%; max-width: calc(var(--max) + 2 * var(--pad)); margin-inline: auto; padding-inline: var(--pad); }
+
+/* patrón de sección: etiqueta → título → texto → acción */
+.label { display: flex; align-items: center; gap: 20px; font-size: 11px; font-weight: 500; letter-spacing: 0.36em; text-transform: uppercase; color: var(--title); }
+.label::before { content: ""; flex: none; width: 40px; height: 1px; background: var(--accent); }
+.title { font-size: 42px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; color: var(--title); max-width: 16em; }
+.head { display: grid; gap: 28px; max-width: 640px; }
+.head .text { max-width: 36em; }
+.text { color: var(--text); }
+.text + .text { margin-top: 1em; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 36px; margin-top: 12px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 18px 36px; background: var(--accent); color: var(--white); border: 1px solid var(--accent); border-radius: 0; font: 500 12px/1 var(--font); letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background-color 0.2s, color 0.2s; }
+.btn:hover { background: var(--title); border-color: var(--title); }
+.btn--light { background: transparent; color: var(--white); border-color: var(--white); }
+.btn--light:hover { background: var(--white); color: var(--accent); }
+.link { display: inline-block; padding-bottom: 4px; font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--title); text-decoration: none; border-bottom: 2px solid var(--accent); transition: color 0.2s; }
+.link:hover { color: var(--accent); }
+.link--light { color: var(--white); border-color: var(--white); }
+.link--light:hover { color: var(--white); opacity: 0.8; }
+
+/* ---------- portada ---------- */
+.hero { position: relative; isolation: isolate; min-height: max(640px, 100svh); display: flex; align-items: flex-end; overflow: hidden; background: var(--title); }
+.hero__media { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(10, 10, 10, 0.78) 0%, rgba(10, 10, 10, 0.45) 45%, rgba(10, 10, 10, 0.2) 100%); }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: 3; background: var(--bg); pointer-events: none; animation: desde-blanco 1.4s cubic-bezier(0.25, 1, 0.5, 1) 0.1s forwards; }
+@keyframes desde-blanco { to { opacity: 0; } }
+.hero__in { padding-block: 0 96px; display: grid; gap: 28px; }
+.hero .label { color: var(--white); }
+.hero .label::before { background: var(--white); }
+.hero h1 { font-size: clamp(44px, 5.4vw, 78px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.08; color: var(--white); max-width: 13em; }
+.hero p { max-width: 34em; color: rgba(255, 255, 255, 0.82); }
+.hero__pausa { position: absolute; right: var(--pad); bottom: 96px; width: 44px; height: 44px; display: grid; place-items: center; background: transparent; color: var(--white); border: 1px solid rgba(255, 255, 255, 0.6); cursor: pointer; }
+.hero__pausa:hover { border-color: var(--white); }
+
+/* ---------- dos columnas texto + foto ---------- */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 88px; align-items: center; }
+.split--rev .split__media { order: -1; }
+.split__media { position: relative; }
+.split__media img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.split__media figcaption, .caption { margin-top: 12px; font-size: 13px; color: var(--muted); }
+.split + .split { margin-top: var(--gap); }
+
+/* recurso gráfico: semicírculo lineal de las ondas */
+.ondas { position: absolute; pointer-events: none; color: var(--accent); opacity: 0.35; }
+.ondas svg { width: 100%; height: auto; display: block; }
+
+/* ---------- cifras ---------- */
+.figs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 72px; border-top: 1px solid var(--line); }
+.fig { position: relative; isolation: isolate; padding: 64px 28px 8px 0; min-width: 0; }
+.fig + .fig { padding-left: 28px; border-left: 1px solid var(--line); }
+.fig__bg { position: absolute; z-index: -1; top: 8px; left: 0; font-size: clamp(88px, 9vw, 150px); font-weight: 600; line-height: 1; letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 1px var(--line); white-space: nowrap; user-select: none; }
+.fig + .fig .fig__bg { left: 28px; }
+.fig__n { font-size: 44px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: var(--title); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.fig__l { margin-top: 12px; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); line-height: 1.6; }
+
+/* ---------- rejilla de capacidades ---------- */
+.grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 72px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.cell { display: grid; gap: 16px; align-content: start; padding: 40px 32px 40px 0; min-width: 0; text-decoration: none; }
+.cell + .cell { padding-left: 32px; border-left: 1px solid var(--line); }
+.cell svg { width: 40px; height: 40px; color: var(--accent); }
+.cell h3 { font-size: 20px; font-weight: 500; color: var(--title); letter-spacing: -0.01em; }
+.cell p { font-size: 15px; line-height: 1.65; }
+.cell:hover h3 { color: var(--accent); }
+
+/* ---------- acordeones ---------- */
+.acc { margin-top: 36px; border-top: 1px solid var(--line); }
+.acc details { border-bottom: 1px solid var(--line); }
+.acc summary { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 22px 40px 22px 0; cursor: pointer; list-style: none; font-size: 17px; font-weight: 500; color: var(--title); }
+.acc summary::-webkit-details-marker { display: none; }
+.acc summary::after { content: ""; position: absolute; right: 6px; top: 50%; width: 10px; height: 10px; border-right: 1px solid var(--title); border-bottom: 1px solid var(--title); transform: translateY(-75%) rotate(45deg); transition: transform 0.25s; }
+.acc details[open] summary::after { transform: translateY(-25%) rotate(-135deg); }
+.acc summary:hover { color: var(--accent); }
+.acc summary .meta { font-size: 13px; font-weight: 400; color: var(--muted); white-space: nowrap; }
+.acc__body { padding: 0 0 28px; }
+.acc__body p { font-size: 16px; }
+.acc__body p + p { margin-top: 0.8em; }
+
+/* listas de especificaciones dentro de acordeones */
+.spec { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 8px 32px; font-size: 15px; }
+.spec dt { color: var(--muted); }
+.spec dd { color: var(--title); }
+.maq + .maq { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line); }
+.maq h4 { font-size: 15px; font-weight: 500; color: var(--title); margin-bottom: 10px; }
+
+/* ---------- tabla de materiales ---------- */
+.tabla-wrap { margin-top: 72px; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 720px; }
+th { padding: 0 24px 16px 0; text-align: left; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--title); }
+td { padding: 18px 24px 18px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--text); }
+td:first-child { color: var(--title); font-weight: 500; white-space: nowrap; }
+tr.fam td { padding-top: 36px; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--line); }
+.nota { margin-top: 20px; font-size: 13px; color: var(--muted); }
+
+/* ---------- foto ancha en 4 columnas ---------- */
+.franja { position: relative; isolation: isolate; margin-top: 72px; min-height: 560px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); overflow: hidden; }
+.franja__img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; }
+.franja::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(10, 10, 10, 0.82) 0%, rgba(10, 10, 10, 0.35) 55%, rgba(10, 10, 10, 0.15) 100%); }
+.franja__col { display: flex; flex-direction: column; justify-content: flex-end; gap: 18px; padding: 40px 32px; min-width: 0; }
+.franja__col + .franja__col { border-left: 1px solid rgba(255, 255, 255, 0.35); }
+.franja__col h3 { font-size: 22px; font-weight: 500; color: var(--white); letter-spacing: -0.01em; line-height: 1.25; }
+.franja__col p { font-size: 14px; line-height: 1.6; color: rgba(255, 255, 255, 0.75); }
+
+/* ---------- calidad ---------- */
+.split__media--sq img { aspect-ratio: 1 / 1; }
+
+/* ---------- contacto ---------- */
+.contact { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 88px; margin-top: 72px; align-items: start; }
+form { display: grid; gap: 28px; }
+.row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.field { display: grid; gap: 10px; font-size: 13px; color: var(--text); }
+.field input, .field select, .field textarea { width: 100%; padding: 15px 16px; border: 1px solid var(--field); border-radius: 0; background: var(--bg); color: var(--title); font: 400 16px/1.4 var(--font); }
+.field textarea { min-height: 150px; resize: vertical; }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; border-color: var(--accent); }
+.field input[type="file"] { padding: 12px; font-size: 14px; color: var(--text); }
+.check { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--text); }
+.check input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--accent); }
+.form__aviso { min-height: 1.6em; font-size: 14px; color: var(--title); }
+.aside { display: grid; gap: 40px; }
+.aside__dir { font-size: 22px; line-height: 1.5; color: var(--title); font-style: normal; }
+.aside__dir a { text-decoration: none; }
+.aside__dir a:hover { color: var(--accent); }
+.carga { padding: 32px; border: 1px solid var(--line); background: var(--bg-alt); display: grid; gap: 20px; }
+.carga h3 { font-size: 11px; font-weight: 500; letter-spacing: 0.36em; text-transform: uppercase; color: var(--title); }
+.carga dl { display: grid; gap: 16px; }
+.carga dt { font-size: 13px; color: var(--muted); }
+.carga dd { font-size: 19px; line-height: 1.45; color: var(--title); }
+.mapa { aspect-ratio: 4 / 3; border: 1px solid var(--line); background: var(--bg-alt); }
+.mapa iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+/* ---------- banda de llamada a la acción ---------- */
+.cta { position: relative; overflow: hidden; background: var(--accent-soft); padding-block: 100px; }
+.cta__in { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 40px; }
+
+/* ---------- pie ---------- */
+.foot { margin-left: var(--side); background: var(--footer); color: rgba(255, 255, 255, 0.72); padding-block: 96px 40px; font-size: 15px; }
+.foot__cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; padding-bottom: 72px; border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
+.foot h2 { font-size: 11px; font-weight: 500; letter-spacing: 0.36em; text-transform: uppercase; color: var(--white); margin-bottom: 24px; }
+.foot a { text-decoration: none; }
+.foot a:hover { color: var(--white); }
+.foot__links { display: grid; gap: 10px; }
+.foot__links a { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; }
+.foot__base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 32px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); }
+.foot__base span { display: flex; gap: 24px; }
+.foot :focus-visible { outline-color: var(--white); }
+
+/* ---------- volver arriba ---------- */
+.arriba { position: fixed; right: 24px; bottom: 24px; z-index: 30; width: 48px; height: 48px; display: grid; place-items: center; background: var(--accent); color: var(--white); border: 0; border-radius: 0; text-decoration: none; opacity: 0; visibility: hidden; transition: opacity 0.25s, visibility 0.25s, background-color 0.2s; }
+.arriba.is-on { opacity: 1; visibility: visible; }
+.arriba:hover { background: var(--title); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1180px) {
+  .grid4, .figs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cell:nth-child(3), .fig:nth-child(3) { padding-left: 0; border-left: 0; }
+  .cell:nth-child(n+3), .fig:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .fig:nth-child(3) .fig__bg { left: 0; }
+  .franja { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .franja__col:nth-child(3) { border-left: 0; }
+  .franja__col:nth-child(n+3) { border-top: 1px solid rgba(255, 255, 255, 0.35); }
+  .split, .contact { gap: 56px; }
+}
+@media (max-width: 900px) {
+  :root { --gap: 88px; }
+  .side { display: none; }
+  main, .foot { margin-left: 0; }
+  .topbar { position: sticky; top: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; height: 68px; padding-inline: var(--pad); background: var(--bg); border-bottom: 1px solid var(--line); }
+  .topbar svg { width: 104px; height: auto; display: block; }
+  .menu-btn { display: inline-flex; align-items: center; gap: 12px; height: 44px; padding: 0 0 0 12px; background: none; border: 0; color: var(--title); font: 500 12px/1 var(--font); letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; }
+  .menu-btn i { display: grid; gap: 5px; }
+  .menu-btn i::before, .menu-btn i::after { content: ""; display: block; width: 22px; height: 1px; background: currentColor; }
+  .panel { position: fixed; inset: 0; z-index: 60; display: flex; flex-direction: column; background: var(--bg); padding: 0 var(--pad) 32px; overflow-y: auto; }
+  .panel[hidden] { display: none !important; }
+  .panel__top { display: flex; align-items: center; justify-content: space-between; height: 68px; border-bottom: 1px solid var(--line); margin-inline: calc(-1 * var(--pad)); padding-inline: var(--pad); }
+  .panel__top svg { width: 104px; height: auto; }
+  .panel nav { flex: 1; display: flex; align-items: center; padding-block: 32px; }
+  .panel nav a { display: block; padding: 12px 0; font-size: 15px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--title); text-decoration: none; }
+  .panel .side__langs { padding: 0; }
+  .split, .contact { grid-template-columns: minmax(0, 1fr); }
+  .split--rev .split__media { order: 0; }
+  .split__media img { aspect-ratio: 4 / 3; }
+  .split__media--sq img { aspect-ratio: 1 / 1; }
+  .hero__in { padding-bottom: 72px; }
+  .hero__pausa { bottom: auto; top: 24px; }
+}
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .title { font-size: 32px; }
+  .grid4, .figs { grid-template-columns: minmax(0, 1fr); }
+  .cell, .cell + .cell, .fig, .fig + .fig { padding-left: 0; border-left: 0; }
+  .cell + .cell, .fig + .fig { border-top: 1px solid var(--line); }
+  .fig .fig__bg, .fig + .fig .fig__bg { left: 0; }
+  .franja { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .franja__col { min-height: 200px; }
+  .franja__col + .franja__col { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.35); }
+  .row2 { grid-template-columns: minmax(0, 1fr); }
+  .foot__cols { grid-template-columns: minmax(0, 1fr); }
+  .actions .btn { width: 100%; }
+  .spec { grid-template-columns: minmax(0, 1fr); gap: 2px 0; }
+  .spec dd + dt { margin-top: 10px; }
+  .acc summary { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .carga { padding: 24px; }
+  .arriba { right: 16px; bottom: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero::after { animation: none; opacity: 0; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<!-- ===== Logo (reutilizado) ===== -->
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+  <symbol id="logo-aml" viewBox="0 0 474.2 243">
+    <path d="M0.00 100.00L0.00 57.17A42.83 42.83 0 0 1 0.00 142.83ZM0.00 34.81A65.19 65.19 0 0 1 0.00 165.19L0.00 158.97A58.97 58.97 0 0 0 0.00 41.03ZM0.00 18.75A81.25 81.25 0 0 1 0.00 181.25L0.00 170.61A70.61 70.61 0 0 0 0.00 29.39ZM0.00 0.00A100.0 100.0 0 0 1 0.00 200.00L0.00 192.15A92.15 92.15 0 0 0 0.00 7.85Z" fill="#011F67" fill-rule="evenodd"/>
+    <path d="M41.32 0H436.20A38 38 0 0 1 474.20 38V162A38 38 0 0 1 436.20 200H41.32A108.20 108.20 0 0 0 41.32 0Z" fill="#011F67"/>
+    <text x="154.2" y="152.0" font-size="149.0" font-weight="600" fill="#FFFFFF" textLength="262.0" lengthAdjust="spacing" font-family="Space Grotesk, Inter, sans-serif">AML</text>
+    <text x="1.0" y="241.0" font-size="27.2" font-weight="500" fill="#011F67" textLength="472.2" lengthAdjust="spacing" font-family="Space Grotesk, Inter, sans-serif">CENTRIFUGAL CASTING</text>
+  </symbol>
+  <symbol id="ondas" viewBox="0 0 400 200">
+    <g fill="none" stroke="currentColor" stroke-width="1">
+      <path d="M120 200A80 80 0 0 1 280 200"/><path d="M80 200A120 120 0 0 1 320 200"/><path d="M60 200A140 140 0 0 1 340 200"/><path d="M20 200A180 180 0 0 1 380 200"/><path d="M0 200A200 200 0 0 1 400 200"/>
+    </g>
+  </symbol>
+</svg>
+
+<!-- ===== Menú lateral (escritorio) ===== -->
+<aside class="side" aria-label="Navegación principal">
+  <a class="side__logo" href="#inicio" aria-label="AML Centrifugal Casting, inicio"><svg viewBox="0 0 474.2 243" role="img" aria-hidden="true"><use href="#logo-aml"/></svg></a>
+  <nav class="side__nav">
+    <ul id="menu">
+      <li class="side__item is-active" data-sec="inicio"><a href="#inicio">Inicio</a></li>
+      <li class="side__item" data-sec="empresa"><a href="#empresa">Quiénes somos</a></li>
+      <li class="side__item" data-sec="capacidades"><a href="#capacidades">Capacidades</a>
+        <ul class="side__sub"><li><a href="#fresado">fresado</a></li><li><a href="#torneado">torneado</a></li><li><a href="#mandrinado">mandrinado</a></li><li><a href="#soldadura">soldadura</a></li></ul></li>
+      <li class="side__item" data-sec="materiales"><a href="#materiales">Materiales</a>
+        <ul class="side__sub"><li><a href="#grados">grados y normas</a></li><li><a href="#otras">otras aleaciones</a></li></ul></li>
+      <li class="side__item" data-sec="sectores"><a href="#sectores">Sectores</a>
+        <ul class="side__sub"><li><a href="#s-petroleo">petróleo y gas</a></li><li><a href="#s-nuclear">nuclear</a></li><li><a href="#s-naval">naval</a></li><li><a href="#s-ferroviario">ferroviario</a></li><li><a href="#s-industrial">industrial</a></li><li><a href="#s-sanitario">sanitario</a></li><li><a href="#s-estructural">estructural</a></li></ul></li>
+      <li class="side__item" data-sec="calidad"><a href="#calidad">Calidad</a>
+        <ul class="side__sub"><li><a href="#c-dimensional">control dimensional</a></li><li><a href="#c-ensayos">ensayos</a></li><li><a href="#c-certificados">certificaciones</a></li></ul></li>
+      <li class="side__item" data-sec="contacto"><a href="#contacto">Contacto</a>
+        <ul class="side__sub"><li><a href="#formulario">formulario</a></li><li><a href="#llegar">carga y descarga</a></li></ul></li>
+    </ul>
+  </nav>
+  <div class="side__langs" role="group" aria-label="Idioma"><a href="#" aria-current="true" lang="es">ES</a><a href="#" lang="en">EN</a><a href="#" lang="de">DE</a><a href="#" lang="it">IT</a><a href="#" lang="fr">FR</a></div>
+</aside>
+
+<!-- ===== Barra y panel (móvil) ===== -->
+<header class="topbar">
+  <a href="#inicio" aria-label="AML Centrifugal Casting, inicio"><svg viewBox="0 0 474.2 243" aria-hidden="true"><use href="#logo-aml"/></svg></a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="panel" id="abrir">Menú <i aria-hidden="true"></i></button>
+</header>
+<div class="panel" id="panel" hidden role="dialog" aria-modal="true" aria-label="Menú">
+  <div class="panel__top"><svg viewBox="0 0 474.2 243" aria-hidden="true"><use href="#logo-aml"/></svg><button class="menu-btn" type="button" id="cerrar">Cerrar</button></div>
+  <nav aria-label="Navegación principal"><ul>
+    <li><a href="#inicio">Inicio</a></li><li><a href="#empresa">Quiénes somos</a></li><li><a href="#capacidades">Capacidades</a></li><li><a href="#materiales">Materiales</a></li><li><a href="#sectores">Sectores</a></li><li><a href="#calidad">Calidad</a></li><li><a href="#contacto">Contacto</a></li>
+  </ul></nav>
+  <div class="side__langs" role="group" aria-label="Idioma"><a href="#" aria-current="true" lang="es">ES</a><a href="#" lang="en">EN</a><a href="#" lang="de">DE</a><a href="#" lang="it">IT</a><a href="#" lang="fr">FR</a></div>
+</div>
+
+<main id="contenido">
+
+<!-- ===== INICIO ===== -->
+<section class="hero" id="inicio" aria-labelledby="t-inicio">
+  <!-- FOTO/VÍDEO: mecanizado en planta (vídeo de portada sin la sierra) -->
+  <video class="hero__media" id="video" autoplay muted loop playsinline preload="metadata" poster="./assets/portada-poster.webp" aria-hidden="true">
+    <source src="./assets/portada-v2.mp4" type="video/mp4">
+  </video>
+  <div class="wrap hero__in">
+    <p class="label">Mecanizado y control de calidad</p>
+    <h1 id="t-inicio">Piezas de acero fundido mecanizadas, medidas y ensayadas.</h1>
+    <p>Mecanizado CNC bajo plano, control dimensional y ensayos en planta propia, con trazabilidad de cada pieza.</p>
+    <div class="actions"><a class="btn" href="#contacto">Solicitar oferta</a><a class="link link--light" href="#capacidades">Ver capacidades</a></div>
+  </div>
+  <button class="hero__pausa" type="button" id="pausa" aria-label="Pausar el vídeo"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1v12M11 1v12" stroke="currentColor" stroke-width="1.5"/></svg></button>
+</section>
+
+<!-- ===== QUIÉNES SOMOS ===== -->
+<section class="sec" id="empresa" aria-labelledby="t-empresa">
+  <div class="ondas" style="right: 0; top: 0; width: 360px; transform: translate(30%, -10%) rotate(180deg)"><svg aria-hidden="true"><use href="#ondas"/></svg></div>
+  <div class="wrap split">
+    <div class="head">
+      <p class="label">Quiénes somos</p>
+      <h2 class="title" id="t-empresa">Mecanizado, metrología y ensayos en una sola planta.</h2>
+      <div>
+        <p class="text">AML Centrifugal Casting mecaniza piezas de acero fundido a la carta desde 2012, en su planta de Lekunberri (Navarra). La planta trabaja 24 horas en tres turnos.</p>
+        <p class="text">Fabricación bajo plano, desde una unidad hasta series con entregas programadas. Planos y documentación técnica tratados con confidencialidad. Trazabilidad completa de cada pieza durante todo el proceso.</p>
+      </div>
+      <div class="actions"><a class="link" href="#capacidades">Ver capacidades</a></div>
+    </div>
+    <!-- FOTO: carcasa multietapa amarrada en la mesa de mecanizado -->
+    <figure class="split__media">
+      <img src="./assets/planta-multistage-casing.webp" alt="Carcasa multietapa de acero fundido amarrada en la mesa de mecanizado" width="1600" height="1200" loading="lazy">
+      <figcaption>Carcasa multietapa en mecanizado. Planta de Lekunberri.</figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap">
+    <div class="figs" role="list">
+      <div class="fig" role="listitem"><span class="fig__bg" aria-hidden="true">15</span><p class="fig__n">+15</p><p class="fig__l">Años de actividad</p></div>
+      <div class="fig" role="listitem"><span class="fig__bg" aria-hidden="true">24</span><p class="fig__n">24 h</p><p class="fig__l">Planta en tres turnos</p></div>
+      <div class="fig" role="listitem"><span class="fig__bg" aria-hidden="true">12</span><p class="fig__n">12.000 kg</p><p class="fig__l">Peso máximo de pieza</p></div>
+      <div class="fig" role="listitem"><span class="fig__bg" aria-hidden="true">5</span><p class="fig__n">± 0,005 mm</p><p class="fig__l">Tolerancia en 5 ejes</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CAPACIDADES ===== -->
+<section class="sec sec--alt" id="capacidades" aria-labelledby="t-cap">
+  <div class="wrap">
+    <div class="head">
+      <p class="label">Capacidades</p>
+      <h2 class="title" id="t-cap">Fresado, torneado, mandrinado y soldadura.</h2>
+      <p class="text">Nueve máquinas CNC y soldadura certificada. Dimensiones, pesos y tolerancias máximas por operación.</p>
+      <div class="actions"><a class="btn" href="#contacto">Enviar plano</a></div>
+    </div>
+
+    <div class="grid4">
+      <a class="cell" href="#fresado">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="15" y="3" width="10" height="10"/><path d="M17 13v15l3 4 3-4V13"/><path d="M17 17l6 3M17 22l6 3"/><path d="M4 36h32"/></svg>
+        <h3>Fresado</h3><p>Centros de mecanizado y 5 ejes. Hasta Ø 2.000 × 1.500 mm y 4.500 kg.</p></a>
+      <a class="cell" href="#torneado">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="16" cy="20" r="13"/><circle cx="16" cy="20" r="5"/><path d="M16 7v4M16 29v4M3 20h4M25 20h4"/><path d="M30 26l7 5"/></svg>
+        <h3>Torneado</h3><p>Torneado de gran volteo y esférico. Volteo hasta Ø 1.600 mm.</p></a>
+      <a class="cell" href="#mandrinado">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="4" y="10" width="22" height="22"/><circle cx="15" cy="21" r="6"/><path d="M15 21h22M31 17v8"/></svg>
+        <h3>Mandrinado</h3><p>Mandrinadora de columna móvil. Hasta 12.000 kg sobre mesa giratoria.</p></a>
+      <a class="cell" href="#soldadura">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M6 6l16 16"/><path d="M22 22l4 4"/><path d="M4 34h32"/><path d="M28 28l-2 4M30 27l3 3M29 30l4-1" /></svg>
+        <h3>Soldadura</h3><p>Soldadores certificados según UNE-EN ISO 9606-1. Procedimientos RCC-M.</p></a>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top: var(--gap)">
+    <!-- Fresado: foto a la derecha -->
+    <div class="split" id="fresado">
+      <div class="head">
+        <p class="label">Fresado</p>
+        <h2 class="title">Geometrías complejas en centros de mecanizado y 5 ejes.</h2>
+        <p class="text">Caras, ranuras, taladros y geometrías complejas. Tolerancia desde ± 0,005 mm en 5 ejes.</p>
+        <div class="acc"><details><summary>Máquinas de fresado <span class="meta">4 máquinas</span></summary><div class="acc__body">
+          <div class="maq"><h4>Trevisan II DS-600 RAM</h4><dl class="spec"><dt>Tipo</dt><dd>Centro de mecanizado</dd><dt>Dimensiones máx.</dt><dd>Ø 2.000 × 1.500 mm (Ø 900 mm en torneado)</dd><dt>Peso máx.</dt><dd>2.600 kg (4.500 kg con carga reforzada)</dd><dt>Tolerancia</dt><dd>± 0,010 mm</dd></dl></div>
+          <div class="maq"><h4>Trevisan I DS-600</h4><dl class="spec"><dt>Tipo</dt><dd>Centro de mecanizado</dd><dt>Dimensiones máx.</dt><dd>Ø 2.000 × 1.100 mm (Ø 900 mm en torneado)</dd><dt>Peso máx.</dt><dd>2.600 kg</dd><dt>Tolerancia</dt><dd>± 0,010 mm</dd></dl></div>
+          <div class="maq"><h4>Johnford SV-48H</h4><dl class="spec"><dt>Tipo</dt><dd>Centro de mecanizado vertical</dd><dt>Dimensiones máx.</dt><dd>1.300 × 700 × 630 mm</dd><dt>Peso máx.</dt><dd>1.500 kg</dd><dt>Tolerancia</dt><dd>± 0,015 mm</dd></dl></div>
+          <div class="maq"><h4>Deckel Maho DMC 80 U duoBLOCK</h4><dl class="spec"><dt>Tipo</dt><dd>Centro de mecanizado 5 ejes</dd><dt>Dimensiones máx.</dt><dd>Ø 900 × 1.450 mm (mesa Ø 800 × 630 mm)</dd><dt>Peso máx.</dt><dd>1.200 a 1.400 kg</dd><dt>Tolerancia</dt><dd>± 0,005 mm</dd></dl></div>
+        </div></details></div>
+      </div>
+      <!-- FOTO: centro de mecanizado fresando una pieza -->
+      <figure class="split__media"><img src="./assets/fresado.webp" alt="Centro de mecanizado fresando una pieza de acero fundido" width="1200" height="801" loading="lazy"></figure>
+    </div>
+
+    <!-- Torneado: foto a la izquierda -->
+    <div class="split split--rev" id="torneado">
+      <div class="head">
+        <p class="label">Torneado</p>
+        <h2 class="title">Piezas de revolución y torneado esférico de gran volteo.</h2>
+        <p class="text">Torneado exterior e interior, refrentado y roscado. Volteo hasta Ø 1.600 mm y longitudes hasta 1.966 mm.</p>
+        <div class="acc"><details><summary>Máquinas de torneado <span class="meta">4 máquinas</span></summary><div class="acc__body">
+          <div class="maq"><h4>Heller TS 1600 × 1500</h4><dl class="spec"><dt>Tipo</dt><dd>Torno esférico de gran volteo</dd><dt>Dimensiones máx.</dt><dd>Ø 1.600 × 1.500 mm (Ø 900 mm esférico exterior)</dd><dt>Peso máx.</dt><dd>2.500 kg</dd><dt>Tolerancia</dt><dd>± 0,015 mm</dd></dl></div>
+          <div class="maq"><h4>Doosan Puma 700</h4><dl class="spec"><dt>Tipo</dt><dd>Torno CNC horizontal pesado</dd><dt>Dimensiones máx.</dt><dd>Ø 900 × 1.600 mm</dd><dt>Peso máx.</dt><dd>3.000 kg</dd><dt>Tolerancia</dt><dd>± 0,008 mm</dd></dl></div>
+          <div class="maq"><h4>Takisawa LS-1000 M</h4><dl class="spec"><dt>Tipo</dt><dd>Torno CNC con herramienta motorizada</dd><dt>Dimensiones máx.</dt><dd>Ø 850 × 1.966 mm</dd><dt>Peso máx.</dt><dd>2.000 a 2.500 kg</dd><dt>Tolerancia</dt><dd>± 0,008 mm</dd></dl></div>
+          <div class="maq"><h4>Sprint D600 (Spinner TC 600)</h4><dl class="spec"><dt>Tipo</dt><dd>Torno CNC horizontal</dd><dt>Dimensiones máx.</dt><dd>Ø 310 a 400 × 650 mm (volteo Ø 600 mm)</dd><dt>Peso máx.</dt><dd>400 a 600 kg</dd><dt>Tolerancia</dt><dd>± 0,005 mm</dd></dl></div>
+        </div></details></div>
+      </div>
+      <!-- FOTO: esferas de válvula torneadas -->
+      <figure class="split__media"><img src="./assets/esferas.webp" alt="Esferas de válvula de acero fundido torneadas" width="798" height="843" loading="lazy"></figure>
+    </div>
+
+    <!-- Mandrinado: foto a la derecha -->
+    <div class="split" id="mandrinado">
+      <div class="head">
+        <p class="label">Mandrinado</p>
+        <h2 class="title">Alojamientos de precisión en piezas de gran tamaño.</h2>
+        <p class="text">Mandrinadora horizontal de columna móvil TOS Varnsdorf WHN 13 CNC. Hasta 12.000 kg sobre mesa giratoria de 360°.</p>
+        <div class="acc"><details><summary>TOS Varnsdorf WHN 13 CNC <span class="meta">1 máquina</span></summary><div class="acc__body">
+          <dl class="spec"><dt>Eje X, longitudinal</dt><dd>3.500 a 4.200 mm</dd><dt>Eje Y, vertical del cabezal</dt><dd>2.000 a 2.500 mm</dd><dt>Eje Z, carnero</dt><dd>800 a 1.250 mm</dd><dt>Eje W, husillo</dt><dd>800 mm</dd><dt>Mesa</dt><dd>1.800 × 1.800 a 2.500 × 1.800 mm</dd><dt>Peso máx. sobre mesa</dt><dd>12.000 kg</dd><dt>Giro de mesa</dt><dd>360°, indexado o continuo</dd></dl>
+        </div></details></div>
+      </div>
+      <!-- FOTO: mandrinadora con pieza amarrada -->
+      <figure class="split__media"><img src="./assets/mandrinado.webp" alt="Mandrinadora CNC con una pieza de acero fundido amarrada" width="960" height="1200" loading="lazy"></figure>
+    </div>
+
+    <!-- Soldadura: foto a la izquierda -->
+    <div class="split split--rev" id="soldadura">
+      <div class="head">
+        <p class="label">Soldadura</p>
+        <h2 class="title">Soldadura certificada de piezas de acero fundido.</h2>
+        <p class="text">Soldeo por arco con electrodo revestido (111). Soldadores certificados por TÜV SÜD ATISAE y procedimientos según el código nuclear RCC-M.</p>
+        <div class="acc"><details><summary>Datos de soldadura <span class="meta">Certificados bajo petición</span></summary><div class="acc__body">
+          <dl class="spec"><dt>Proceso</dt><dd>Soldeo por arco con electrodo revestido (111)</dd><dt>Certificación</dt><dd>UNE-EN ISO 9606-1:2017, TÜV SÜD ATISAE (organismo notificado n.º 0053)</dd><dt>Rango</dt><dd>Chapa y tubo, soldadura a tope</dd><dt>Procedimientos (WPS)</dt><dd>Según el código RCC-M</dd><dt>Materiales</dt><dd>Aceros al carbono, inoxidables, dúplex y superdúplex</dd></dl>
+        </div></details></div>
+      </div>
+      <!-- FOTO: soldadura de una pieza de acero -->
+      <figure class="split__media"><img src="./assets/soldadura.webp" alt="Soldadura de una pieza de acero en el taller" width="1400" height="1050" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MATERIALES ===== -->
+<section class="sec" id="materiales" aria-labelledby="t-mat">
+  <div class="wrap">
+    <div class="head" id="grados">
+      <p class="label">Materiales</p>
+      <h2 class="title" id="t-mat">Aceros al carbono, inoxidables, dúplex y superdúplex.</h2>
+      <p class="text">Grados habituales en estado fundido, con su norma ASTM y equivalente EN orientativo.</p>
+      <div class="actions"><a class="link" href="#" download>Descargar tabla (PDF)</a></div>
+    </div>
+    <div class="tabla-wrap" role="region" aria-label="Tabla de materiales" tabindex="0">
+      <table>
+        <caption class="sr">Grados de acero fundido que se mecanizan</caption>
+        <thead><tr><th scope="col">Grado</th><th scope="col">Norma ASTM</th><th scope="col">Equivalente EN</th><th scope="col">Usos habituales</th></tr></thead>
+        <tbody>
+          <tr class="fam"><td colspan="4">Acero al carbono</td></tr>
+          <tr><td>WCB</td><td>A216</td><td>1.0619</td><td>Válvulas y piezas a presión</td></tr>
+          <tr><td>WCC</td><td>A216</td><td>Sin dato</td><td>Válvulas y piezas a presión</td></tr>
+          <tr><td>LCB</td><td>A352</td><td>Sin dato</td><td>Servicio a baja temperatura</td></tr>
+          <tr><td>LCC</td><td>A352</td><td>Sin dato</td><td>Servicio a baja temperatura</td></tr>
+          <tr class="fam"><td colspan="4">Inoxidable austenítico</td></tr>
+          <tr><td>CF8</td><td>A351</td><td>1.4308</td><td>Válvulas, bombas, industria química</td></tr>
+          <tr><td>CF3</td><td>A351</td><td>Sin dato</td><td>Versión bajo carbono de CF8</td></tr>
+          <tr><td>CF8M</td><td>A351</td><td>1.4408</td><td>Medios con cloruros, química</td></tr>
+          <tr><td>CF3M</td><td>A351</td><td>Sin dato</td><td>Versión bajo carbono de CF8M</td></tr>
+          <tr class="fam"><td colspan="4">Dúplex</td></tr>
+          <tr><td>4A (CD3MN)</td><td>A890 / A995</td><td>1.4470</td><td>Petróleo y gas, desalación</td></tr>
+          <tr><td>1B (CD4MCuN)</td><td>A890 / A995</td><td>Sin dato</td><td>Bombas y medios abrasivos</td></tr>
+          <tr class="fam"><td colspan="4">Superdúplex</td></tr>
+          <tr><td>5A (CE3MN)</td><td>A890 / A995</td><td>1.4469</td><td>Agua de mar, offshore</td></tr>
+          <tr><td>6A (CD3MWCuN)</td><td>A890 / A995</td><td>Sin dato</td><td>Agua de mar, alta presión</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nota">Equivalencias EN orientativas.</p>
+
+    <div class="head" id="otras" style="margin-top: var(--gap)">
+      <p class="label">Otras aleaciones</p>
+      <h2 class="title">Otras aleaciones bajo consulta.</h2>
+      <p class="text">Para estudiar la viabilidad se necesita: grado o especificación del material, plano con revisión (PDF, STEP o DWG), cantidades y calendario, ensayos requeridos y fecha de necesidad.</p>
+      <div class="actions"><a class="btn" href="#contacto">Enviar consulta</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTORES ===== -->
+<section class="sec sec--alt" id="sectores" aria-labelledby="t-sec">
+  <div class="wrap">
+    <div class="head">
+      <p class="label">Sectores</p>
+      <h2 class="title" id="t-sec">Componentes para sectores con exigencias de material y trazabilidad.</h2>
+      <p class="text">Cuerpos de válvula, esferas, carcasas de bomba, volutas y componentes estructurales, según plano y especificación.</p>
+      <div class="actions"><a class="link" href="#lista-sectores">Ver todos los sectores</a></div>
+    </div>
+
+    <!-- FOTO ANCHA: cuerpo de válvula y esfera en el centro de mecanizado -->
+    <div class="franja">
+      <img class="franja__img" src="./assets/esfera-trevisan-invertida.webp" alt="" aria-hidden="true" width="1200" height="675" loading="lazy">
+      <div class="franja__col"><h3>Petróleo y gas</h3><p>Valve bodies, valve spheres, flowmeters.</p><a class="link link--light" href="#s-petroleo" data-abrir="s-petroleo">Ver más</a></div>
+      <div class="franja__col"><h3>Nuclear</h3><p>Volutes, multi-stage pump casings.</p><a class="link link--light" href="#s-nuclear" data-abrir="s-nuclear">Ver más</a></div>
+      <div class="franja__col"><h3>Naval y ferroviario</h3><p>Marine jet propulsion, axlebox housings.</p><a class="link link--light" href="#s-naval" data-abrir="s-naval">Ver más</a></div>
+      <div class="franja__col"><h3>Industrial</h3><p>Pump casings, impellers, compressor cases.</p><a class="link link--light" href="#s-industrial" data-abrir="s-industrial">Ver más</a></div>
+    </div>
+
+    <div class="acc" id="lista-sectores" style="margin-top: 72px">
+      <details id="s-petroleo"><summary>Petróleo y gas <span class="meta" lang="en">Valve bodies (6″ to 24″), valve spheres, flowmeters</span></summary><div class="acc__body"><p>Esferas y cuerpos de válvula, carcasas de bomba y componentes para extracción, refino y transporte, principalmente en aceros inoxidables, dúplex y superdúplex.</p></div></details>
+      <details id="s-nuclear"><summary>Nuclear <span class="meta" lang="en">Volutes, multi-stage pump casings</span></summary><div class="acc__body"><p>Componentes para instalaciones nucleares con trazabilidad completa, control dimensional y ensayos documentados.</p><p>Soldadura con procedimientos según el código RCC-M y soldadores certificados según UNE-EN ISO 9606-1.</p></div></details>
+      <details id="s-naval"><summary>Naval <span class="meta" lang="en">Marine jet propulsion components</span></summary><div class="acc__body"><p>Componentes para buques e instalaciones marinas, en materiales resistentes a la corrosión por agua de mar.</p></div></details>
+      <details id="s-ferroviario"><summary>Ferroviario <span class="meta" lang="en">Axlebox housings</span></summary><div class="acc__body"><p>Componentes para material rodante e infraestructura ferroviaria, en series con entregas programadas.</p></div></details>
+      <details id="s-industrial"><summary>Industrial <span class="meta" lang="en">Multi-stage casings, volutes, impellers, suction cases</span></summary><div class="acc__body"><p>Componentes para maquinaria y equipos de proceso: multi-stage casings, volutes, impellers, bowls, suction cases, barrels for centrifugal pumps, manifolds, compressor cases y motor casings.</p></div></details>
+      <details id="s-sanitario"><summary>Sanitario</summary><div class="acc__body"><p>Piezas para equipos del sector sanitario, con acabados y tolerancias según especificación.</p></div></details>
+      <details id="s-estructural"><summary>Estructural</summary><div class="acc__body"><p>Piezas de acero fundido para estructuras y uniones sometidas a carga.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CALIDAD ===== -->
+<section class="sec" id="calidad" aria-labelledby="t-cal">
+  <div class="ondas" style="left: 0; bottom: 0; width: 320px; transform: translate(-35%, 0)"><svg aria-hidden="true"><use href="#ondas"/></svg></div>
+  <div class="wrap split split--rev">
+    <div class="head" id="c-dimensional">
+      <p class="label">Calidad</p>
+      <h2 class="title" id="t-cal">Control dimensional y ensayos en planta propia.</h2>
+      <p class="text">Medición en máquina tridimensional sobre plano globeado, con informe de cotas de cada pieza. Sistema de gestión certificado según ISO 9001.</p>
+      <div class="acc" id="c-ensayos">
+        <details><summary>Control dimensional <span class="meta">Trimek Spark 16.10.12</span></summary><div class="acc__body"><dl class="spec"><dt>Equipo</dt><dd>Máquina de medición por coordenadas tipo puente</dd><dt>Volumen de medida</dt><dd>1.600 × 1.000 × 1.200 mm</dd><dt>Entorno</dt><dd>Sala climatizada, mesa de granito</dd><dt>Entregable</dt><dd>Informe dimensional por pieza</dd></dl></div></details>
+        <details><summary>Pruebas de presión</summary><div class="acc__body"><p>Ensayo de estanqueidad con presión hidrostática o neumática, según especificación del cliente.</p></div></details>
+        <details><summary>Líquidos penetrantes <span class="meta">EN ISO 9712, nivel II</span></summary><div class="acc__body"><p>Detección de discontinuidades abiertas a la superficie: grietas, poros y faltas de fusión.</p></div></details>
+        <details><summary>Pruebas de helio</summary><div class="acc__body"><p>Detección de fugas con helio en piezas que requieren estanqueidad elevada.</p></div></details>
+        <details id="c-certificados"><summary>Certificaciones</summary><div class="acc__body"><dl class="spec"><dt>Sistema de gestión</dt><dd>ISO 9001</dd><dt>Soldadura</dt><dd>UNE-EN ISO 9606-1:2017, procedimientos RCC-M</dd><dt>Ensayos no destructivos</dt><dd>EN ISO 9712, nivel II</dd></dl></div></details>
+      </div>
+      <div class="actions"><a class="btn" href="#" download>Certificado ISO 9001 (PDF)</a></div>
+    </div>
+    <!-- FOTO: carcasa en la máquina tridimensional -->
+    <figure class="split__media split__media--sq"><img src="./assets/metrologia-cmm.webp" alt="Carcasa de acero fundido en la mesa de granito de la máquina de medición por coordenadas" width="1000" height="1000" loading="lazy"><figcaption>Control dimensional en máquina de medición por coordenadas.</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===== CONTACTO ===== -->
+<section class="sec sec--alt" id="contacto" aria-labelledby="t-con">
+  <div class="wrap">
+    <div class="head">
+      <p class="label">Contacto</p>
+      <h2 class="title" id="t-con">Solicitudes de oferta y consultas técnicas.</h2>
+      <p class="text">Adjunte el plano con su revisión y la especificación de material y ensayos. Respuesta con viabilidad técnica y plazo.</p>
+      <div class="actions"><a class="link" href="mailto:info@amlcentrifugal.com">info@amlcentrifugal.com</a><a class="link" href="tel:+34948461603">+34 948 46 16 03</a></div>
+    </div>
+
+    <div class="contact">
+      <form id="formulario" novalidate>
+        <div class="row2">
+          <label class="field">Nombre<input type="text" name="nombre" autocomplete="name" required></label>
+          <label class="field">Empresa<input type="text" name="empresa" autocomplete="organization"></label>
+          <label class="field">Email<input type="email" name="email" autocomplete="email" required></label>
+          <label class="field">Teléfono<input type="tel" name="telefono" autocomplete="tel"></label>
+        </div>
+        <label class="field">Motivo
+          <select name="motivo"><option>Solicitud de oferta</option><option>Consulta técnica</option><option>Proveedores</option><option>Transporte o recogida de piezas</option><option>Empleo</option><option>Otro</option></select></label>
+        <label class="field">Mensaje<textarea name="mensaje"></textarea></label>
+        <label class="field">Plano (opcional)<input type="file" name="plano" accept=".pdf,.step,.stp,.dwg"></label>
+        <label class="check"><input type="checkbox" name="privacidad" required>He leído y acepto la política de privacidad.</label>
+        <div><button class="btn" type="submit">Enviar solicitud</button></div>
+        <p class="form__aviso" id="aviso" aria-live="polite"></p>
+      </form>
+
+      <div class="aside" id="llegar">
+        <address class="aside__dir">AML Centrifugal Casting, S.L.<br>Industrialdea, A-7<br>31870 Lekunberri (Navarra)</address>
+        <div class="carga">
+          <h3>Carga y descarga</h3>
+          <dl>
+            <div><dt>Horario</dt><dd>Lunes a viernes, de 8:00 a 17:00</dd></div>
+            <div><dt>Acceso de camiones</dt><dd>Entrada principal</dd></div>
+            <div><dt>A la llegada</dt><dd>Llamar al timbre de la entrada principal</dd></div>
+          </dl>
+        </div>
+        <div class="mapa"><iframe title="Ubicación de AML Centrifugal Casting en Lekunberri" src="https://www.google.com/maps?q=AML+Centrifugal+Casting,+Industrialdea+A-7,+31870+Lekunberri,+Navarra&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+        <div><a class="link" href="https://www.google.com/maps/dir/?api=1&amp;destination=AML+Centrifugal+Casting,+Industrialdea+A-7,+31870+Lekunberri,+Navarra" target="_blank" rel="noopener">Cómo llegar</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LLAMADA A LA ACCIÓN ===== -->
+<section class="cta" aria-labelledby="t-cta">
+  <div class="ondas" style="right: 0; bottom: 0; width: 420px; transform: translate(25%, 0); opacity: 0.5"><svg aria-hidden="true"><use href="#ondas"/></svg></div>
+  <div class="wrap cta__in">
+    <div class="head">
+      <p class="label">Solicitud de oferta</p>
+      <h2 class="title" id="t-cta">Envíe plano y especificación.</h2>
+      <p class="text">Estudio de viabilidad técnica y plazo para cada referencia.</p>
+    </div>
+    <div class="actions"><a class="btn" href="#contacto">Solicitar oferta</a></div>
+  </div>
+</section>
+</main>
+
+<!-- ===== PIE ===== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__cols">
+      <div><h2>Contacto</h2><p><a href="tel:+34948461603">+34 948 46 16 03</a><br><a href="mailto:info@amlcentrifugal.com">info@amlcentrifugal.com</a></p></div>
+      <div><h2>Dirección</h2><p>Industrialdea, A-7<br>31870 Lekunberri (Navarra)<br>España</p></div>
+      <div><h2>Enlaces</h2><nav class="foot__links" aria-label="Enlaces del pie"><a href="#empresa">Quiénes somos</a><a href="#capacidades">Capacidades</a><a href="#materiales">Materiales</a><a href="#sectores">Sectores</a><a href="#calidad">Calidad</a><a href="#contacto">Contacto</a></nav></div>
+    </div>
+    <div class="foot__base"><p>AML Centrifugal Casting, S.L. Sistema de gestión certificado ISO 9001.</p><span><a href="#">Aviso legal</a><a href="#">Privacidad</a><a href="#">Cookies</a></span></div>
+  </div>
+</footer>
+
+<a class="arriba" id="arriba" href="#inicio" aria-label="Volver arriba"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 10l5-5 5 5"/></svg></a>
+
+<script>
+(function () {
+  // Menú activo según la sección visible
+  var items = Array.prototype.slice.call(document.querySelectorAll('.side__item'));
+  var secciones = items.map(function (li) { return document.getElementById(li.dataset.sec); });
+  function activar() {
+    var y = window.scrollY + window.innerHeight * 0.35, actual = items[0];
+    secciones.forEach(function (s, i) { if (s && s.offsetTop <= y) actual = items[i]; });
+    items.forEach(function (li) { li.classList.toggle('is-active', li === actual); });
+    var a = actual.querySelector('a'); items.forEach(function (li) { li.querySelector('a').removeAttribute('aria-current'); }); a.setAttribute('aria-current', 'location');
+    document.getElementById('arriba').classList.toggle('is-on', window.scrollY > window.innerHeight * 0.8);
+  }
+  window.addEventListener('scroll', activar, { passive: true }); activar();
+
+  // Panel móvil
+  var panel = document.getElementById('panel'), abrir = document.getElementById('abrir'), cerrar = document.getElementById('cerrar');
+  function cierra() { panel.hidden = true; abrir.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; }
+  abrir.addEventListener('click', function () { panel.hidden = false; abrir.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; cerrar.focus(); });
+  cerrar.addEventListener('click', function () { cierra(); abrir.focus(); });
+  panel.addEventListener('click', function (e) { if (e.target.tagName === 'A' && e.target.getAttribute('href').charAt(0) === '#' && e.target.getAttribute('href').length > 1) cierra(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { cierra(); abrir.focus(); } });
+
+  // "Ver más" abre el sector correspondiente
+  function abreSector(id) { var d = document.getElementById(id); if (d && d.tagName === 'DETAILS') d.open = true; }
+  document.querySelectorAll('[data-abrir]').forEach(function (a) { a.addEventListener('click', function () { abreSector(a.dataset.abrir); }); });
+  document.querySelectorAll('.side__sub a').forEach(function (a) { a.addEventListener('click', function () { abreSector(a.getAttribute('href').slice(1)); }); });
+  if (location.hash) abreSector(location.hash.slice(1));
+
+  // Vídeo de portada: pausa manual y respeto a "reducir movimiento"
+  var v = document.getElementById('video'), p = document.getElementById('pausa');
+  function estado() { p.setAttribute('aria-label', v.paused ? 'Reproducir el vídeo' : 'Pausar el vídeo'); p.innerHTML = v.paused ? '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1l9 6-9 6z" fill="currentColor"/></svg>' : '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1v12M11 1v12" stroke="currentColor" stroke-width="1.5"/></svg>'; }
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); }
+  p.addEventListener('click', function () { if (v.paused) v.play(); else v.pause(); estado(); }); v.addEventListener('play', estado); v.addEventListener('pause', estado); estado();
+
+  // Formulario (pendiente de conectar)
+  var f = document.getElementById('formulario'), aviso = document.getElementById('aviso');
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    f.querySelectorAll('[aria-invalid]').forEach(function (x) { x.removeAttribute('aria-invalid'); });
+    var malo = f.querySelector(':invalid');
+    if (malo) { malo.setAttribute('aria-invalid', 'true'); malo.focus(); aviso.textContent = 'Faltan datos obligatorios: nombre, email válido y aceptación de la política de privacidad.'; return; }
+    aviso.textContent = 'Formulario pendiente de conexión. Escriba a info@amlcentrifugal.com.';
+  });
+})();
+</script>
+</body>
+</html>
