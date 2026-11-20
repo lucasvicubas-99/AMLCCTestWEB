@@ -202,7 +202,7 @@ button, input, select, textarea { font: inherit; }
 .iso { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg); align-items: baseline; }
 
 /* 4. Ensayos: dos ensayos en grande */
-.tests { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap-columns); }
+.tests { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: var(--gap-columns); }
 .test { border-top: 2px solid var(--color-ink); padding-top: var(--space-lg); display: grid; gap: var(--space-sm); }
 .test h3 { font-size: var(--text-3xl); max-width: 12ch; }
 
@@ -495,6 +495,7 @@ button, input, select, textarea { font: inherit; }
 <div class="body c-6-12"><div class="tests">
 <div class="test"><h3>Pruebas de presión</h3><p class="muted">Comprobamos la estanqueidad con presión hidrostática o neumática, según su especificación.</p></div>
 <div class="test"><h3>Líquidos penetrantes</h3><p class="muted">Detectamos discontinuidades abiertas a la superficie: grietas, poros y faltas de fusión.</p><p class="small">Certificación: EN ISO 9712, nivel II</p></div>
+<div class="test"><h3>Pruebas de helio</h3><p class="muted">Detectamos fugas con helio en piezas que exigen una estanqueidad muy alta.</p></div>
 </div></div>
 </div>
 </section>
