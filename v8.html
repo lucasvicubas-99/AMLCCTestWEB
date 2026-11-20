@@ -137,7 +137,9 @@ button, input, select, textarea { font: inherit; }
 .statement { grid-column: 1 / 11; font-size: var(--text-display-s); max-width: 24ch; }
 .about__text { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-lg) var(--gap-columns); font-size: 1.0625rem; line-height: 1.65; }
 .about__fig { grid-column: 1 / -1; margin: 0; display: grid; gap: var(--space-sm); }
-.about__fig img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; object-position: 30% 55%; border-radius: var(--radius-card); }
+.about__mosaico { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: var(--space-sm); aspect-ratio: 2.4 / 1; }
+.about__mosaico img { width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: var(--radius-card); }
+.about__big { grid-row: 1 / 3; object-position: 50% 60%; }
 .about__fig figcaption { font-size: var(--text-sm); color: var(--color-muted); }
 
 /* Cómo trabajamos: cinco fases */
@@ -280,6 +282,9 @@ button, input, select, textarea { font: inherit; }
   .fairs__side, .fairs__body { grid-row: auto; grid-column: 1 / -1; }
   .fairs__photo { aspect-ratio: 4 / 3; }
   .about__text { grid-template-columns: minmax(0, 1fr); }
+  .about__mosaico { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto; aspect-ratio: auto; }
+  .about__mosaico img { aspect-ratio: 4 / 3; }
+  .about__big { grid-row: auto; grid-column: 1 / -1; }
   .mat__top { grid-template-columns: minmax(0, 1fr); }
   .scale__row { grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); }
   .scale__row::before { display: none; }
@@ -356,8 +361,12 @@ button, input, select, textarea { font: inherit; }
 <p class="muted">Trabajamos bajo pedido, desde una sola pieza hasta series con entregas programadas, y adaptamos el proceso a lo que necesita cada cliente. Tratamos sus planos y su documentación técnica con estricta confidencialidad y seguimos cada pieza de principio a fin, con trazabilidad completa. Tenemos clientes en toda España y una fuerte presencia internacional.</p>
 </div>
 <figure class="about__fig">
-<img loading="lazy" src="./assets/nave.webp" alt="Nave de producción con piezas mecanizadas" width="1600" height="686">
-<figcaption>Nuestra planta de Lekunberri, con piezas a la espera de mecanizado.</figcaption>
+<div class="about__mosaico">
+<img class="about__big" loading="lazy" src="./assets/planta-multistage-casing.webp" alt="Carcasa multietapa de acero fundido amarrada en la mesa de mecanizado de la planta" width="1600" height="1200">
+<img loading="lazy" src="./assets/planta-casing-mecanizado.webp" alt="Carcasa de bomba de doble aspiración sobre la mesa del centro de mecanizado" width="1000" height="750">
+<img loading="lazy" src="./assets/planta-impeller.webp" alt="Rodete de bomba de acero fundido ya mecanizado" width="1000" height="750">
+</div>
+<figcaption>Piezas en mecanizado en nuestra planta de Lekunberri.</figcaption>
 </figure>
 </div>
 </section>
