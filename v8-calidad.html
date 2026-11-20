@@ -368,26 +368,28 @@ button, input, select, textarea { font: inherit; }
 .anchors { display: flex; flex-wrap: wrap; gap: var(--space-xs); list-style: none; margin: 0; padding: 0; }
 .anchors a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--space-md); border: 1px solid var(--color-muted); border-radius: var(--radius-card); text-decoration: none; font-size: var(--text-sm); }
 .anchors a:hover { border-color: var(--color-ink); background: var(--color-paper-2); }
-.sectors { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-ink); }
-.sectors > li { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-lg) var(--gap-columns); align-items: start; padding-block: var(--space-xl); border-bottom: 1px solid var(--color-rule); }
-.sector__txt { display: grid; gap: var(--space-md); align-content: start; min-width: 0; max-width: 34rem; }
-.sectors h2 { font-size: var(--text-section); }
-.sectors .desc { display: grid; gap: var(--space-sm); color: var(--color-ink-2); }
-.piezas { display: grid; gap: var(--space-3xs); padding-top: var(--space-sm); border-top: 1px solid var(--color-rule); color: var(--color-ink); }
-.piezas__lbl { font-size: var(--text-sm); color: var(--color-muted); }
-.carrusel { display: grid; gap: var(--space-xs); min-width: 0; }
+.sectors { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-lg); }
+.sector { position: relative; isolation: isolate; overflow: hidden; border-radius: var(--radius-card); background: var(--color-ink); min-height: clamp(460px, 40vw, 600px); display: grid; scroll-margin-top: calc(var(--nav-h) + var(--space-md)); }
+.sector .carrusel__pista { position: absolute; top: 0; bottom: 0; right: 0; left: 30%; z-index: -2; }
 .carrusel__pista { display: grid; grid-auto-flow: column; grid-auto-columns: 100%; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
 .carrusel__pista::-webkit-scrollbar { display: none; }
-.carrusel__pista:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
-.carrusel__foto { margin: 0; display: grid; gap: var(--space-2xs); scroll-snap-align: start; min-width: 0; }
-.carrusel__foto figcaption { font-size: var(--text-sm); color: var(--color-muted); }
-.carrusel__ctrl { display: flex; align-items: center; gap: var(--space-xs); }
-.carrusel__n { margin-left: var(--space-2xs); font-size: var(--text-sm); color: var(--color-muted); }
-.carrusel__btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--color-muted); border-radius: var(--radius-card); background: transparent; color: var(--color-ink); cursor: pointer; transition: border-color 0.15s var(--ease-out), background-color 0.15s var(--ease-out); }
-.carrusel__btn:hover { border-color: var(--color-ink); background: var(--color-paper-2); }
-.carrusel__btn:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
-.carrusel__btn:active { transform: translateY(1px); }
-.sectors img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-card); }
+.carrusel__pista:focus-visible { outline: 2px solid var(--color-focus); outline-offset: -4px; }
+.carrusel__foto { position: relative; margin: 0; scroll-snap-align: start; min-width: 0; height: 100%; }
+.carrusel__foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; }
+.carrusel__foto figcaption { position: absolute; top: var(--space-md); right: var(--space-md); padding: var(--space-3xs) var(--space-xs); border-radius: var(--radius-card); background: color-mix(in oklch, var(--color-ink) 72%, transparent); color: var(--color-paper); font-size: var(--text-sm); }
+.sector__velo { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(to right, var(--color-ink) 0%, var(--color-ink) 30%, color-mix(in oklch, var(--color-ink) 70%, transparent) 40%, color-mix(in oklch, var(--color-ink) 15%, transparent) 55%, transparent 65%); }
+.sector__txt { align-self: end; display: grid; gap: var(--space-sm); max-width: 32rem; padding: var(--space-2xl) var(--space-xl); color: var(--color-paper); pointer-events: none; }
+.sector__txt h2 { font-size: var(--text-section); color: var(--color-paper); }
+.sector__txt p { color: var(--color-on-ink-2); }
+.piezas { display: grid; gap: var(--space-3xs); padding-top: var(--space-sm); border-top: 1px solid var(--color-on-ink-rule); }
+.sector__txt .piezas span:last-child { color: var(--color-paper); }
+.piezas__lbl { font-size: var(--text-sm); color: var(--color-sage); }
+.carrusel__ctrl { position: absolute; right: var(--space-md); bottom: var(--space-md); display: flex; align-items: center; gap: var(--space-xs); }
+.carrusel__n { margin-right: var(--space-2xs); font-size: var(--text-sm); color: var(--color-paper); font-variant-numeric: tabular-nums; text-shadow: 0 1px 2px color-mix(in oklch, var(--color-ink) 60%, transparent); }
+.carrusel__btn { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0; border: 0; border-radius: 50%; background: color-mix(in oklch, var(--color-paper) 88%, transparent); color: var(--color-ink); cursor: pointer; transition: background-color 0.15s var(--ease-out), transform 0.15s var(--ease-out); }
+.carrusel__btn:hover { background: var(--color-paper); transform: scale(1.06); }
+.carrusel__btn:focus-visible { outline: 2px solid var(--color-paper); outline-offset: 2px; }
+.carrusel__btn:active { transform: scale(0.96); }
 .checklist { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--color-rule); }
 .checklist li { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 5fr); gap: var(--space-2xs) var(--space-lg); padding-block: var(--space-sm); border-bottom: 1px solid var(--color-rule); }
 .checklist strong { font-weight: 500; }
@@ -421,9 +423,19 @@ button, input, select, textarea { font: inherit; }
   .fig { padding: var(--space-md) 0; border-left: 0; border-bottom: 1px solid var(--color-rule); }
   .cta { grid-template-columns: minmax(0, 1fr); }
   .cta .actions { justify-content: flex-start; }
-  .sectors > li { grid-template-columns: minmax(0, 1fr); }
-  .sectors img { max-width: none; }
-  .carrusel { max-width: 520px; }
+  .sector { min-height: 0; background: var(--color-paper); }
+  .sector .carrusel__pista { position: relative; inset: auto; left: auto; z-index: auto; aspect-ratio: 4 / 3; border-radius: var(--radius-card); }
+  .carrusel__foto img { object-position: 50% 50%; }
+  .sector__velo { display: none; }
+  .sector__txt { order: 2; padding: var(--space-md) 0 0; max-width: none; color: var(--color-ink); pointer-events: auto; }
+  .sector__txt h2 { color: var(--color-ink); }
+  .sector__txt p { color: var(--color-ink-2); }
+  .sector__txt .piezas span:last-child { color: var(--color-ink); }
+  .piezas { border-top-color: var(--color-rule); }
+  .piezas__lbl { color: var(--color-muted); }
+  .carrusel__ctrl { top: auto; bottom: auto; }
+  .sector { display: flex; flex-direction: column; overflow: visible; }
+  .sector .carrusel__ctrl { position: absolute; right: var(--space-sm); top: calc((100vw - 2 * var(--gutter)) * 0.75 - 60px); }
   .where { grid-template-columns: minmax(0, 1fr); }
   .spec div, .checklist li { grid-template-columns: minmax(0, 1fr); }
   .ondas { display: none; }
@@ -443,8 +455,7 @@ button, input, select, textarea { font: inherit; }
   .banner { min-height: 340px; }
   .banner__inner { padding-block: var(--space-2xl) var(--space-xl); }
   .sec { padding-block: var(--space-3xl); }
-  .sectors > li { gap: var(--space-md); padding-block: var(--space-lg); }
-  .sectors h2 { font-size: var(--text-2xl); }
+  .sector__txt h2 { font-size: var(--text-2xl); }
   .transport { padding: var(--space-lg); }
   .transport address { font-size: var(--text-md); }
   .anchors { gap: var(--space-2xs); }
@@ -557,6 +568,7 @@ toggleMenu: () => this.setState({ menu: !this.state.menu }),
 cerrarMenu: (ev) => { if (ev && ev.target && ev.target.tagName === 'A') this.setState({ menu: false }); },
 avisoForm: this.state.aviso,
 carruselAnt: (ev) => this.moverCarrusel(ev, -1),
+carruselContar: (ev) => { const p = ev.currentTarget; const c = p.closest('.carrusel'); const n = c && c.querySelector('.carrusel__n'); if (!n) return; const tot = p.children.length; const k = Math.round(p.scrollLeft / Math.max(1, p.clientWidth)) + 1; n.textContent = Math.min(tot, Math.max(1, k)) + ' / ' + tot; },
 carruselSig: (ev) => this.moverCarrusel(ev, 1),
 enviar: (ev) => {
 ev.preventDefault();
