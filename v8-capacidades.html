@@ -368,6 +368,18 @@ button, input, select, textarea { font: inherit; }
 .sectors .desc { display: grid; gap: var(--space-sm); color: var(--color-ink-2); }
 .piezas { display: grid; gap: var(--space-3xs); padding-top: var(--space-sm); border-top: 1px solid var(--color-rule); color: var(--color-ink); }
 .piezas__lbl { font-size: var(--text-sm); color: var(--color-muted); }
+.carrusel { display: grid; gap: var(--space-xs); min-width: 0; }
+.carrusel__pista { display: grid; grid-auto-flow: column; grid-auto-columns: 100%; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
+.carrusel__pista::-webkit-scrollbar { display: none; }
+.carrusel__pista:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+.carrusel__foto { margin: 0; display: grid; gap: var(--space-2xs); scroll-snap-align: start; min-width: 0; }
+.carrusel__foto figcaption { font-size: var(--text-sm); color: var(--color-muted); }
+.carrusel__ctrl { display: flex; align-items: center; gap: var(--space-xs); }
+.carrusel__n { margin-left: var(--space-2xs); font-size: var(--text-sm); color: var(--color-muted); }
+.carrusel__btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--color-muted); border-radius: var(--radius-card); background: transparent; color: var(--color-ink); cursor: pointer; transition: border-color 0.15s var(--ease-out), background-color 0.15s var(--ease-out); }
+.carrusel__btn:hover { border-color: var(--color-ink); background: var(--color-paper-2); }
+.carrusel__btn:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.carrusel__btn:active { transform: translateY(1px); }
 .sectors img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-card); }
 .checklist { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--color-rule); }
 .checklist li { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 5fr); gap: var(--space-2xs) var(--space-lg); padding-block: var(--space-sm); border-bottom: 1px solid var(--color-rule); }
@@ -403,7 +415,8 @@ button, input, select, textarea { font: inherit; }
   .cta { grid-template-columns: minmax(0, 1fr); }
   .cta .actions { justify-content: flex-start; }
   .sectors > li { grid-template-columns: minmax(0, 1fr); }
-  .sectors img { max-width: 420px; }
+  .sectors img { max-width: none; }
+  .carrusel { max-width: 520px; }
   .where { grid-template-columns: minmax(0, 1fr); }
   .spec div, .checklist li { grid-template-columns: minmax(0, 1fr); }
   .ondas { display: none; }
@@ -517,6 +530,17 @@ constructor(props) {
 super(props);
 this.state = { menu: false, aviso: '' };
 }
+moverCarrusel(ev, d) {
+const c = ev.currentTarget && ev.currentTarget.closest('.carrusel');
+const p = c && c.querySelector('.carrusel__pista');
+if (!p) return;
+const w = p.clientWidth;
+let x = p.scrollLeft + d * w;
+if (x > p.scrollWidth - w + 2) x = 0;
+if (x < -2) x = p.scrollWidth - w;
+const quieto = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+p.scrollTo({ left: x, behavior: quieto ? 'auto' : 'smooth' });
+}
 renderVals() {
 return {
 menuAbierto: this.state.menu ? 'true' : 'false',
@@ -524,6 +548,8 @@ navClase: this.state.menu ? 'slab__nav is-open' : 'slab__nav',
 toggleMenu: () => this.setState({ menu: !this.state.menu }),
 cerrarMenu: (ev) => { if (ev && ev.target && ev.target.tagName === 'A') this.setState({ menu: false }); },
 avisoForm: this.state.aviso,
+carruselAnt: (ev) => this.moverCarrusel(ev, -1),
+carruselSig: (ev) => this.moverCarrusel(ev, 1),
 enviar: (ev) => {
 ev.preventDefault();
 const f = ev.currentTarget || ev.target;
