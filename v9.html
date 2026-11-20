@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap">
-<link rel="stylesheet" href="./assets/v9.css?v=01b67bd4">
+<link rel="stylesheet" href="./assets/v9.css?v=6757a1c0">
 <script src="./assets/transicion-v9.js"></script>
 </head>
 <body data-pag="inicio" id="top">
@@ -133,7 +133,7 @@
       <div class="head">
         <p class="label">Materiales</p>
         <h2 class="title" id="t-mat">Materiales que mecanizamos.</h2>
-        <p class="text">Mecanizamos aceros inoxidables, dúplex y al carbono en estado fundido. Si trabaja con otra aleación, consúltenos con el plano y la especificación del material.</p>
+        <p class="text">Mecanizamos aceros al carbono, aleados, de herramientas, martensíticos, inoxidables austeníticos, dúplex y superdúplex en estado fundido, y aleaciones base níquel. Si trabaja con otra aleación, consúltenos con el plano y la especificación.</p>
         <div class="actions"><a class="btn" href="v9-materiales.html">Ver tabla completa</a><a class="link" href="#" download>Descargar tabla (PDF)</a></div>
       </div>
     </div>
@@ -152,16 +152,16 @@
     <div class="buscador buscador--lista" role="search">
       <div class="buscador__fila">
         <label class="buscador__campo">Buscar material
-          <span class="buscador__input"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" class="js-buscar" placeholder="CF8, CF8M, dúplex, A890…" autocomplete="off"></span></label>
+          <span class="buscador__input"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" class="js-buscar" placeholder="WCB, CF8M, CA6NM, 1.4470…" autocomplete="off"></span></label>
         <div class="chips" role="group" aria-label="Filtrar por familia">
-          <button type="button" class="chip" aria-pressed="false" data-fam="carbono">Carbono</button>
-          <button type="button" class="chip" aria-pressed="false" data-fam="inoxidable">Inoxidable</button>
-          <button type="button" class="chip" aria-pressed="false" data-fam="duplex">Dúplex</button>
-          <button type="button" class="chip" aria-pressed="false" data-fam="superduplex">Superdúplex</button>
+          <button type="button" class="chip" aria-pressed="false" data-fam="carbono">Al carbono</button>
+          <button type="button" class="chip" aria-pressed="false" data-fam="aleados">Aleados</button>
+          <button type="button" class="chip" aria-pressed="false" data-fam="inoxidables">Inoxidables</button>
+          <button type="button" class="chip" aria-pressed="false" data-fam="niquel">Base níquel</button>
         </div>
       </div>
       <p class="buscador__res" aria-live="polite"></p>
-      <ul class="resultados" hidden><li data-fam="Acero al carbono"><b>WCB</b><span>Acero al carbono</span><span>ASTM A216</span><span>EN 1.0619</span></li><li data-fam="Acero al carbono"><b>WCC</b><span>Acero al carbono</span><span>ASTM A216</span><span></span></li><li data-fam="Acero al carbono"><b>LCB</b><span>Acero al carbono</span><span>ASTM A352</span><span></span></li><li data-fam="Acero al carbono"><b>LCC</b><span>Acero al carbono</span><span>ASTM A352</span><span></span></li><li data-fam="Inoxidable"><b>CF8</b><span>Inoxidable</span><span>ASTM A351</span><span>EN 1.4308</span></li><li data-fam="Inoxidable"><b>CF3</b><span>Inoxidable</span><span>ASTM A351</span><span></span></li><li data-fam="Inoxidable con Mo"><b>CF8M</b><span>Inoxidable con Mo</span><span>ASTM A351</span><span>EN 1.4408</span></li><li data-fam="Inoxidable con Mo"><b>CF3M</b><span>Inoxidable con Mo</span><span>ASTM A351</span><span></span></li><li data-fam="Dúplex"><b>4A (CD3MN)</b><span>Dúplex</span><span>ASTM A890 / A995</span><span>EN 1.4470</span></li><li data-fam="Dúplex"><b>1B (CD4MCuN)</b><span>Dúplex</span><span>ASTM A890 / A995</span><span></span></li><li data-fam="Superdúplex"><b>5A (CE3MN)</b><span>Superdúplex</span><span>ASTM A890 / A995</span><span>EN 1.4469</span></li><li data-fam="Superdúplex"><b>6A (CD3MWCuN)</b><span>Superdúplex</span><span>ASTM A890 / A995</span><span></span></li></ul>
+      <ul class="resultados" hidden><li data-grupo="carbono"><b>Aceros al carbono para usos generales</b><span>WCB, WCC, 1.0619, GS45, GS52, GS60</span></li><li data-grupo="carbono"><b>Aceros al carbono para baja temperatura</b><span>LCB, LCC, GS20Mn5, GS212Mn5</span></li><li data-grupo="aleados"><b>Aceros aleados</b><span>WC1, WC6, WC9, C5, C12</span></li><li data-grupo="aleados"><b>Aceros aleados para baja temperatura</b><span>LC1, LC2, LC3</span></li><li data-grupo="aleados"><b>Aceros de herramientas</b><span>GS42CrMo4</span></li><li data-grupo="inoxidables"><b>Aceros martensíticos y martensítico-ferríticos, para servicios generales y baja temperatura</b><span>CA15, CA6NM, 1.4008</span></li><li data-grupo="inoxidables"><b>Aceros inoxidables austeníticos, dúplex y superdúplex, para usos generales y baja temperatura</b><span>1.4408, 1.4468, 1.4470, 1.4519, 1.4308, 1.4552, 1.4581, CF3, CF3M, CF8, CF8M, CF8C, CN7M, CN3M, dúplex, superdúplex</span></li><li data-grupo="niquel"><b>Aleaciones base níquel</b><span>2.4883, 2.4697</span></li></ul>
     </div>
   </div>
 </section>
@@ -276,6 +276,6 @@
   </div>
 </footer>
 <a class="arriba" id="arriba" href="#top" aria-label="Volver arriba"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 10l5-5 5 5"/></svg></a>
-<script src="./assets/v9.js?v=01b67bd4"></script>
+<script src="./assets/v9.js?v=6757a1c0"></script>
 </body>
 </html>

@@ -377,8 +377,12 @@ a.cell { color: inherit; }
 .sec--alt .escala__fila li.alta i { background: var(--accent); }
 .escala + .buscador { margin-top: 48px; }
 .resultados { border-top: 1px solid var(--line); }
-.resultados li { display: grid; grid-template-columns: minmax(0, 1.3fr) repeat(3, minmax(0, 1fr)); gap: 4px 24px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.resultados li { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr); gap: 4px 24px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
 .resultados b { font-weight: 500; color: var(--title); }
+
+.tabla-fam { min-width: 640px; }
+.tabla-fam td:first-child { white-space: normal; width: 42%; }
+.tabla-fam td:last-child { color: var(--title); }
 
 /* barra de resistencia a la corrosión */
 .barra { display: inline-block; width: 96px; height: 3px; background: var(--line); vertical-align: middle; }

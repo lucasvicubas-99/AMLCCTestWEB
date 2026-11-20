@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap">
-<link rel="stylesheet" href="./assets/v9.css?v=01b67bd4">
+<link rel="stylesheet" href="./assets/v9.css?v=6757a1c0">
 <script src="./assets/transicion-v9.js"></script>
 </head>
 <body data-pag="materiales" id="top">
@@ -60,17 +60,47 @@
     <nav class="ruta" aria-label="Ruta"><a href="v9.html">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Materiales</span></nav>
     <p class="label">Materiales</p>
     <h1 id="t-cab">Materiales que mecanizamos.</h1>
-    <p>Aceros al carbono, inoxidables, dúplex y superdúplex en estado fundido. Otras aleaciones, bajo consulta.</p>
+    <p>Aceros al carbono, aleados, inoxidables, dúplex y superdúplex en estado fundido, y aleaciones base níquel. Otras aleaciones, bajo consulta.</p>
   </div>
 </section>
 <section class="sec" id="grados" aria-labelledby="t-gra">
   <div class="wrap">
     <div class="head">
-      <p class="label">Grados y normas</p>
-      <h2 class="title" id="t-gra">Grados habituales y su norma.</h2>
-      <p class="text">Grados en estado fundido con su norma ASTM y equivalente EN orientativo.</p>
+      <p class="label">Familias y grados</p>
+      <h2 class="title" id="t-gra">Familias de materiales que mecanizamos.</h2>
+      <p class="text">Siete familias de acero fundido y las aleaciones base níquel, con grados de ejemplo de cada una.</p>
       <div class="actions"><a class="btn" href="#" download>Descargar tabla (PDF)</a></div>
     </div>
+    <div class="buscador" role="search">
+      <div class="buscador__fila">
+        <label class="buscador__campo">Buscar material
+          <span class="buscador__input"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" class="js-buscar" placeholder="WCB, CF8M, CA6NM, 1.4470…" autocomplete="off"></span></label>
+        <div class="chips" role="group" aria-label="Filtrar por familia">
+          <button type="button" class="chip" aria-pressed="false" data-fam="carbono">Al carbono</button>
+          <button type="button" class="chip" aria-pressed="false" data-fam="aleados">Aleados</button>
+          <button type="button" class="chip" aria-pressed="false" data-fam="inoxidables">Inoxidables</button>
+          <button type="button" class="chip" aria-pressed="false" data-fam="niquel">Base níquel</button>
+        </div>
+      </div>
+      <p class="buscador__res" aria-live="polite"></p>
+    </div>
+    <div class="tabla-wrap" role="region" aria-label="Familias de materiales" tabindex="0">
+      <table class="js-filtrable tabla-fam">
+        <caption class="sr">Familias de acero fundido y aleaciones que mecanizamos</caption>
+        <thead><tr><th scope="col">Familia</th><th scope="col">Grados de ejemplo</th></tr></thead>
+        <tbody>
+          <tr data-grupo="carbono"><td>Aceros al carbono para usos generales</td><td>WCB, WCC, 1.0619, GS45, GS52, GS60, …</td></tr>
+          <tr data-grupo="carbono"><td>Aceros al carbono para baja temperatura</td><td>LCB, LCC, GS20Mn5, GS212Mn5, …</td></tr>
+          <tr data-grupo="aleados"><td>Aceros aleados</td><td>WC1, WC6, WC9, C5, C12, …</td></tr>
+          <tr data-grupo="aleados"><td>Aceros aleados para baja temperatura</td><td>LC1, LC2, LC3, …</td></tr>
+          <tr data-grupo="aleados"><td>Aceros de herramientas</td><td>GS42CrMo4, …</td></tr>
+          <tr data-grupo="inoxidables"><td>Aceros martensíticos y martensítico-ferríticos, para servicios generales y baja temperatura</td><td>CA15, CA6NM, 1.4008, …</td></tr>
+          <tr data-grupo="inoxidables"><td>Aceros inoxidables austeníticos, dúplex y superdúplex, para usos generales y baja temperatura</td><td>1.4408, 1.4468, 1.4470, 1.4519, 1.4308, 1.4552, 1.4581, CF3, CF3M, CF8, CF8M, CF8C, CN7M, CN3M, dúplex, superdúplex, …</td></tr>
+          <tr data-grupo="niquel"><td>Aleaciones base níquel</td><td>2.4883, 2.4697, …</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nota">Ejemplos no exhaustivos. Consulte otros grados con su especificación.</p>
     <figure class="escala">
       <figcaption class="escala__cab"><span>Resistencia a la corrosión</span><span>De menor a mayor</span></figcaption>
       <ol class="escala__fila">
@@ -82,44 +112,6 @@
       </ol>
       <p class="nota">Normas ASTM y equivalentes EN orientativos.</p>
     </figure>
-    <div class="buscador" role="search">
-      <div class="buscador__fila">
-        <label class="buscador__campo">Buscar material
-          <span class="buscador__input"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" class="js-buscar" placeholder="CF8, CF8M, dúplex, A890…" autocomplete="off"></span></label>
-        <div class="chips" role="group" aria-label="Filtrar por familia">
-          <button type="button" class="chip" aria-pressed="false" data-fam="carbono">Carbono</button>
-          <button type="button" class="chip" aria-pressed="false" data-fam="inoxidable">Inoxidable</button>
-          <button type="button" class="chip" aria-pressed="false" data-fam="duplex">Dúplex</button>
-          <button type="button" class="chip" aria-pressed="false" data-fam="superduplex">Superdúplex</button>
-        </div>
-      </div>
-      <p class="buscador__res" aria-live="polite"></p>
-    </div>
-    <div class="tabla-wrap" role="region" aria-label="Tabla de materiales" tabindex="0">
-      <table class="js-filtrable">
-        <caption class="sr">Grados de acero fundido que mecanizamos</caption>
-        <thead><tr><th scope="col">Grado</th><th scope="col">Norma ASTM</th><th scope="col">Equivalente EN</th><th scope="col">Usos habituales</th></tr></thead>
-        <tbody>
-          <tr class="fam"><td colspan="4">Acero al carbono</td></tr>
-          <tr><td>WCB</td><td>A216</td><td>1.0619</td><td>Válvulas y piezas a presión</td></tr>
-          <tr><td>WCC</td><td>A216</td><td>Sin dato</td><td>Válvulas y piezas a presión</td></tr>
-          <tr><td>LCB</td><td>A352</td><td>Sin dato</td><td>Servicio a baja temperatura</td></tr>
-          <tr><td>LCC</td><td>A352</td><td>Sin dato</td><td>Servicio a baja temperatura</td></tr>
-          <tr class="fam"><td colspan="4">Inoxidable austenítico</td></tr>
-          <tr><td>CF8</td><td>A351</td><td>1.4308</td><td>Válvulas, bombas, industria química</td></tr>
-          <tr><td>CF3</td><td>A351</td><td>Sin dato</td><td>Versión bajo carbono de CF8</td></tr>
-          <tr><td>CF8M</td><td>A351</td><td>1.4408</td><td>Medios con cloruros, química</td></tr>
-          <tr><td>CF3M</td><td>A351</td><td>Sin dato</td><td>Versión bajo carbono de CF8M</td></tr>
-          <tr class="fam"><td colspan="4">Dúplex</td></tr>
-          <tr><td>4A (CD3MN)</td><td>A890 / A995</td><td>1.4470</td><td>Petróleo y gas, desalación</td></tr>
-          <tr><td>1B (CD4MCuN)</td><td>A890 / A995</td><td>Sin dato</td><td>Bombas y medios abrasivos</td></tr>
-          <tr class="fam"><td colspan="4">Superdúplex</td></tr>
-          <tr><td>5A (CE3MN)</td><td>A890 / A995</td><td>1.4469</td><td>Agua de mar, offshore</td></tr>
-          <tr><td>6A (CD3MWCuN)</td><td>A890 / A995</td><td>Sin dato</td><td>Agua de mar, alta presión</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="nota">Equivalencias EN orientativas.</p>
   </div>
 </section>
 <section class="sec sec--alt" id="otras" aria-labelledby="t-otr">
@@ -180,6 +172,6 @@
   </div>
 </footer>
 <a class="arriba" id="arriba" href="#top" aria-label="Volver arriba"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 10l5-5 5 5"/></svg></a>
-<script src="./assets/v9.js?v=01b67bd4"></script>
+<script src="./assets/v9.js?v=6757a1c0"></script>
 </body>
 </html>

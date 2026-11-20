@@ -38,54 +38,22 @@
     v.addEventListener('play', estado); v.addEventListener('pause', estado); estado();
   }
 
-  // Buscador de materiales
+  // Buscador de materiales: filas o elementos con data-grupo
   document.querySelectorAll('.buscador').forEach(function (b) {
     var lista = b.querySelector('.resultados');
-    if (lista) {
-      var inp = b.querySelector('.js-buscar'), chs = b.querySelectorAll('.chip'), out = b.querySelector('.buscador__res');
-      var nr = function (t) { return String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
-      var its = Array.prototype.map.call(lista.children, function (li) { return { li: li, fam: nr(li.dataset.fam), txt: nr(li.textContent) }; });
-      var sel = '';
-      var ok = function (it) { if (!sel) return true; if (sel === 'carbono') return it.fam.indexOf('carbono') > -1; if (sel === 'inoxidable') return it.fam.indexOf('inoxidable') > -1; if (sel === 'duplex') return it.fam === 'duplex'; return it.fam === 'superduplex'; };
-      var go = function () {
-        var q = nr(inp.value.trim()), n = 0;
-        its.forEach(function (it) { var v = ok(it) && (!q || it.txt.indexOf(q) > -1); it.li.hidden = !v; if (v) n++; });
-        if (!q && !sel) { lista.hidden = true; out.textContent = ''; return; }
-        lista.hidden = n === 0;
-        if (n) out.textContent = n + (n === 1 ? ' grado coincide.' : ' grados coinciden.');
-        else out.innerHTML = 'Ningún grado coincide. <a href="v9-materiales.html#otras">Consulte otras aleaciones</a>.';
-      };
-      inp.addEventListener('input', go);
-      chs.forEach(function (c) { c.addEventListener('click', function () { sel = sel === c.dataset.fam ? '' : c.dataset.fam; chs.forEach(function (x) { x.setAttribute('aria-pressed', x.dataset.fam === sel ? 'true' : 'false'); }); go(); }); });
-      return;
-    }
-    var tabla = b.parentElement.querySelector('table.js-filtrable'); if (!tabla) return;
+    var cont = lista || (b.parentElement.querySelector('table.js-filtrable tbody'));
+    if (!cont) return;
     var input = b.querySelector('.js-buscar'), chips = b.querySelectorAll('.chip'), res = b.querySelector('.buscador__res');
     var norm = function (t) { return String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
-    var filas = [], fam = '', cabFam = null;
-    tabla.querySelectorAll('tbody tr').forEach(function (tr) {
-      if (tr.classList.contains('fam')) { fam = norm(tr.textContent.trim()); cabFam = tr; tr._hijos = []; return; }
-      var f = tr.cells.length > 4 ? norm(tr.cells[1].textContent) : fam;
-      var base = Array.prototype.slice.call(tr.cells, 0, tr.cells.length > 4 ? 4 : 3).map(function (c) { return c.textContent; }).join(' ');
-      var item = { tr: tr, fam: f, txt: norm(base + ' ' + f), cab: cabFam };
-      if (cabFam) cabFam._hijos.push(item);
-      filas.push(item);
-    });
+    var items = Array.prototype.map.call(cont.querySelectorAll('[data-grupo]'), function (el) { return { el: el, g: el.dataset.grupo, txt: norm(el.textContent) }; });
     var elegido = '';
-    function encaja(it) {
-      if (!elegido) return true;
-      if (elegido === 'carbono') return it.fam.indexOf('carbono') > -1;
-      if (elegido === 'inoxidable') return it.fam.indexOf('inoxidable') > -1;
-      if (elegido === 'duplex') return it.fam === 'duplex';
-      return it.fam === 'superduplex';
-    }
     function filtra() {
       var q = norm(input.value.trim()), n = 0;
-      filas.forEach(function (it) { var ok = encaja(it) && (!q || it.txt.indexOf(q) > -1); it.tr.hidden = !ok; if (ok) n++; });
-      tabla.querySelectorAll('tbody tr.fam').forEach(function (c) { c.hidden = !c._hijos.some(function (it) { return !it.tr.hidden; }); });
+      items.forEach(function (it) { var ok = (!elegido || it.g === elegido) && (!q || it.txt.indexOf(q) > -1); it.el.hidden = !ok; if (ok) n++; });
+      if (lista) lista.hidden = (!q && !elegido) || n === 0;
       if (!q && !elegido) { res.textContent = ''; return; }
-      if (n) res.textContent = n + (n === 1 ? ' grado coincide.' : ' grados coinciden.');
-      else res.innerHTML = 'Ningún grado coincide. <a href="v9-materiales.html#otras">Consulte otras aleaciones</a>.';
+      if (n) res.textContent = n + (n === 1 ? ' familia coincide.' : ' familias coinciden.');
+      else res.innerHTML = 'Ninguna familia coincide. <a href="v9-materiales.html#otras">Consulte otras aleaciones</a>.';
     }
     input.addEventListener('input', filtra);
     chips.forEach(function (c) { c.addEventListener('click', function () {
