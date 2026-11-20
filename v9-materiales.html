@@ -71,8 +71,21 @@
       <p class="text">Grados en estado fundido con su norma ASTM y equivalente EN orientativo.</p>
       <div class="actions"><a class="btn" href="#" download>Descargar tabla (PDF)</a></div>
     </div>
+    <div class="buscador" role="search">
+      <div class="buscador__fila">
+        <label class="buscador__campo">Buscar material
+          <span class="buscador__input"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" class="js-buscar" placeholder="CF8, CF8M, dúplex, A890…" autocomplete="off"></span></label>
+        <div class="chips" role="group" aria-label="Filtrar por familia">
+          <button type="button" class="chip" aria-pressed="false" data-fam="carbono">Carbono</button>
+          <button type="button" class="chip" aria-pressed="false" data-fam="inoxidable">Inoxidable</button>
+          <button type="button" class="chip" aria-pressed="false" data-fam="duplex">Dúplex</button>
+          <button type="button" class="chip" aria-pressed="false" data-fam="superduplex">Superdúplex</button>
+        </div>
+      </div>
+      <p class="buscador__res" aria-live="polite"></p>
+    </div>
     <div class="tabla-wrap" role="region" aria-label="Tabla de materiales" tabindex="0">
-      <table>
+      <table class="js-filtrable">
         <caption class="sr">Grados de acero fundido que mecanizamos</caption>
         <thead><tr><th scope="col">Grado</th><th scope="col">Norma ASTM</th><th scope="col">Equivalente EN</th><th scope="col">Usos habituales</th></tr></thead>
         <tbody>

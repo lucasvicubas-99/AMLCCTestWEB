@@ -38,6 +38,44 @@
     v.addEventListener('play', estado); v.addEventListener('pause', estado); estado();
   }
 
+  // Buscador de materiales
+  document.querySelectorAll('.buscador').forEach(function (b) {
+    var tabla = b.parentElement.querySelector('table.js-filtrable'); if (!tabla) return;
+    var input = b.querySelector('.js-buscar'), chips = b.querySelectorAll('.chip'), res = b.querySelector('.buscador__res');
+    var norm = function (t) { return String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
+    var filas = [], fam = '', cabFam = null;
+    tabla.querySelectorAll('tbody tr').forEach(function (tr) {
+      if (tr.classList.contains('fam')) { fam = norm(tr.textContent.trim()); cabFam = tr; tr._hijos = []; return; }
+      var f = tr.cells.length > 4 ? norm(tr.cells[1].textContent) : fam;
+      var base = Array.prototype.slice.call(tr.cells, 0, tr.cells.length > 4 ? 4 : 3).map(function (c) { return c.textContent; }).join(' ');
+      var item = { tr: tr, fam: f, txt: norm(base + ' ' + f), cab: cabFam };
+      if (cabFam) cabFam._hijos.push(item);
+      filas.push(item);
+    });
+    var elegido = '';
+    function encaja(it) {
+      if (!elegido) return true;
+      if (elegido === 'carbono') return it.fam.indexOf('carbono') > -1;
+      if (elegido === 'inoxidable') return it.fam.indexOf('inoxidable') > -1;
+      if (elegido === 'duplex') return it.fam === 'duplex';
+      return it.fam === 'superduplex';
+    }
+    function filtra() {
+      var q = norm(input.value.trim()), n = 0;
+      filas.forEach(function (it) { var ok = encaja(it) && (!q || it.txt.indexOf(q) > -1); it.tr.hidden = !ok; if (ok) n++; });
+      tabla.querySelectorAll('tbody tr.fam').forEach(function (c) { c.hidden = !c._hijos.some(function (it) { return !it.tr.hidden; }); });
+      if (!q && !elegido) { res.textContent = ''; return; }
+      if (n) res.textContent = n + (n === 1 ? ' grado coincide.' : ' grados coinciden.');
+      else res.innerHTML = 'Ningún grado coincide. <a href="v9-materiales.html#otras">Consulte otras aleaciones</a>.';
+    }
+    input.addEventListener('input', filtra);
+    chips.forEach(function (c) { c.addEventListener('click', function () {
+      elegido = elegido === c.dataset.fam ? '' : c.dataset.fam;
+      chips.forEach(function (x) { x.setAttribute('aria-pressed', x.dataset.fam === elegido ? 'true' : 'false'); });
+      filtra();
+    }); });
+  });
+
   // Formularios (pendientes de conectar)
   document.querySelectorAll('form.js-form').forEach(function (f) {
     var aviso = f.querySelector('.form__aviso');
