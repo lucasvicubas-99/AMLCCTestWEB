@@ -40,6 +40,25 @@
 
   // Buscador de materiales
   document.querySelectorAll('.buscador').forEach(function (b) {
+    var lista = b.querySelector('.resultados');
+    if (lista) {
+      var inp = b.querySelector('.js-buscar'), chs = b.querySelectorAll('.chip'), out = b.querySelector('.buscador__res');
+      var nr = function (t) { return String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
+      var its = Array.prototype.map.call(lista.children, function (li) { return { li: li, fam: nr(li.dataset.fam), txt: nr(li.textContent) }; });
+      var sel = '';
+      var ok = function (it) { if (!sel) return true; if (sel === 'carbono') return it.fam.indexOf('carbono') > -1; if (sel === 'inoxidable') return it.fam.indexOf('inoxidable') > -1; if (sel === 'duplex') return it.fam === 'duplex'; return it.fam === 'superduplex'; };
+      var go = function () {
+        var q = nr(inp.value.trim()), n = 0;
+        its.forEach(function (it) { var v = ok(it) && (!q || it.txt.indexOf(q) > -1); it.li.hidden = !v; if (v) n++; });
+        if (!q && !sel) { lista.hidden = true; out.textContent = ''; return; }
+        lista.hidden = n === 0;
+        if (n) out.textContent = n + (n === 1 ? ' grado coincide.' : ' grados coinciden.');
+        else out.innerHTML = 'Ningún grado coincide. <a href="v9-materiales.html#otras">Consulte otras aleaciones</a>.';
+      };
+      inp.addEventListener('input', go);
+      chs.forEach(function (c) { c.addEventListener('click', function () { sel = sel === c.dataset.fam ? '' : c.dataset.fam; chs.forEach(function (x) { x.setAttribute('aria-pressed', x.dataset.fam === sel ? 'true' : 'false'); }); go(); }); });
+      return;
+    }
     var tabla = b.parentElement.querySelector('table.js-filtrable'); if (!tabla) return;
     var input = b.querySelector('.js-buscar'), chips = b.querySelectorAll('.chip'), res = b.querySelector('.buscador__res');
     var norm = function (t) { return String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };

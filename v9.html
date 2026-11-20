@@ -129,13 +129,29 @@
 
 <section class="sec sec--alt" id="materiales" aria-labelledby="t-mat">
   <div class="wrap">
-    <div class="head">
-      <p class="label">Materiales</p>
-      <h2 class="title" id="t-mat">Aceros inoxidables, dúplex y al carbono.</h2>
-      <p class="text">Mecanizamos aceros en estado fundido. Si trabaja con otra aleación, consúltenos con el plano y la especificación del material.</p>
-      <div class="actions"><a class="btn" href="v9-materiales.html">Ver tabla completa</a><a class="link" href="#" download>Descargar tabla (PDF)</a></div>
+    <div class="mat-top">
+      <div class="head">
+        <p class="label">Materiales</p>
+        <h2 class="title" id="t-mat">Materiales que mecanizamos.</h2>
+        <p class="text">Mecanizamos aceros inoxidables, dúplex y al carbono en estado fundido. Si trabaja con otra aleación, consúltenos con el plano y la especificación del material.</p>
+        <div class="actions"><a class="btn" href="v9-materiales.html">Ver tabla completa</a><a class="link" href="#" download>Descargar tabla (PDF)</a></div>
+      </div>
+      <!-- FOTO: esferas de válvula mecanizadas (fondo transparente) -->
+      <img class="mat-top__img" src="./assets/esferas.webp" alt="Esferas de válvula de acero fundido mecanizadas" width="798" height="843" loading="lazy">
     </div>
-    <div class="buscador" role="search">
+    <figure class="escala">
+      <figcaption class="escala__cab"><span>Resistencia a la corrosión</span><span>De menor a mayor</span></figcaption>
+      <ol class="escala__fila">
+        <li><b>WCB</b><i aria-hidden="true"></i><strong>Acero al carbono</strong><span>A216 WCB</span><span>EN 1.0619</span></li>
+        <li><b>CF8</b><i aria-hidden="true"></i><strong>Inoxidable</strong><span>A351 CF8</span><span>EN 1.4308</span></li>
+        <li><b>CF8M</b><i aria-hidden="true"></i><strong>Inoxidable con Mo</strong><span>A351 CF8M</span><span>EN 1.4408</span></li>
+        <li class="alta"><b>4A</b><i aria-hidden="true"></i><strong>Dúplex</strong><span>A890 4A</span><span>EN 1.4470</span></li>
+        <li class="alta"><b>5A</b><i aria-hidden="true"></i><strong>Superdúplex</strong><span>A890 5A</span><span>EN 1.4469</span></li>
+      </ol>
+      <p class="nota">Normas ASTM y equivalentes EN orientativos.</p>
+    </figure>
+
+    <div class="buscador buscador--lista" role="search">
       <div class="buscador__fila">
         <label class="buscador__campo">Buscar material
           <span class="buscador__input"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" class="js-buscar" placeholder="CF8, CF8M, dúplex, A890…" autocomplete="off"></span></label>
@@ -147,21 +163,8 @@
         </div>
       </div>
       <p class="buscador__res" aria-live="polite"></p>
+      <ul class="resultados" hidden><li data-fam="Acero al carbono"><b>WCB</b><span>Acero al carbono</span><span>ASTM A216</span><span>EN 1.0619</span></li><li data-fam="Acero al carbono"><b>WCC</b><span>Acero al carbono</span><span>ASTM A216</span><span></span></li><li data-fam="Acero al carbono"><b>LCB</b><span>Acero al carbono</span><span>ASTM A352</span><span></span></li><li data-fam="Acero al carbono"><b>LCC</b><span>Acero al carbono</span><span>ASTM A352</span><span></span></li><li data-fam="Inoxidable"><b>CF8</b><span>Inoxidable</span><span>ASTM A351</span><span>EN 1.4308</span></li><li data-fam="Inoxidable"><b>CF3</b><span>Inoxidable</span><span>ASTM A351</span><span></span></li><li data-fam="Inoxidable con Mo"><b>CF8M</b><span>Inoxidable con Mo</span><span>ASTM A351</span><span>EN 1.4408</span></li><li data-fam="Inoxidable con Mo"><b>CF3M</b><span>Inoxidable con Mo</span><span>ASTM A351</span><span></span></li><li data-fam="Dúplex"><b>4A (CD3MN)</b><span>Dúplex</span><span>ASTM A890 / A995</span><span>EN 1.4470</span></li><li data-fam="Dúplex"><b>1B (CD4MCuN)</b><span>Dúplex</span><span>ASTM A890 / A995</span><span></span></li><li data-fam="Superdúplex"><b>5A (CE3MN)</b><span>Superdúplex</span><span>ASTM A890 / A995</span><span>EN 1.4469</span></li><li data-fam="Superdúplex"><b>6A (CD3MWCuN)</b><span>Superdúplex</span><span>ASTM A890 / A995</span><span></span></li></ul>
     </div>
-    <div class="tabla-wrap" role="region" aria-label="Materiales principales" tabindex="0">
-      <table class="js-filtrable">
-        <caption class="sr">Materiales principales</caption>
-        <thead><tr><th scope="col">Grado</th><th scope="col">Familia</th><th scope="col">Norma ASTM</th><th scope="col">Equivalente EN</th><th scope="col">Resistencia a la corrosión</th></tr></thead>
-        <tbody>
-          <tr><td>WCB</td><td>Acero al carbono</td><td>A216 WCB</td><td>1.0619</td><td><span class="barra" role="img" aria-label="1 de 5"><i style="width: 20%"></i></span></td></tr>
-          <tr><td>CF8</td><td>Inoxidable</td><td>A351 CF8</td><td>1.4308</td><td><span class="barra" role="img" aria-label="2,5 de 5"><i style="width: 50%"></i></span></td></tr>
-          <tr><td>CF8M</td><td>Inoxidable con Mo</td><td>A351 CF8M</td><td>1.4408</td><td><span class="barra" role="img" aria-label="2,5 de 5"><i style="width: 50%"></i></span></td></tr>
-          <tr><td>4A</td><td>Dúplex</td><td>A890 4A</td><td>1.4470</td><td><span class="barra" role="img" aria-label="4 de 5"><i style="width: 80%"></i></span></td></tr>
-          <tr><td>5A</td><td>Superdúplex</td><td>A890 5A</td><td>1.4469</td><td><span class="barra" role="img" aria-label="5 de 5"><i style="width: 100%"></i></span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="nota">Normas ASTM y equivalentes EN orientativos.</p>
   </div>
 </section>
 

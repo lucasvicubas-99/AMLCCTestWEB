@@ -352,6 +352,28 @@ a.cell { color: inherit; }
 .buscador__res a { color: var(--title); text-decoration: none; border-bottom: 2px solid var(--accent); }
 .buscador + .tabla-wrap { margin-top: 32px; }
 
+
+/* materiales: cabecera con foto y escala de corrosión */
+.mat-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 300px); gap: 48px; align-items: start; }
+.mat-top__img { width: 100%; height: auto; max-width: 300px; justify-self: end; }
+.escala { margin: 72px 0 0; }
+.escala__cab { display: flex; justify-content: space-between; gap: 16px; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+.escala__fila { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 32px 0 0; padding: 0; list-style: none; }
+.escala__fila::before { content: ""; position: absolute; left: 10%; right: 10%; top: 66px; height: 1px; background: var(--title); }
+.escala__fila li { position: relative; display: grid; justify-items: center; text-align: center; gap: 4px; min-width: 0; }
+.escala__fila b { font-size: 36px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; color: var(--title); }
+.escala__fila i { display: block; width: 13px; height: 13px; margin: 14px 0 16px; border: 1px solid var(--title); border-radius: 50%; background: var(--bg); }
+.escala__fila li.alta i { background: var(--accent); border-color: var(--accent); }
+.escala__fila strong { font-size: 14px; font-weight: 500; color: var(--title); }
+.escala__fila span { font-size: 14px; color: var(--text); line-height: 1.5; }
+.escala .nota { margin-top: 28px; }
+.sec--alt .escala__fila i { background: var(--bg-alt); }
+.sec--alt .escala__fila li.alta i { background: var(--accent); }
+.escala + .buscador { margin-top: 48px; }
+.resultados { border-top: 1px solid var(--line); }
+.resultados li { display: grid; grid-template-columns: minmax(0, 1.3fr) repeat(3, minmax(0, 1fr)); gap: 4px 24px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.resultados b { font-weight: 500; color: var(--title); }
+
 /* barra de resistencia a la corrosión */
 .barra { display: inline-block; width: 96px; height: 3px; background: var(--line); vertical-align: middle; }
 .barra i { display: block; height: 100%; background: var(--accent); }
@@ -384,4 +406,16 @@ td a.link { white-space: nowrap; }
   .datos div, .datos div + div { padding: 14px 0; border-left: 0; border-bottom: 1px solid var(--line); }
   .mini { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .buscador { padding: 24px 20px; }
+  .buscador__campo { flex-basis: 100%; }
+  .mat-top { grid-template-columns: minmax(0, 1fr); }
+  .mat-top__img { max-width: 200px; justify-self: start; order: -1; }
+  .escala__fila { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .escala__fila::before { left: 6px; right: auto; top: 22px; bottom: 22px; width: 1px; height: auto; }
+  .escala__fila li { grid-template-columns: 24px 88px minmax(0, 1fr); grid-template-rows: auto auto; justify-items: start; text-align: left; gap: 0 12px; padding: 12px 0; align-items: center; }
+  .escala__fila i { grid-row: 1 / 3; grid-column: 1; margin: 0; }
+  .escala__fila b { grid-row: 1 / 3; grid-column: 2; font-size: 26px; }
+  .escala__fila strong { grid-column: 3; }
+  .escala__fila span { grid-column: 3; font-size: 13px; }
+  .escala__fila span + span { display: none; }
+  .resultados li { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 }
