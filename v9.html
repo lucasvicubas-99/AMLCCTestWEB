@@ -175,7 +175,7 @@ tr.fam td { padding-top: 36px; font-size: 11px; font-weight: 500; letter-spacing
 
 /* ---------- foto ancha en 4 columnas ---------- */
 .franja { position: relative; isolation: isolate; margin-top: 72px; min-height: 560px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); overflow: hidden; }
-.franja__img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; }
+.franja__img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; }
 .franja::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(10, 10, 10, 0.82) 0%, rgba(10, 10, 10, 0.35) 55%, rgba(10, 10, 10, 0.15) 100%); }
 .franja__col { display: flex; flex-direction: column; justify-content: flex-end; gap: 18px; padding: 40px 32px; min-width: 0; }
 .franja__col + .franja__col { border-left: 1px solid rgba(255, 255, 255, 0.35); }
@@ -430,8 +430,8 @@ form { display: grid; gap: 28px; }
           <div class="maq"><h4>Deckel Maho DMC 80 U duoBLOCK</h4><dl class="spec"><dt>Tipo</dt><dd>Centro de mecanizado 5 ejes</dd><dt>Dimensiones máx.</dt><dd>Ø 900 × 1.450 mm (mesa Ø 800 × 630 mm)</dd><dt>Peso máx.</dt><dd>1.200 a 1.400 kg</dd><dt>Tolerancia</dt><dd>± 0,005 mm</dd></dl></div>
         </div></details></div>
       </div>
-      <!-- FOTO: centro de mecanizado fresando una pieza -->
-      <figure class="split__media"><img src="./assets/fresado.webp" alt="Centro de mecanizado fresando una pieza de acero fundido" width="1200" height="801" loading="lazy"></figure>
+      <!-- FOTO: cabezal del centro de mecanizado trabajando un cuerpo de válvula -->
+      <figure class="split__media"><img src="./assets/m-fresado-valvebody.webp" alt="Cabezal del centro de mecanizado trabajando un cuerpo de válvula de acero fundido" width="960" height="1200" loading="lazy"><figcaption>Mecanizado de un cuerpo de válvula.</figcaption></figure>
     </div>
 
     <!-- Torneado: foto a la izquierda -->
@@ -447,8 +447,8 @@ form { display: grid; gap: 28px; }
           <div class="maq"><h4>Sprint D600 (Spinner TC 600)</h4><dl class="spec"><dt>Tipo</dt><dd>Torno CNC horizontal</dd><dt>Dimensiones máx.</dt><dd>Ø 310 a 400 × 650 mm (volteo Ø 600 mm)</dd><dt>Peso máx.</dt><dd>400 a 600 kg</dd><dt>Tolerancia</dt><dd>± 0,005 mm</dd></dl></div>
         </div></details></div>
       </div>
-      <!-- FOTO: esferas de válvula torneadas -->
-      <figure class="split__media"><img src="./assets/esferas.webp" alt="Esferas de válvula de acero fundido torneadas" width="798" height="843" loading="lazy"></figure>
+      <!-- FOTO: anillo amarrado en el plato del torno (fotograma del vídeo) -->
+      <figure class="split__media"><img src="./assets/m-torneado-anillo.webp" alt="Anillo de acero amarrado en el plato de garras de un torno CNC" width="576" height="720" loading="lazy"><figcaption>Pieza de revolución amarrada en el plato del torno.</figcaption></figure>
     </div>
 
     <!-- Mandrinado: foto a la derecha -->
@@ -461,8 +461,8 @@ form { display: grid; gap: 28px; }
           <dl class="spec"><dt>Eje X, longitudinal</dt><dd>3.500 a 4.200 mm</dd><dt>Eje Y, vertical del cabezal</dt><dd>2.000 a 2.500 mm</dd><dt>Eje Z, carnero</dt><dd>800 a 1.250 mm</dd><dt>Eje W, husillo</dt><dd>800 mm</dd><dt>Mesa</dt><dd>1.800 × 1.800 a 2.500 × 1.800 mm</dd><dt>Peso máx. sobre mesa</dt><dd>12.000 kg</dd><dt>Giro de mesa</dt><dd>360°, indexado o continuo</dd></dl>
         </div></details></div>
       </div>
-      <!-- FOTO: mandrinadora con pieza amarrada -->
-      <figure class="split__media"><img src="./assets/mandrinado.webp" alt="Mandrinadora CNC con una pieza de acero fundido amarrada" width="960" height="1200" loading="lazy"></figure>
+      <!-- FOTO: carcasa de bomba con el husillo dentro del alojamiento -->
+      <figure class="split__media"><img src="./assets/m-mandrinado-casing.webp" alt="Husillo mecanizando el alojamiento de una carcasa de bomba amarrada en la mesa" width="960" height="1200" loading="lazy"><figcaption>Mecanizado de alojamientos en una carcasa de bomba.</figcaption></figure>
     </div>
 
     <!-- Soldadura: foto a la izquierda -->
@@ -516,11 +516,15 @@ form { display: grid; gap: 28px; }
     </div>
     <p class="nota">Equivalencias EN orientativas.</p>
 
-    <div class="head" id="otras" style="margin-top: var(--gap)">
-      <p class="label">Otras aleaciones</p>
-      <h2 class="title">Otras aleaciones bajo consulta.</h2>
-      <p class="text">Para estudiar la viabilidad se necesita: grado o especificación del material, plano con revisión (PDF, STEP o DWG), cantidades y calendario, ensayos requeridos y fecha de necesidad.</p>
-      <div class="actions"><a class="btn" href="#contacto">Enviar consulta</a></div>
+    <div class="split split--rev" id="otras" style="margin-top: var(--gap)">
+      <div class="head">
+        <p class="label">Otras aleaciones</p>
+        <h2 class="title">Otras aleaciones bajo consulta.</h2>
+        <p class="text">Para estudiar la viabilidad se necesita: grado o especificación del material, plano con revisión (PDF, STEP o DWG), cantidades y calendario, ensayos requeridos y fecha de necesidad.</p>
+        <div class="actions"><a class="btn" href="#contacto">Enviar consulta</a></div>
+      </div>
+      <!-- FOTO: voluta en superdúplex 5A preparada para la prueba hidrostática -->
+      <figure class="split__media"><img src="./assets/m-voluta-5a.webp" alt="Voluta de acero superdúplex 5A con las bridas de prueba montadas para la prueba hidrostática" width="960" height="1200" loading="lazy"><figcaption>Voluta en superdúplex 5A, preparada para la prueba hidrostática.</figcaption></figure>
     </div>
   </div>
 </section>
@@ -535,9 +539,9 @@ form { display: grid; gap: 28px; }
       <div class="actions"><a class="link" href="#lista-sectores">Ver todos los sectores</a></div>
     </div>
 
-    <!-- FOTO ANCHA: cuerpo de válvula y esfera en el centro de mecanizado -->
+    <!-- FOTO ANCHA: cuerpos de válvula mecanizados en la nave -->
     <div class="franja">
-      <img class="franja__img" src="./assets/esfera-trevisan-invertida.webp" alt="" aria-hidden="true" width="1200" height="675" loading="lazy">
+      <img class="franja__img" src="./assets/m-franja-valvulas.webp" alt="" aria-hidden="true" width="1600" height="900" loading="lazy">
       <div class="franja__col"><h3>Petróleo y gas</h3><p>Valve bodies, valve spheres, flowmeters.</p><a class="link link--light" href="#s-petroleo" data-abrir="s-petroleo">Ver más</a></div>
       <div class="franja__col"><h3>Nuclear</h3><p>Volutes, multi-stage pump casings.</p><a class="link link--light" href="#s-nuclear" data-abrir="s-nuclear">Ver más</a></div>
       <div class="franja__col"><h3>Naval y ferroviario</h3><p>Marine jet propulsion, axlebox housings.</p><a class="link link--light" href="#s-naval" data-abrir="s-naval">Ver más</a></div>
