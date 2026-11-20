@@ -133,7 +133,9 @@ button, input, select, textarea { font: inherit; }
 .statement { grid-column: 1 / 11; font-size: var(--text-display-s); max-width: 24ch; }
 .about__text { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-lg) var(--gap-columns); font-size: 1.0625rem; line-height: 1.65; }
 .about__fig { grid-column: 1 / -1; margin: 0; display: grid; gap: var(--space-sm); }
-.about__fig img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; object-position: 30% 55%; border-radius: var(--radius-card); }
+.about__mosaico { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: var(--space-sm); aspect-ratio: 2.4 / 1; }
+.about__mosaico img { width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: var(--radius-card); }
+.about__big { grid-row: 1 / 3; object-position: 50% 60%; }
 .about__fig figcaption { font-size: var(--text-sm); color: var(--color-muted); }
 
 /* Cómo trabajamos: cinco fases */
@@ -276,6 +278,9 @@ button, input, select, textarea { font: inherit; }
   .fairs__side, .fairs__body { grid-row: auto; grid-column: 1 / -1; }
   .fairs__photo { aspect-ratio: 4 / 3; }
   .about__text { grid-template-columns: minmax(0, 1fr); }
+  .about__mosaico { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto; aspect-ratio: auto; }
+  .about__mosaico img { aspect-ratio: 4 / 3; }
+  .about__big { grid-row: auto; grid-column: 1 / -1; }
   .mat__top { grid-template-columns: minmax(0, 1fr); }
   .scale__row { grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); }
   .scale__row::before { display: none; }
@@ -484,7 +489,7 @@ button, input, select, textarea { font: inherit; }
 </section>
 <section id="metrologia" class="sec" aria-labelledby="metro-titulo">
 <div class="container grid">
-<div class="c-1-6"><img loading="lazy" class="photo" src="./assets/control-dimensional.webp" alt="Máquina de medición por coordenadas Trimek Spark con una pieza en la mesa" width="800" height="600"></div>
+<div class="c-1-6"><img loading="lazy" class="photo" src="./assets/sector-ferroviario-axlebox.webp" alt="Caja de grasa de acero fundido medida con el palpador de la máquina de medición por coordenadas" width="800" height="600"></div>
 <div class="body c-7-12">
 <div class="head"><h2 id="metro-titulo">Control dimensional certificado</h2><p>Medimos cada pieza en máquina tridimensional sobre plano globeado y le entregamos su informe de cotas. Si usted tiene una especificación propia, la seguimos.</p></div>
 <dl class="spec"><div><dt>Equipo</dt><dd>Trimek Spark 16.10.12, máquina de medición por coordenadas tipo puente<br><span class="small muted">Volumen de medida 1.600 × 1.000 × 1.200 mm</span></dd></div><div><dt>Entorno</dt><dd>Sala climatizada, temperatura controlada, mesa de granito</dd></div></dl>
