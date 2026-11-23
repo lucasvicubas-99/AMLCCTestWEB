@@ -79,6 +79,20 @@
     });
   });
 
+  // Campo de archivo: botón para quitar el archivo elegido
+  document.querySelectorAll('input[type="file"]').forEach(function (inp) {
+    var caja = document.createElement('span'); caja.className = 'archivo';
+    inp.parentNode.insertBefore(caja, inp); caja.appendChild(inp);
+    var x = document.createElement('button'); x.type = 'button'; x.className = 'archivo__quitar'; x.hidden = true;
+    x.setAttribute('aria-label', 'Quitar el archivo seleccionado'); x.title = 'Quitar archivo';
+    x.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.5"/></svg>';
+    caja.appendChild(x);
+    var estado = function () { x.hidden = !(inp.files && inp.files.length); };
+    inp.addEventListener('change', estado);
+    x.addEventListener('click', function () { inp.value = ''; estado(); inp.focus(); });
+    var f = inp.form; if (f) f.addEventListener('reset', function () { setTimeout(estado, 0); });
+  });
+
   // Formularios (pendientes de conectar)
   document.querySelectorAll('form.js-form').forEach(function (f) {
     var aviso = f.querySelector('.form__aviso');

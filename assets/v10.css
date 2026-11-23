@@ -384,6 +384,14 @@ a.cell { color: inherit; }
 .tabla-fam td:first-child { white-space: normal; width: 42%; }
 .tabla-fam td:last-child { color: var(--title); }
 
+
+/* campo de archivo con botón para quitarlo */
+.archivo { position: relative; display: block; }
+.archivo input[type="file"] { padding-right: 60px; }
+.archivo__quitar { position: absolute; top: 50%; right: 6px; transform: translateY(-50%); width: 44px; height: 44px; display: grid; place-items: center; padding: 0; border: 0; background: transparent; color: var(--title); cursor: pointer; transition: color 0.2s, background-color 0.2s; }
+.archivo__quitar:hover { color: var(--white); background: var(--accent); }
+.archivo__quitar:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
+
 /* barra de resistencia a la corrosión */
 .barra { display: inline-block; width: 96px; height: 3px; background: var(--line); vertical-align: middle; }
 .barra i { display: block; height: 100%; background: var(--accent); }
