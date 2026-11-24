@@ -63,6 +63,19 @@
     }); });
   });
 
+  // Carrusel de sectores en móvil
+  document.querySelectorAll('.scar').forEach(function (c) {
+    var pista = c.querySelector('.scar__pista'), n = c.querySelector('.scar__n'), total = pista.children.length;
+    function actual() { return Math.round(pista.scrollLeft / pista.clientWidth); }
+    pista.addEventListener('scroll', function () { n.textContent = (actual() + 1) + ' / ' + total; }, { passive: true });
+    c.querySelectorAll('.scar__btn').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var i = (actual() + Number(b.getAttribute('data-dir')) + total) % total;
+        pista.scrollTo({ left: i * pista.clientWidth });
+      });
+    });
+  });
+
   // Galería de sectores: la miniatura pulsada pasa a la foto grande
   document.querySelectorAll('.mini__btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
