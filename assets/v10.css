@@ -469,3 +469,19 @@ td a.link { white-space: nowrap; }
   .escala__fila span + span { display: none; }
   .resultados li { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 }
+
+/* sectores: fotos enteras, sin recorte ni zoom */
+.sector .split__media img { aspect-ratio: auto; height: auto; object-fit: contain; }
+.sector .split__media:hover img, .sector .mini__btn:hover img { transform: none; }
+.sector .mini img { object-fit: contain; background: var(--bg-alt); }
+.sec--alt.sector .mini img { background: var(--bg); }
+
+/* contacto: columna lateral alineada con el formulario */
+.js-form { position: relative; }
+.form__aviso:empty { position: absolute; }
+@media (min-width: 1025px) {
+  .contact { align-items: stretch; }
+  .aside { display: flex; flex-direction: column; gap: 40px; }
+  .aside__llegar { margin-top: -24px; }
+  .mapa { flex: 1; aspect-ratio: auto; min-height: 0; }
+}
