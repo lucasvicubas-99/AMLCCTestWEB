@@ -507,3 +507,15 @@ td a.link { white-space: nowrap; }
 
 /* fotos que se ven enteras, sin recorte */
 .foto-entera .split__media img { aspect-ratio: auto; height: auto; }
+
+/* próximas ferias */
+.ferias { list-style: none; margin: 8px 0 0; padding: 0; border-top: 1px solid var(--line); }
+.ferias__item { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr) auto; gap: 8px 32px; align-items: baseline; padding: 24px 0; border-bottom: 1px solid var(--line); }
+.ferias__fecha { margin: 0; font-size: 15px; font-weight: 500; color: var(--title); white-space: nowrap; }
+.ferias__item h3 { margin: 0 0 4px; font-size: 18px; font-weight: 500; color: var(--title); }
+.ferias__item p { margin: 0; font-size: 15px; color: var(--muted); }
+.ferias__stand { white-space: nowrap; }
+@media (max-width: 600px) {
+  .ferias__item { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .ferias__stand { white-space: normal; }
+}
