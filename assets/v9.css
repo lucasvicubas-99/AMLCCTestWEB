@@ -443,3 +443,6 @@ td a.link { white-space: nowrap; }
 .sector .split__media:hover img, .sector .mini__btn:hover img { transform: none; }
 .sector .mini img { object-fit: contain; background: var(--bg-alt); }
 .sec--alt.sector .mini img { background: var(--bg); }
+
+/* fotos que se ven enteras, sin recorte */
+.foto-entera .split__media img { aspect-ratio: auto; height: auto; }
