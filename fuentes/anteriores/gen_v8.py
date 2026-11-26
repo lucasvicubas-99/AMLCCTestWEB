@@ -1,0 +1,653 @@
+"""Genera project/Inicio-v8.dc.html: rediseño completo Hallmark de la página principal (contenido y enlaces de la v6)."""
+import re
+
+P = '/home/claude/web-aml/project/'
+v6 = open(P + 'Inicio-v6.dc.html', encoding='utf-8').read()
+
+# ---------- Logo en negativo (blanco sobre azul), colores y fuente por tokens ----------
+logo = open('/home/claude/v8/logo-blanco.svg.txt', encoding='utf-8').read()
+logo = (logo.replace(' style="height: 112px; width: auto; display: block"', ' class="logo__svg"')
+            .replace('fill="#FFFFFF"', 'style="fill: var(--color-paper)"')
+            .replace('fill="#011F67"', 'style="fill: var(--color-ink)"')
+            .replace(" font-family=\"'IBM Plex Sans', system-ui, sans-serif\"", ''))
+logo = logo.replace('<text ', '<text class="logo__txt" ')
+assert '#' not in re.sub(r'd="[^"]*"', '', logo)
+
+FLECHA_NO = ''  # sin flechas pegadas a los enlaces (63)
+
+CSS = r'''/* Hallmark · shape: Narrative Workflow · genre: modern-minimal · theme: brand · redesign: full · draw: cd1568
+ * paper: oklch(100% 0 0) · accent: oklch(27.8% 0.131 263) · display: Space Grotesk · body: IBM Plex Sans · hero: Poster · nav: slab · footer: statement · signature: the machining video full-bleed under the head
+ * axes: light/grotesk-sans/cool · posture: committed (the AML navy carries the nav, the hero, the Expedición band and the footer) · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 · weakest: P, a supplier page argues little; the argument is the route one casting takes through the plant, told as five numbered stages */
+/* Hallmark · swap · hero Index to Poster · the client shot a machining video for the hero; it is the strongest real thing the page has */
+/* Hallmark · dropped #capacidades · the footer links Control dimensional and Ensayos now point at their own stages, #calidad and #ensayos */
+/* Hallmark · reworded "Mecanizado de alta precisión, ensayos y control de calidad." to "Mecanizado de alta precisión." · 58 names it: the head runs seven words or fewer, ensayos and calidad move to the lede */
+/* Hallmark · reworded "Piezas de acero fundido a la carta, según plano y especificación del cliente. Mecanizado, inspección dimensional y ensayos en planta propia, con trazabilidad de cada pieza." to "Medimos y ensayamos cada pieza de acero fundido que mecanizamos, según su plano." · 58 names it: one sentence of twelve words; a la carta goes to the footer statement, trazabilidad to Quiénes somos and stage 3 */
+/* Hallmark · reworded "Quiénes somos" to "Más de 15 años mecanizando, midiendo y ensayando piezas de acero fundido en Lecumberri." · 54 and craft § 6: a category label becomes a statement made from the section's own facts */
+/* Hallmark · dismissed 59 · ten sections because the shape is five numbered stages, each a phase of the casting's route through the plant */
+/* Hallmark · dismissed render · the sandbox cannot reach fonts.googleapis.com; the published page loads Space Grotesk and IBM Plex Sans */
+:root {
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
+  --text-xs: 0.8125rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.25rem; --text-xl: 1.5625rem; --text-2xl: 1.953rem; --text-3xl: 2.441rem;
+  --text-display-s: clamp(2.25rem, 4vw + 0.5rem, 3.75rem); --text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem);
+  --text-section: clamp(2rem, 2.5vw + 1rem, 3.5rem); --text-title: clamp(1.25rem, 0.75vw + 0.875rem, 1.625rem); --text-lead: clamp(1.125rem, 0.35vw + 1rem, 1.375rem);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-in: cubic-bezier(0.7, 0, 0.84, 0); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
+  --color-error: oklch(52% 0.19 27); --color-success: oklch(50% 0.12 150);
+  --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
+  --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
+  --color-paper: #FFFFFF; --color-paper-2: #EDF1F6; --color-paper-3: #EEF1F0;
+  --color-ink: #011F67; --color-ink-2: #3A4A75; --color-muted: #5A6A92;
+  --color-rule: #DCE2EA; --color-sage: #B3C3C0;
+  --color-accent: #011F67; --color-accent-ink: #FFFFFF; --color-focus: #011F67; --color-focus-on-ink: #FFFFFF;
+  --color-veil: color-mix(in oklch, var(--color-ink) 90%, transparent);
+  --color-on-ink-2: color-mix(in oklch, var(--color-paper) 86%, var(--color-ink));
+  --color-on-ink-rule: color-mix(in oklch, var(--color-paper) 26%, var(--color-ink));
+  --font-display: "Space Grotesk", system-ui, sans-serif; --font-body: "IBM Plex Sans", system-ui, sans-serif; --font-outlier: var(--font-body);
+  --display-weight: 500;
+  --radius-card: 4px; --radius-pill: 999px; --rule-hair: 1px; --shadow-card: none;
+  --tracking-display: -0.02em;
+  --nav-h: 76px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scrollbar-color: var(--color-muted) var(--color-paper); scroll-padding-top: calc(var(--nav-h) + var(--space-lg)); }
+body { margin: 0; background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); font-size: var(--text-md); line-height: 1.55; -webkit-font-smoothing: antialiased; caret-color: var(--color-accent); }
+::selection { background: color-mix(in oklab, var(--color-accent) 22%, transparent); color: var(--color-ink); }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.on-ink :focus-visible, .on-ink:focus-visible { outline-color: var(--color-focus-on-ink); }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.16em; }
+h1, h2, h3 { margin: 0; font-family: var(--font-display); font-weight: var(--display-weight); font-synthesis: none; letter-spacing: var(--tracking-display); line-height: 1.05; overflow-wrap: break-word; min-width: 0; text-wrap: balance; }
+h1 { max-width: 14ch; font-size: var(--text-display); } h2 { max-width: 30ch; font-size: var(--text-section); } h3 { max-width: 40ch; font-size: var(--text-title); line-height: 1.2; }
+.lead { font-size: var(--text-lead); line-height: 1.45; max-width: 52ch; }
+p { margin: 0; text-wrap: pretty; }
+p:not([class]) { max-width: 65ch; }
+img, video { max-width: 100%; height: auto; display: block; }
+svg { display: block; }
+[hidden] { display: none !important; }
+button, input, select, textarea { font: inherit; }
+.container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+.num { font-variant-numeric: tabular-nums; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-2xl); align-items: start; }
+.c-1-4 { grid-column: 1 / 5; } .c-1-5 { grid-column: 1 / 6; } .c-1-6 { grid-column: 1 / 7; } .c-1-10 { grid-column: 1 / 11; } .c-1-12 { grid-column: 1 / -1; }
+.c-5-12 { grid-column: 5 / -1; } .c-6-12 { grid-column: 6 / -1; } .c-7-12 { grid-column: 7 / -1; }
+.muted { color: var(--color-ink-2); }
+.small { font-size: var(--text-sm); }
+
+/* Paso al contenido */
+.skip { position: absolute; left: var(--space-md); top: calc(-1 * var(--space-3xl)); z-index: var(--z-modal); background: var(--color-paper); color: var(--color-ink); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-card); }
+.skip:focus-visible { top: var(--space-md); }
+
+/* Controles: ocho estados */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-xs); min-height: 48px; padding: 0 var(--space-lg); border: 1px solid transparent; border-radius: var(--radius-card); font-size: var(--text-md); font-weight: 500; line-height: 1.2; text-decoration: none; white-space: nowrap; cursor: pointer; transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out); }
+.btn--ink { background: var(--color-ink); color: var(--color-accent-ink); }
+.btn--ink:hover { background: var(--color-ink-2); }
+.btn--paper { background: var(--color-paper); color: var(--color-ink); }
+.btn--paper:hover { background: var(--color-paper-2); }
+.btn--line { border-color: var(--color-muted); color: var(--color-ink); background: transparent; }
+.btn--line:hover { border-color: var(--color-ink); background: var(--color-paper-2); }
+.btn--line-on-ink { border-color: var(--color-on-ink-2); color: var(--color-paper); background: transparent; }
+.btn--line-on-ink:hover { border-color: var(--color-paper); background: color-mix(in oklch, var(--color-paper) 10%, transparent); }
+.btn:active { transform: translateY(1px); }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; }
+.btn[aria-busy="true"] { cursor: progress; }
+.btn svg { flex-shrink: 0; }
+.link { font-weight: 500; text-decoration: underline; }
+.link:hover { color: var(--color-ink-2); }
+
+/* Cabecera: barra maciza */
+.slab { position: sticky; top: 0; z-index: var(--z-sticky-nav); background: var(--color-ink); color: var(--color-paper); }
+.slab__bar { min-height: var(--nav-h); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-sm) var(--space-xl); padding-block: var(--space-sm); }
+.logo { display: flex; color: var(--color-paper); }
+.logo__svg { height: 52px; width: auto; }
+.logo__txt { font-family: var(--font-body); }
+.slab__nav { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs) var(--space-lg); font-size: 15px; }
+.slab__nav a { color: var(--color-paper); text-decoration: none; padding-block: var(--space-xs); }
+.slab__nav a:hover { text-decoration: underline; }
+.slab__nav .btn { padding-block: 0; min-height: 44px; }
+.idiomas { display: flex; align-items: center; gap: var(--space-xs); padding-left: var(--space-lg); border-left: 1px solid var(--color-on-ink-rule); color: var(--color-sage); }
+.idiomas a { color: var(--color-sage) !important; }
+.idiomas a[aria-current] { color: var(--color-paper) !important; }
+.burger { display: none; width: 48px; height: 48px; align-items: center; justify-content: center; border: 1px solid var(--color-on-ink-2); border-radius: var(--radius-card); background: transparent; color: var(--color-paper); cursor: pointer; }
+.burger:hover { border-color: var(--color-paper); }
+.burger:active { transform: translateY(1px); }
+
+/* Portada: el vídeo a sangre */
+.hero { position: relative; isolation: isolate; min-height: max(640px, calc(100svh - var(--nav-h))); display: flex; align-items: flex-end; background: var(--color-ink); color: var(--color-paper); overflow: clip; }
+.hero__video { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.hero__veil { position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, var(--color-veil) 0%, color-mix(in oklch, var(--color-ink) 55%, transparent) 55%, color-mix(in oklch, var(--color-ink) 25%, transparent) 100%); }
+.hero__inner { width: 100%; padding-block: var(--space-3xl) var(--space-2xl); display: grid; gap: var(--space-lg); animation: settle 0.6s var(--ease-out) both; }
+.hero h1 { color: var(--color-paper); }
+.hero .lead { color: var(--color-on-ink-2); max-width: 40ch; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-xs); }
+.pausa { position: absolute; right: var(--gutter); bottom: var(--space-2xl); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--color-on-ink-2); border-radius: var(--radius-card); background: transparent; color: var(--color-paper); cursor: pointer; }
+.pausa:hover { border-color: var(--color-paper); }
+.pausa:active { transform: translateY(1px); }
+@keyframes settle { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* Quiénes somos */
+.about { padding-block: var(--section-gap) var(--section-gap-s); }
+.statement { grid-column: 1 / 11; font-size: var(--text-display-s); max-width: 24ch; }
+.about__text { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-lg) var(--gap-columns); font-size: 1.0625rem; line-height: 1.65; }
+.about__fig { grid-column: 1 / -1; margin: 0; display: grid; gap: var(--space-sm); }
+.about__mosaico { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: var(--space-sm); aspect-ratio: 2.4 / 1; }
+.about__mosaico img { width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: var(--radius-card); }
+.about__big { grid-row: 1 / 3; object-position: 50% 60%; }
+.about__fig figcaption { font-size: var(--text-sm); color: var(--color-muted); }
+
+/* Cómo trabajamos: cinco fases */
+.process { border-top: 1px solid var(--color-rule); padding-block: var(--section-gap-s) 0; }
+.process__intro { padding-bottom: var(--space-2xl); }
+.stage--first { border-top: 1px solid var(--color-rule); padding-block: var(--space-2xl) var(--section-gap-s); }
+.process__lead { align-self: end; }
+.stage { padding-block: var(--space-2xl) var(--section-gap-s); }
+.stage + .stage { border-top: 1px solid var(--color-rule); }
+.stage__head { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-md); align-content: start; min-width: 0; }
+.stage__head h2 { font-size: var(--text-section); }
+.stage__head p { color: var(--color-ink-2); font-size: var(--text-lead); line-height: 1.45; }
+.body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); min-width: 0; }
+
+/* 1. Fundición: materiales */
+.mat__top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-xl); align-items: center; }
+.mat__top h3 { font-size: var(--text-2xl); }
+.mat__esferas { width: 160px; height: auto; }
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
+.scale { display: grid; gap: var(--space-md); }
+.scale__legend { display: flex; justify-content: space-between; gap: var(--space-md); font-size: var(--text-sm); color: var(--color-ink-2); }
+.scale__row { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; }
+.scale__row::before { content: ""; position: absolute; left: 10%; right: 10%; top: 60px; height: 1px; background: var(--color-ink); }
+.scale__row li { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; padding-inline: var(--space-2xs); }
+.scale__code { height: 40px; display: flex; align-items: flex-end; font-family: var(--font-display); font-size: clamp(1.25rem, 2.2vw, 2rem); line-height: 1; }
+.scale__dot { width: 13px; height: 13px; margin-block: var(--space-md); border: 1.5px solid var(--color-ink); border-radius: 50%; background: var(--color-paper); }
+.scale__dot--lleno { background: var(--color-ink); }
+.scale__name { font-weight: 500; font-size: clamp(0.75rem, 1.1vw, 0.9375rem); line-height: 1.3; }
+.scale__norma { margin-top: var(--space-2xs); font-size: var(--text-md); color: var(--color-ink-2); line-height: 1.35; }
+.scale__nota { font-size: var(--text-sm); color: var(--color-ink-2); }
+.finder { background: var(--color-paper-2); border-radius: var(--radius-card); padding: var(--space-xl); display: grid; gap: var(--space-md); }
+.finder__row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-md) var(--space-lg); }
+.finder__label { flex: 1 1 320px; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-xs); font-size: var(--text-sm); color: var(--color-ink-2); }
+.finder__field { display: flex; align-items: center; gap: var(--space-sm); border-bottom: 1px solid var(--color-ink); }
+.finder__field input { flex: 1; width: 100%; min-width: 0; min-height: 48px; border: 0; background: transparent; color: var(--color-ink); font-family: var(--font-display); font-size: var(--text-lg); outline: 2px solid transparent; outline-offset: 2px; }
+.finder__field input:focus-visible { outline-color: var(--color-focus); }
+.finder__field input::placeholder { color: var(--color-muted); opacity: 1; }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+.chip { min-height: 44px; padding: 0 var(--space-md); border: 1px solid var(--color-muted); border-radius: var(--radius-card); background: var(--color-paper); color: var(--color-ink); font-size: var(--text-sm); cursor: pointer; transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out); }
+.chip:hover { border-color: var(--color-ink); }
+.chip:active { transform: translateY(1px); }
+.chip[aria-pressed="true"] { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-paper); }
+.chip:disabled { opacity: 0.5; cursor: not-allowed; }
+.results { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-rule); }
+.results li { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--space-2xs) var(--space-lg); align-items: baseline; padding-block: var(--space-sm); border-bottom: 1px solid var(--color-rule); }
+.results__code { font-family: var(--font-display); font-size: var(--text-xl); }
+
+/* 2. Mecanizado: las máquinas */
+.machines { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap-columns); }
+.machine { display: block; color: inherit; text-decoration: none; min-width: 0; }
+.machine figure { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); }
+.machine__frame { overflow: hidden; border-radius: var(--radius-card); }
+.machine__frame img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.machine figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: var(--space-2xs) var(--space-sm); padding-top: var(--space-sm); border-top: 1px solid var(--color-rule); }
+.machine__name { font-family: var(--font-display); font-size: var(--text-title); }
+.machine__cat { font-size: var(--text-sm); color: var(--color-muted); }
+.machine:hover .machine__name { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.16em; }
+
+/* 3. Control dimensional: filas */
+.rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-rule); }
+.rows li { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-2xs) var(--gap-columns); align-items: baseline; padding-block: var(--space-lg); border-bottom: 1px solid var(--color-rule); }
+.rows h3 { font-weight: 400; }
+.rows p { color: var(--color-ink-2); }
+.iso { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg); align-items: baseline; }
+
+/* 4. Ensayos: dos ensayos en grande */
+.tests { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: var(--gap-columns); }
+.test { border-top: 2px solid var(--color-ink); padding-top: var(--space-lg); display: grid; gap: var(--space-sm); }
+.test h3 { font-size: var(--text-3xl); max-width: 12ch; }
+
+/* 5. Expedición: banda azul con los sectores */
+.band-ink { position: relative; isolation: isolate; background: var(--color-ink); color: var(--color-paper); padding-block: var(--section-gap-s); }
+.band-ink__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; }
+.band-ink::after { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--color-veil); }
+.band-ink .stage__head p { color: var(--color-on-ink-2); }
+.band-ink h3 { font-size: var(--text-2xl); }
+.index { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-on-ink-rule); }
+.index li { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--space-2xs) var(--gap-columns); align-items: baseline; padding-block: var(--space-md); border-bottom: 1px solid var(--color-on-ink-rule); }
+.index__name { font-family: var(--font-display); font-size: var(--text-xl); }
+.index__desc { color: var(--color-on-ink-2); }
+.index a { color: var(--color-paper); }
+
+/* Ferias */
+.fairs { padding-block: var(--section-gap) var(--section-gap-s); }
+.fairs__grid { align-items: start; }
+.fairs__side { grid-row: 1; grid-column: 1 / 6; }
+.fairs__body { grid-row: 1; grid-column: 7 / -1; display: grid; gap: var(--space-xl); align-content: start; min-width: 0; }
+.fairs__photo { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 45%; border-radius: var(--radius-card); }
+.table { width: 100%; border-collapse: collapse; text-align: left; font-size: var(--text-md); }
+.table th { padding: var(--space-sm) var(--space-md) var(--space-sm) 0; font-size: var(--text-sm); font-weight: 400; color: var(--color-muted); border-bottom: 1px solid var(--color-ink); }
+.table td { padding: var(--space-lg) var(--space-md) var(--space-lg) 0; border-bottom: 1px solid var(--color-rule); vertical-align: top; }
+.table td:last-child, .table th:last-child { padding-right: 0; text-align: right; }
+.table__fecha { font-family: var(--font-display); font-size: var(--text-lg); white-space: nowrap; }
+.table__feria { display: block; font-weight: 500; }
+
+/* Contacto: formulario */
+.contact { background: var(--color-paper-2); padding-block: var(--section-gap-s); }
+.contact__facts { display: grid; gap: var(--space-xs); font-size: var(--text-lg); }
+.contact__facts a { text-decoration: none; }
+.contact__facts a:hover { text-decoration: underline; }
+.form { display: grid; gap: var(--space-lg); }
+.form__pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-lg) var(--gap-columns); }
+.field { display: grid; gap: var(--space-xs); font-size: var(--text-sm); color: var(--color-ink-2); min-width: 0; }
+.field input, .field select, .field textarea { width: 100%; min-height: 48px; padding: var(--space-sm) var(--space-md); border: 1px solid var(--color-muted); border-radius: var(--radius-card); background: var(--color-paper); color: var(--color-ink); font-size: var(--text-md); outline: 2px solid transparent; outline-offset: 2px; transition: border-color var(--dur-micro) var(--ease-out); }
+.field textarea { min-height: 128px; resize: vertical; }
+.field input:hover, .field select:hover, .field textarea:hover { border-color: var(--color-ink); }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline-color: var(--color-focus); }
+.field input:disabled, .field select:disabled, .field textarea:disabled { opacity: 0.5; cursor: not-allowed; }
+.check { display: flex; align-items: flex-start; gap: var(--space-sm); font-size: var(--text-sm); color: var(--color-ink-2); }
+.check input { width: 20px; height: 20px; margin: var(--space-3xs) 0 0; flex: none; accent-color: var(--color-ink); }
+.form__help { min-height: 1lh; font-size: var(--text-sm); color: var(--color-ink-2); }
+
+/* Pie: una frase de cierre */
+.foot { background: var(--color-ink); color: var(--color-paper); padding-block: var(--section-gap-s) var(--space-xl); }
+.foot__statement { grid-column: 1 / 11; font-size: var(--text-display-s); max-width: 22ch; }
+.foot__logo .logo__svg { height: 72px; }
+.foot__cols { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 4fr) repeat(3, minmax(0, 2fr)) minmax(0, 2fr); gap: var(--space-xl) var(--gap-columns); align-items: start; }
+.foot__col { display: grid; gap: var(--space-xs); font-size: 15px; color: var(--color-on-ink-2); }
+.foot__col p { color: var(--color-sage); }
+.foot__col a { color: var(--color-paper); text-decoration: none; white-space: nowrap; }
+.foot__col a:hover { text-decoration: underline; }
+.foot__legal { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-sm) var(--space-lg); padding-top: var(--space-lg); border-top: 1px solid var(--color-on-ink-rule); font-size: var(--text-sm); color: var(--color-on-ink-2); }
+.foot__legal a { color: var(--color-on-ink-2); }
+.foot__legal a[aria-current] { color: var(--color-paper); }
+.foot__legal span { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg); }
+
+/* Móvil */
+@media (max-width: 75rem) { .foot__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); } .foot__logo { grid-column: 1 / -1; } }
+@media (max-width: 60rem) {
+  :root { --gutter: 24px; --section-gap-s: 80px; --section-gap: 96px; --section-gap-l: 120px; --nav-h: 68px; }
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .grid > * { grid-column: 1 / -1; }
+  .burger { display: flex; }
+  .slab__nav { display: none; width: 100%; flex-direction: column; align-items: flex-start; gap: var(--space-2xs); padding-block: var(--space-sm); border-top: 1px solid var(--color-on-ink-rule); }
+  .slab__nav.is-open { display: flex; }
+  .slab__nav a { padding-block: var(--space-sm); font-size: 17px; }
+  .idiomas { border-left: 0; padding-left: 0; }
+  .logo__svg { height: 44px; }
+  .machines { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fairs__side, .fairs__body { grid-row: auto; grid-column: 1 / -1; }
+  .fairs__photo { aspect-ratio: 4 / 3; }
+  .about__text { grid-template-columns: minmax(0, 1fr); }
+  .about__mosaico { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto; aspect-ratio: auto; }
+  .about__mosaico img { aspect-ratio: 4 / 3; }
+  .about__big { grid-row: auto; grid-column: 1 / -1; }
+  .mat__top { grid-template-columns: minmax(0, 1fr); }
+  .scale__row { grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); }
+  .scale__row::before { display: none; }
+  .scale__row li { display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: baseline; text-align: left; gap: 0 var(--space-md); padding: var(--space-sm) 0; border-top: 1px solid var(--color-rule); }
+  .scale__code { height: auto; grid-row: span 2; }
+  .scale__dot { display: none; }
+  .scale__legend { display: none; }
+  .pausa { bottom: var(--space-lg); }
+}
+@media (max-width: 40rem) {
+  :root { --gutter: 16px; --section-gap-s: 56px; --section-gap: 72px; --section-gap-l: 96px; --gap-columns: 16px; }
+  .rows li, .index li { grid-template-columns: minmax(0, 1fr); }
+  .tests, .form__pair { grid-template-columns: minmax(0, 1fr); }
+  .mat__esferas { width: 120px; }
+  .finder { padding: var(--space-lg) var(--space-md); }
+  .finder__label { flex-basis: 100%; }
+  .foot__cols { grid-template-columns: minmax(0, 1fr); }
+  .table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .table tr { display: grid; gap: var(--space-2xs); padding-block: var(--space-md); border-bottom: 1px solid var(--color-rule); }
+  .table td { padding: 0; border: 0; text-align: left !important; }
+  :root { --gutter: 20px; }
+  .grid { row-gap: var(--space-lg); }
+  .hero { min-height: calc(100svh - var(--nav-h)); }
+  .hero__inner { padding-block: var(--space-2xl) var(--space-xl); }
+  .hero__actions .btn { flex: 1 1 100%; justify-content: center; }
+  .pausa { top: var(--space-md); bottom: auto !important; }
+  .stage, .stage--first { padding-block: var(--space-xl) var(--space-2xl); }
+  .test h3 { font-size: var(--text-2xl); }
+  .machines { gap: var(--space-lg) var(--space-md); }
+  .machine figcaption { flex-direction: column; align-items: flex-start; gap: var(--space-3xs); }
+  .foot__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-lg) var(--space-md); }
+  .foot__cols > :first-child, .foot__logo { grid-column: 1 / -1; }
+  .btn { min-height: 48px; }
+}
+@media (prefers-reduced-motion: reduce) { *:not(.keep-motion), *:not(.keep-motion)::before, *:not(.keep-motion)::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+'''
+
+def pie_html(en_inicio=True):
+    return PIE_TPL.replace('%%LOGO%%', logo).replace('%%H%%', '' if en_inicio else 'Inicio-v8.dc.html')
+
+def cabecera(actual=None, en_inicio=True):
+    t = NAV_TPL.replace('%%LOGO%%', logo).replace('%%INICIO%%', '#inicio' if en_inicio else 'Inicio-v8.dc.html')
+    t = t.replace('%%EMPRESA%%', '#empresa' if en_inicio else 'Inicio-v8.dc.html#empresa')
+    for k in ['CAP', 'CAL', 'SEC', 'MAT', 'CON']:
+        t = t.replace('%%AC_' + k + '%%', ' aria-current="page"' if k == actual else '')
+    return t
+
+ICON_DESCARGA = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>'
+
+NAV_TPL = '''<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="slab on-ink">
+<div class="container slab__bar">
+<a href="%%INICIO%%" class="logo" aria-label="AML Centrifugal Casting, inicio">%%LOGO%%</a>
+<button type="button" class="burger" aria-label="Menú" aria-controls="menu-principal" aria-expanded="{{menuAbierto}}" onClick="{{toggleMenu}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+<nav id="menu-principal" aria-label="Principal" class="{{navClase}}" onClick="{{cerrarMenu}}">
+<a href="%%EMPRESA%%">Quiénes somos</a>
+<a href="Capacidades-v8.dc.html"%%AC_CAP%%>Capacidades</a>
+<a href="Calidad-v8.dc.html"%%AC_CAL%%>Calidad</a>
+<a href="Sectores-v8.dc.html"%%AC_SEC%%>Sectores</a>
+<a href="Materiales-v8.dc.html"%%AC_MAT%%>Materiales</a>
+<a href="Contacto-v8.dc.html" class="btn btn--line-on-ink"%%AC_CON%%>Contacto</a>
+<span aria-label="Idioma" role="group" class="idiomas"><a href="#" aria-current="true" lang="es">es</a><a href="#" lang="en">en</a><a href="#" lang="de">de</a><a href="#" lang="it">it</a><a href="#" lang="fr">fr</a></span>
+</nav>
+</div>
+</header>
+'''
+
+hero = '''<main id="contenido">
+<section id="inicio" class="hero on-ink">
+<video class="hero__video" src="/_blob/2409eea66314255b1920c51d63c3dd04" poster="/_blob/2d1f70f1daf16b807f55be93c811dd32" autoplay="" muted="" loop="" playsinline="" preload="auto" ref="{{setVideo}}" aria-hidden="true"></video>
+<div class="hero__veil" aria-hidden="true"></div>
+<div class="container hero__inner">
+<h1>Mecanizado de alta precisión.</h1>
+<p class="lead">Medimos y ensayamos cada pieza de acero fundido que mecanizamos, según su plano.</p>
+<div class="hero__actions">
+<a href="#contacto" class="btn btn--paper">Solicitar información</a>
+<a href="Contacto-v8.dc.html#transporte" class="btn btn--line-on-ink">Cómo llegar</a>
+</div>
+</div>
+<button type="button" class="pausa" aria-label="{{pausaLabel}}" onClick="{{togglePausa}}"><sc-if value="{{pausado}}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5 3l8 5-8 5z"></path></svg></sc-if><sc-if value="{{reproduciendo}}" hint-placeholder-val="{{ true }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5 3v10M11 3v10"></path></svg></sc-if></button>
+</section>
+'''
+
+about = '''<section id="empresa" class="about">
+<div class="container grid">
+<h2 class="statement">Más de 15 años mecanizando, midiendo y ensayando piezas de acero fundido en Lecumberri.</h2>
+<div class="about__text">
+<p>Somos AML Centrifugal Casting. Desde 2012, en nuestra planta de Lecumberri (Navarra), mecanizamos con precisión piezas de acero fundido con tolerancias ajustadas, y nosotros mismos las medimos y ensayamos antes de entregarlas.</p>
+<p class="muted">Trabajamos bajo pedido, desde una sola pieza hasta series con entregas programadas, y adaptamos el proceso a lo que necesita cada cliente. Tratamos sus planos y su documentación técnica con estricta confidencialidad y seguimos cada pieza de principio a fin, con trazabilidad completa. Tenemos clientes en toda España y una fuerte presencia internacional.</p>
+</div>
+<figure class="about__fig">
+<div class="about__mosaico">
+<img class="about__big" loading="lazy" src="/_blob/b9144035a3fb7307c9d845da076b2fbf" alt="Carcasa multietapa de acero fundido amarrada en la mesa de mecanizado de la planta" width="1600" height="1200">
+<img loading="lazy" src="/_blob/029d5f194fb533530434a70e12986662" alt="Carcasa de bomba de doble aspiración sobre la mesa del centro de mecanizado" width="1000" height="750">
+<img loading="lazy" src="/_blob/19bdd675133aa9f07033a646f6389fe4" alt="Rodete de bomba de acero fundido ya mecanizado" width="1000" height="750">
+</div>
+<figcaption>Piezas en mecanizado en nuestra planta de Lecumberri.</figcaption>
+</figure>
+</div>
+</section>
+'''
+
+proceso = ''
+
+escala = [('WCB', 'Acero al carbono', 'A216 WCB', '1.0619', False), ('CF8', 'Inoxidable', 'A351 CF8', '1.4308', False),
+          ('CF8M', 'Inoxidable con Mo', 'A351 CF8M', '1.4408', False), ('4A', 'Dúplex', 'A890 4A', '1.4470', True),
+          ('5A', 'Superdúplex', 'A890 5A', '1.4469', True)]
+pasos = ''.join(f'<li><span class="scale__code">{c}</span><span class="scale__dot{" scale__dot--lleno" if f else ""}" aria-hidden="true"></span>'
+                f'<span class="scale__name">{n}</span><span class="scale__norma">{nr}<br>EN {en}</span></li>' for c, n, nr, en, f in escala)
+
+etapa1 = '''<section id="servicios" class="process" aria-labelledby="proceso-titulo">
+<div class="container grid process__intro">
+<h2 id="proceso-titulo" class="c-1-6">Del bruto a la expedición</h2>
+<p class="lead c-7-12 process__lead muted">Trabajamos 24 horas, en tres turnos. Cada pieza pasa por cinco fases, todas en nuestra planta, y la tenemos identificada en cada una.</p>
+</div>
+<div id="materiales" class="container grid stage stage--first" aria-labelledby="fase-1">
+<div class="stage__head c-1-4"><h2 id="fase-1">1. Fundición</h2><p>Recibimos la pieza en bruto y la identificamos.</p></div>
+<div class="body c-5-12">
+<div class="mat__top">
+<div style="display: grid; gap: var(--space-md)">
+<h3>Materiales que mecanizamos</h3>
+<p class="muted">Mecanizamos aceros inoxidables, dúplex y al carbono en estado fundido. Si trabaja con otra aleación, consúltenos con el plano y la especificación del material.</p>
+<div class="actions"><a href="#" download="" class="btn btn--line">%%DESCARGA%%Descargar tabla (PDF)</a><a href="Materiales-v8.dc.html" class="btn btn--line">Ver tabla completa</a></div>
+</div>
+<img loading="lazy" class="mat__esferas" src="/_blob/63aac01922710c39a2e7be6303632d3a" alt="Esferas de válvula de acero inoxidable mecanizadas y pulidas" width="340" height="300">
+</div>
+<figure class="scale" role="group" aria-label="Escala de resistencia a la corrosión, de menor a mayor: acero al carbono WCB, inoxidable CF8, inoxidable CF8M, dúplex 4A y superdúplex 5A." style="margin: 0">
+<div class="scale__legend" aria-hidden="true"><span>Resistencia a la corrosión</span><span>De menor a mayor</span></div>
+<ol class="scale__row">%%PASOS%%</ol>
+<figcaption class="scale__nota">Normas ASTM y equivalentes EN orientativos.</figcaption>
+</figure>
+<div class="finder">
+<div class="finder__row">
+<label class="finder__label">Buscar material
+<span class="finder__field"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg><input type="search" value="{{q}}" onChange="{{onBuscar}}" placeholder="CF8, CF8M, dúplex, A890…" autocomplete="off" class="aml-buscar"></span></label>
+<div role="group" aria-label="Filtrar por familia" class="chips">
+<sc-for list="{{familias}}" as="item" hint-placeholder-count="4"><button type="button" class="chip" onClick="{{item.pick}}" aria-pressed="{{item.on}}">{{item.label}}</button></sc-for>
+</div>
+</div>
+<sc-if value="{{hayQ}}" hint-placeholder-val="{{ false }}">
+<p aria-live="polite" class="small muted">{{resumen}}</p>
+<sc-if value="{{hayRes}}" hint-placeholder-val="{{ true }}">
+<ul class="results">
+<sc-for list="{{resultados}}" as="m" hint-placeholder-count="3">
+<li><span class="results__code">{{m.codigo}}</span><span style="font-weight: 500">{{m.nombre}}</span><span class="muted">{{m.norma}}</span><span class="muted">{{m.en}}</span></li>
+</sc-for>
+</ul>
+</sc-if>
+<sc-if value="{{sinRes}}" hint-placeholder-val="{{ false }}">
+<p>No aparece en el listado. Trabajamos otras aleaciones según especificación: <a href="#contacto" class="link">consúltenos</a>.</p>
+</sc-if>
+</sc-if>
+</div>
+</div>
+</div>
+</section>
+'''
+
+maquinas = [('Capacidades.dc.html#fresado', 'ad49bf58dcc6353447a48badae9a81a5', 'Husillo del centro de mecanizado trabajando una carcasa de bomba de acero fundido amarrada en escuadra', 'center 50%', 'Fresado', 'Mecanizado'),
+            ('Capacidades.dc.html#torneado', '639bb75abbd449f7e28a2d62569149c0', 'Torno CNC con piezas torneadas en primer plano', 'center 55%', 'Torneado', 'Mecanizado'),
+            ('Capacidades.dc.html#mandrinado', '46df578761517afff779d32923caaf40', 'Mandrinadora CNC con una pieza de acero fundido amarrada', 'center 50%', 'Mandrinado', 'Mecanizado'),
+            ('Capacidades.dc.html#soldadura', '33e2b4e1c7b603938d281bfd884ed387', 'Soldadura de una pieza de acero en el taller', '30% 45%', 'Soldadura', 'Certificada')]
+tarjetas = '\n'.join(f'<a class="machine" href="{h}"><figure><div class="machine__frame"><img loading="lazy" src="/_blob/{b}" alt="{a}" width="800" height="1000" style="object-position: {pos}"></div>'
+                     f'<figcaption><span class="machine__name">{n}</span><span class="machine__cat">{c}</span></figcaption></figure></a>' for h, b, a, pos, n, c in maquinas)
+
+etapa2 = '''<section id="capacidades" class="stage" aria-labelledby="fase-2">
+<div class="container grid">
+<div class="stage__head c-1-4"><h2 id="fase-2">2. Mecanizado</h2><p>Mecanizamos en CNC según plano y programamos en CAM con Siemens NX.</p></div>
+<div class="body c-5-12">
+<p class="lead">Mecanizamos, inspeccionamos y ensayamos en nuestra propia planta. Todo el proceso se hace aquí, según su plano y su especificación.</p>
+<div><a href="Capacidades-v8.dc.html" class="btn btn--line">Ver máquinas y capacidades</a></div>
+</div>
+<div class="machines">
+%%TARJETAS%%
+</div>
+</div>
+</section>
+'''
+
+etapa3 = '''<section id="calidad" class="stage" aria-labelledby="fase-3">
+<div class="container grid">
+<div class="stage__head c-1-4"><h2 id="fase-3">3. Control dimensional</h2><p>Medimos cada pieza y emitimos su informe dimensional.</p></div>
+<div class="body c-5-12">
+<p class="lead">Controlamos cada fase, desde el plano hasta la expedición.</p>
+<ul class="rows">
+<li><h3>Control dimensional</h3><p>En máquina tridimensional.</p></li>
+<li><h3>Plano globeado</h3><p>Previo a fabricación.</p></li>
+<li><h3>Trazabilidad</h3><p>De cada pieza.</p></li>
+<li><h3>Especificación</h3><p>Según su especificación.</p></li>
+</ul>
+<p class="iso small muted">Nuestro sistema de gestión de la calidad está certificado según ISO 9001.</p>
+</div>
+</div>
+</section>
+'''
+
+etapa4 = '''<section id="ensayos" class="stage" aria-labelledby="fase-4">
+<div class="container grid">
+<div class="stage__head c-1-4"><h2 id="fase-4">4. Ensayos</h2><p>Ensayamos según los requisitos de cada pedido.</p></div>
+<div class="body c-5-12">
+<div class="tests">
+<div class="test"><h3>Pruebas de presión</h3></div>
+<div class="test"><h3>Líquidos penetrantes</h3></div>
+<div class="test"><h3>Pruebas de helio</h3></div>
+</div>
+<p>Los hacemos en nuestra planta. Si necesita otro ensayo, consúltenos.</p>
+<div><a href="Calidad-v8.dc.html" class="btn btn--line">Ver ensayos y certificaciones</a></div>
+</div>
+</div>
+</section>
+'''
+
+sectores = [('Petróleo y gas', 'Válvulas, bombas y componentes para extracción, refino y transporte.'),
+            ('Naval', 'Componentes para buques e instalaciones marinas.'),
+            ('Nuclear', 'Componentes para instalaciones nucleares con trazabilidad completa y ensayos.'),
+            ('Ferroviario', 'Componentes para material rodante e infraestructura ferroviaria.'),
+            ('Sanitario', 'Piezas para equipos del sector sanitario.'),
+            ('Industrial', 'Componentes para maquinaria y equipos de proceso.'),
+            ('Estructural', 'Piezas de acero fundido para estructuras y uniones.'),
+            ('Otros sectores', '<a href="#contacto" class="link">Consultar</a>')]
+filas_sec = '\n'.join(f'<li><span class="index__name">{n}</span><span class="index__desc">{d}</span></li>' for n, d in sectores)
+
+etapa5 = '''<section id="sectores" class="band-ink on-ink" aria-labelledby="fase-5">
+<img loading="lazy" class="band-ink__bg" src="/_blob/defb66a730bcba562a1f247a64244154" alt="" aria-hidden="true">
+<div class="container grid">
+<div class="stage__head c-1-4"><h2 id="fase-5">5. Expedición</h2><p>Preparamos la documentación, embalamos y enviamos.</p></div>
+<div class="body c-5-12">
+<h3>Sectores con los que trabajamos</h3>
+<p class="lead" style="color: var(--color-on-ink-2)">Mecanizamos piezas para clientes de estos sectores.</p>
+<ul class="index">
+%%SECTORES%%
+</ul>
+<div><a href="Sectores-v8.dc.html" class="btn btn--line-on-ink">Ver todos los sectores</a></div>
+</div>
+</div>
+</section>
+'''
+
+fila_feria = ('<tr><td class="table__fecha num">[DD al DD MES]</td><td><span class="table__feria">[Nombre de la feria]</span><span class="muted small">[Ciudad, País], [sector]</span></td>'
+              '<td class="muted">Stand [nº]</td><td><a href="#contacto" class="link" style="white-space: nowrap">Solicitar reunión</a></td></tr>')
+ferias = '''<section id="ferias" class="fairs" aria-labelledby="ferias-titulo">
+<div class="container grid fairs__grid">
+<div class="fairs__body">
+<div style="display: grid; gap: var(--space-md)">
+<h2 id="ferias-titulo">Próximas ferias</h2>
+<p class="muted">Estas son las próximas ferias en las que estaremos. Si va a asistir, pídanos una reunión y le reservaremos un momento.</p>
+</div>
+<table class="table">
+<caption class="visually-hidden">Próximas ferias</caption>
+<thead><tr><th scope="col">Fechas</th><th scope="col">Feria</th><th scope="col">Stand</th><th scope="col"><span class="visually-hidden">Acción</span></th></tr></thead>
+<tbody>%%FERIAS%%</tbody>
+</table>
+<div><a href="Contacto-v8.dc.html" class="btn btn--line">Ferias y reuniones</a></div>
+</div>
+<div class="fairs__side"><img loading="lazy" class="fairs__photo" src="/_blob/7f788c0badd0760fd48912e94f453d1d" alt="Stand de AML Centrifugal Casting en una feria internacional" width="800" height="800"></div>
+</div>
+</section>
+'''
+
+contacto = '''<section id="contacto" class="contact" aria-labelledby="contacto-titulo">
+<div class="container grid">
+<div class="c-1-5" style="display: grid; gap: var(--space-lg)">
+<h2 id="contacto-titulo">Solicitud de información</h2>
+<p class="lead muted">Escríbanos para pedir una oferta, hacernos una consulta técnica o presentarse como proveedor.</p>
+<div class="contact__facts"><a href="tel:+34948461603">+34 948 46 16 03</a><a href="mailto:info@amlcentrifugal.com">info@amlcentrifugal.com</a></div>
+<div><a href="Contacto-v8.dc.html#transporte" class="btn btn--line">Acceso para transportistas</a></div>
+</div>
+<form class="form c-7-12" data-endpoint="" novalidate="" onSubmit="{{enviar}}">
+<div class="form__pair">
+<label class="field">Nombre<input type="text" name="nombre" autocomplete="name" required=""></label>
+<label class="field">Empresa<input type="text" name="empresa" autocomplete="organization"></label>
+<label class="field">Email<input type="email" name="email" autocomplete="email" required=""></label>
+<label class="field">Motivo
+<select name="motivo">
+<option>Solicitud de oferta</option>
+<option>Consulta técnica</option>
+<option>Soy proveedor</option>
+<option>Transporte o recogida de piezas</option>
+<option>Trabajar en AML</option>
+<option>Otro</option>
+</select></label>
+</div>
+<label class="field">Mensaje<textarea name="mensaje" rows="4"></textarea></label>
+<label class="check"><input type="checkbox" name="privacidad" required="">He leído y acepto la política de privacidad.</label>
+<div><button type="submit" class="btn btn--ink">Enviar solicitud</button></div>
+<p class="form__help" aria-live="polite">{{avisoForm}}</p>
+</form>
+</div>
+</section>
+</main>
+'''
+
+PIE_TPL = '''<footer class="foot on-ink">
+<div class="container grid">
+<p class="foot__statement" style="font-family: var(--font-display); line-height: 1.1; letter-spacing: var(--tracking-display)">Mecanizamos, medimos y ensayamos piezas de acero fundido a la carta, en nuestra propia planta.</p>
+<div class="foot__cols">
+<div class="foot__logo foot__col">%%LOGO%%<p class="small">Sistema de gestión certificado ISO 9001</p></div>
+<div class="foot__col"><p>Empresa</p><a href="%%H%%#empresa">Quiénes somos</a><a href="%%H%%#servicios">Cómo trabajamos</a><a href="%%H%%#sectores">Sectores</a><a href="%%H%%#materiales">Materiales</a><a href="%%H%%#ferias">Ferias</a></div>
+<div class="foot__col"><p>Capacidades</p><a href="Capacidades-v8.dc.html#fresado">Fresado</a><a href="Capacidades-v8.dc.html#torneado">Torneado</a><a href="Capacidades-v8.dc.html#mandrinado">Mandrinado</a><a href="Capacidades-v8.dc.html#soldadura">Soldadura</a><a href="%%H%%#calidad">Control dimensional</a><a href="%%H%%#ensayos">Ensayos</a></div>
+<div class="foot__col"><p>Contacto</p><a href="tel:+34948461603">+34 948 46 16 03</a><a href="mailto:info@amlcentrifugal.com">info@amlcentrifugal.com</a><span>Industrialdea, A-7</span><span>31870 Lecumberri (Navarra)</span><a href="Contacto-v8.dc.html#transporte" style="text-decoration: underline">Cómo llegar</a></div>
+</div>
+<div class="foot__legal">
+<span><span>© 2026 AML Centrifugal Casting, S.L.</span><span>CIF B71115935</span></span>
+<span><a href="#">Aviso legal</a><a href="#">Privacidad</a><a href="#">Cookies</a></span>
+<span aria-label="Idioma" role="group"><a href="#" aria-current="true" lang="es">es</a><a href="#" lang="en">en</a><a href="#" lang="de">de</a><a href="#" lang="it">it</a><a href="#" lang="fr">fr</a></span>
+</div>
+</div>
+</footer>
+'''
+
+# ---------- Lógica: la de la v6, con chips por clase, formulario sin envío y pausa con movimiento reducido ----------
+script = v6[v6.index('<script type="text/x-dc" data-dc-script'):v6.index('</script>', v6.index('<script type="text/x-dc" data-dc-script')) + 9]
+script = re.sub(r"data-props='[^']*'", "data-props='{\"$preview\":{\"width\":1440,\"height\":8600}}'", script, count=1)
+script = script.replace("this.state = { pausado: false, k: 1, q: '', menu: false };", "this.state = { pausado: false, k: 1, q: '', menu: false, aviso: '' };")
+script = script.replace("const lema = this.props.lemaLogo ?? 'Azul';\n", '')
+script = script.replace("const chipBase = 'min-height: 44px; padding: 0 16px; border: 1px solid #011F67; border-radius: 2px; font-size: 14px; font-weight: 600; cursor: pointer; ';\n", '')
+script = script.replace("return { label: f, on: on ? 'true' : 'false', estilo: chipBase + (on ? 'background: #011F67; color: #FFFFFF' : 'background: #FFFFFF; color: #011F67'), pick: () => this.setState({ q: on ? '' : f }) };",
+                        "return { label: f, on: on ? 'true' : 'false', pick: () => this.setState({ q: on ? '' : f }) };")
+script = script.replace("linea: this.props.linea ?? '#011F67',\nlemaAzul: lema !== 'Gris',\nlemaGris: lema === 'Gris',\n", '')
+script = script.replace("navClase: this.state.menu ? 'aml-nav aml-open' : 'aml-nav',", "navClase: this.state.menu ? 'slab__nav is-open' : 'slab__nav',")
+script = script.replace("el.muted = true; el.loop = true; el.playsInline = true;\nconst p = el.play(); if (p && p.catch) p.catch(() => {});",
+                        "el.muted = true; el.loop = true; el.playsInline = true;\n"
+                        "if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.pause(); if (!this.state.pausado) this.setState({ pausado: true }); return; }\n"
+                        "const p = el.play(); if (p && p.catch) p.catch(() => {});")
+script = script.replace("pausado: pausado,",
+                        "avisoForm: this.state.aviso,\n"
+                        "enviar: (ev) => {\n"
+                        "ev.preventDefault();\n"
+                        "const f = ev.currentTarget || ev.target;\n"
+                        "const malo = f.querySelector(':invalid');\n"
+                        "f.querySelectorAll('[aria-invalid]').forEach((x) => x.removeAttribute('aria-invalid'));\n"
+                        "if (malo) { malo.setAttribute('aria-invalid', 'true'); malo.focus(); this.setState({ aviso: 'Falta un dato obligatorio: nombre, un email válido y la casilla de privacidad.' }); return; }\n"
+                        "this.setState({ aviso: 'No se ha enviado nada: este formulario todavía no está conectado.' });\n"
+                        "},\n"
+                        "pausado: pausado,")
+for k in ['enviar:', 'avisoForm', "slab__nav is-open", 'prefers-reduced-motion', "pick: () => this.setState({ q: on ? '' : f })"]:
+    assert k in script, k
+assert 'lemaAzul' not in script and 'chipBase' not in script
+script = re.sub(r"codigo: '(\w+) · ([\w]+)'", lambda m: "codigo: '" + m.group(1) + " (" + m.group(2) + ")'", script)
+assert ' · ' not in script.split('class Component')[0], 'punto medio en los datos'
+
+body = (cabecera() + hero + about + proceso
+        + etapa1.replace('%%DESCARGA%%', ICON_DESCARGA).replace('%%PASOS%%', pasos)
+        + etapa2.replace('%%TARJETAS%%', tarjetas) + etapa3 + etapa4 + etapa5.replace('%%SECTORES%%', filas_sec)
+        + ferias.replace('%%FERIAS%%', fila_feria * 3) + contacto + pie_html(True))
+
+doc = f'''<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="AML Centrifugal Casting: mecanizado de alta precisión, ensayos y control de calidad de piezas de acero fundido según plano. Mandrinado, torneado, fresado, control dimensional y ensayos en planta propia. ISO 9001.">
+<title>AML Centrifugal Casting · Inicio v8</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&amp;family=Space+Grotesk:wght@500&amp;display=swap">
+<style>
+{CSS}</style>
+</helmet>
+<div class="pagina">
+{body}</div>
+</x-dc>
+{script}
+</body>
+</html>
+'''
+if __name__ == '__main__':
+    open(P + 'Inicio-v8.dc.html', 'w', encoding='utf-8').write(doc)
+    print('ok', len(doc))
